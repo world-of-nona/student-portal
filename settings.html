@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>الإعدادات ⚙️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+    <div class="mobile-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="user-info">
+                <div class="avatar-small">⚙️</div>
+                <div>
+                    <h3 class="user-name">الإعدادات 🛠️</h3>
+                    <span class="user-role">تخصيص التطبيق</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            
+            <!-- قسم المظهر واللغة -->
+            <div class="settings-group">
+                <h4 class="group-title">🎨 المظهر واللغة</h4>
+                
+                <!-- خيار الوضع الليلي -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-icon">🌙</span>
+                        <div>
+                            <h4>الوضع الليلي</h4>
+                            <p>تفعيل المظهر الداكن للعينين</p>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="dark-mode-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <!-- خيار تغيير اللغة -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-icon">🌐</span>
+                        <div>
+                            <h4>لغة التطبيق</h4>
+                            <p>اختر اللغة المفضلة</p>
+                        </div>
+                    </div>
+                    <select id="language-select" class="custom-select">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- قسم التنبيهات -->
+            <div class="settings-group">
+                <h4 class="group-title">🔔 التنبيهات والإشعارات</h4>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-icon">⏰</span>
+                        <div>
+                            <h4>تنبيهات المحاضرات</h4>
+                            <p>تذكير قبل بدء المحاضرة بـ 15 دقيقة</p>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- قسم الحساب والأمان (مستقبلي) -->
+            <div class="settings-group">
+                <h4 class="group-title">👤 الحساب والأمان</h4>
+                
+                <div class="setting-item clickable" onclick="alert('سيتم إضافة هذه الميزة قريباً!')">
+                    <div class="setting-info">
+                        <span class="setting-icon">✏️</span>
+                        <div>
+                            <h4>تعديل الملف الشخصي</h4>
+                            <p>تحديث الاسم والصورة الشخصية</p>
+                        </div>
+                    </div>
+                    <span class="arrow-icon">❮</span>
+                </div>
+
+                <!-- زر تسجيل الخروج -->
+                <a href="index.html" class="logout-btn">
+                    <span>🚪 تسجيل الخروج</span>
+                </a>
+            </div>
+
+            <footer class="app-footer">
+                All rights reserved World of Nona 2026
+            </footer>
+        </main>
+
+        <!-- Bottom Navigation Bar -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-btn">
+                <span class="nav-icon">📊</span>
+                <span>الرئيسية</span>
+            </a>
+            <a href="#" class="nav-btn">
+                <span class="nav-icon">📅</span>
+                <span>الجدول</span>
+            </a>
+            <a href="#" class="nav-btn">
+                <span class="nav-icon">✅</span>
+                <span>الحضور</span>
+            </a>
+            <a href="#" class="nav-btn">
+                <span class="nav-icon">📝</span>
+                <span>الأعذار</span>
+            </a>
+            <a href="settings.html" class="nav-btn active">
+                <span class="nav-icon">⚙️</span>
+                <span>الإعدادات</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- ربط ملف الجافا سكريبت -->
+    <script src="script.js"></script>
+</body>
+</html>
