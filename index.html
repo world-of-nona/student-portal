@@ -50,7 +50,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Top Bar for DateTime & Controls */
         .top-bar {
             width: 100%;
             max-width: 420px;
@@ -107,7 +106,7 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             width: 100%;
             max-width: 380px;
-            text-align: center;
+            text-align: inherit;
             border: 2px solid var(--border-color);
             transition: all 0.3s ease;
         }
@@ -129,7 +128,7 @@
             border: 2px solid var(--accent-color);
             border-radius: 10px;
             outline: none;
-            text-align: center;
+            text-align: inherit;
             font-size: 14px;
             background-color: var(--input-bg);
             color: var(--text-color);
@@ -167,7 +166,6 @@
 
         .portal-content {
             display: none;
-            text-align: left;
         }
 
         .card {
@@ -175,7 +173,14 @@
             padding: 12px;
             border-radius: 10px;
             margin-top: 12px;
+        }
+
+        /* Dynamic border alignment based on direction */
+        [dir="ltr"] .card {
             border-left: 4px solid var(--accent-color);
+        }
+        [dir="rtl"] .card {
+            border-right: 4px solid var(--accent-color);
         }
 
         .error {
@@ -188,7 +193,6 @@
 </head>
 <body data-theme="girl" data-mode="light">
 
-<!-- Top Control Bar -->
 <div class="top-bar">
     <div class="datetime-box" id="live-datetime">Loading...</div>
     <div class="controls-box">
@@ -203,22 +207,20 @@
 </div>
 
 <div class="container">
-    <!-- Login Form -->
     <div id="login-box">
         <h2 id="title-txt">🌸 Student Portal</h2>
         <p class="subtitle" id="subtitle-txt">Please enter your student ID to login</p>
         
         <input type="number" id="student-id" placeholder="Enter Student ID">
         
-        <!-- Remember Me Option -->
         <div class="remember-box">
             <input type="checkbox" id="remember-me" style="width: auto;">
             <label for="remember-me" id="remember-lbl">Remember me for:</label>
             <select id="remember-duration">
-                <option value="1">1 Day 📅</option>
-                <option value="2">2 Days 📅</option>
-                <option value="7">1 Week 🗓️</option>
-                <option value="365">Always ♾️</option>
+                <option value="1" id="opt-1">1 Day 📅</option>
+                <option value="2" id="opt-2">2 Days 📅</option>
+                <option value="7" id="opt-7">1 Week 🗓️</option>
+                <option value="365" id="opt-365">Always ♾️</option>
             </select>
         </div>
 
@@ -226,15 +228,14 @@
         <p id="error-msg" class="error">❌ Student ID not registered!</p>
     </div>
 
-    <!-- Protected Application Screen -->
     <div id="portal-content" class="portal-content">
         <h2 id="welcome-msg">Welcome! 👋</h2>
         <p class="subtitle" id="portal-sub">Your academic schedule and attendance</p>
 
         <div class="card">
             <h3 id="schedule-title">📅 Today's Schedule</h3>
-            <p><strong>Course:</strong> Web Development</p>
-            <p><strong>Time:</strong> 10:00 - 12:00</p>
+            <p id="course-txt"><strong>Course:</strong> Web Development</p>
+            <p id="time-txt"><strong>Time:</strong> 10:00 - 12:00</p>
         </div>
 
         <button class="login-btn" onclick="logout()" style="background-color: #888; margin-top: 15px;" id="logout-btn-txt">Logout</button>
@@ -242,16 +243,21 @@
 </div>
 
 <script>
-    // Live English Date & Time
+    let currentLang = 'en'; // اللغة الافتراضية
+
+    // تحديث الوقت والتاريخ بناءً على اللغة المفعلة
     function updateDateTime() {
         const now = new Date();
+        let locale = 'en-US';
+        if (currentLang === 'fr') locale = 'fr-FR';
+        if (currentLang === 'ar') locale = 'ar-DZ';
+
         const options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-        document.getElementById('live-datetime').innerText = now.toLocaleString('en-US', options);
+        document.getElementById('live-datetime').innerText = now.toLocaleString(locale, options);
     }
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
-    // Theme Switchers
     function toggleGenderTheme() {
         const body = document.body;
         body.setAttribute('data-theme', body.getAttribute('data-theme') === 'girl' ? 'boy' : 'girl');
@@ -262,61 +268,83 @@
         body.setAttribute('data-mode', body.getAttribute('data-mode') === 'light' ? 'dark' : 'light');
     }
 
-    // Translations Dictionary (Default: English)
     const translations = {
         en: {
             title: "🌸 Student Portal",
             subtitle: "Please enter your student ID to login",
             placeholder: "Enter Student ID",
             remember: "Remember me for:",
+            opt1: "1 Day 📅", opt2: "2 Days 📅", opt7: "1 Week 🗓️", opt365: "Always ♾️",
             loginBtn: "Login ✨",
             error: "❌ Student ID not registered!",
+            welcome: "Welcome ",
+            portalSub: "Your academic schedule and attendance",
+            scheduleTitle: "📅 Today's Schedule",
+            course: "<strong>Course:</strong> Web Development",
+            time: "<strong>Time:</strong> 10:00 - 12:00",
             logout: "Logout",
-            dir: "ltr",
-            align: "left"
+            dir: "ltr"
         },
         fr: {
             title: "🌸 Portail Étudiant",
             subtitle: "Veuillez entrer votre numéro d'étudiant",
             placeholder: "Numéro de carte universitaire",
             remember: "Se souvenir de moi:",
+            opt1: "1 Jour 📅", opt2: "2 Jours 📅", opt7: "1 Semaine 🗓️", opt365: "Toujours ♾️",
             loginBtn: "Connexion ✨",
             error: "❌ Numéro non enregistré!",
+            welcome: "Bienvenue ",
+            portalSub: "Votre emploi du temps et présence",
+            scheduleTitle: "📅 Emploi du temps du jour",
+            course: "<strong>Matière :</strong> Développement Web",
+            time: "<strong>Heure :</strong> 10:00 - 12:00",
             logout: "Déconnexion",
-            dir: "ltr",
-            align: "left"
+            dir: "ltr"
         },
         ar: {
             title: "🌸 بوابة الطلاب",
             subtitle: "يرجى إدخال رقم الطالب المعتمد للدخول",
             placeholder: "أدخل رقم البطاقة الجامعية",
             remember: "تذكرني لمدة:",
+            opt1: "يوم واحد 📅", opt2: "يومان 📅", opt7: "أسبوع 🗓️", opt365: "دائماً ♾️",
             loginBtn: "دخول للبوابة ✨",
             error: "❌ رقم الطالب غير مسجل!",
+            welcome: "مرحباً بك ",
+            portalSub: "جدولك الأكاديمي وسجل الحضور",
+            scheduleTitle: "📅 جدول اليوم",
+            course: "<strong>المادة:</strong> برمجة وتطبيقات ويب",
+            time: "<strong>التوقيت:</strong> 10:00 - 12:00",
             logout: "تسجيل الخروج",
-            dir: "rtl",
-            align: "right"
+            dir: "rtl"
         }
     };
 
     function setLanguage(lang) {
+        currentLang = lang; // حفظ اللغة الحالية لتحديث التاريخ والوقت فوراً
         const t = translations[lang];
         document.documentElement.dir = t.dir;
         document.getElementById('title-txt').innerText = t.title;
         document.getElementById('subtitle-txt').innerText = t.subtitle;
         document.getElementById('student-id').placeholder = t.placeholder;
         document.getElementById('remember-lbl').innerText = t.remember;
+        document.getElementById('opt-1').innerText = t.opt1;
+        document.getElementById('opt-2').innerText = t.opt2;
+        document.getElementById('opt-7').innerText = t.opt7;
+        document.getElementById('opt-365').innerText = t.opt365;
         document.getElementById('login-btn-txt').innerText = t.loginBtn;
         document.getElementById('error-msg').innerText = t.error;
+        document.getElementById('portal-sub').innerText = t.portalSub;
+        document.getElementById('schedule-title').innerText = t.scheduleTitle;
+        document.getElementById('course-txt').innerHTML = t.course;
+        document.getElementById('time-txt').innerHTML = t.time;
         document.getElementById('logout-btn-txt').innerText = t.logout;
-        document.getElementById('portal-content').style.textAlign = t.align;
+        updateDateTime(); // تحديث فوري للوقت والتاريخ باللغة الجديدة
     }
 
-    // Student Database
     const allowedStudents = {
-        "1001": "Ahmed Mohamed (Student 1)",
-        "1002": "Fatima Zohra (Student 2)",
-        "1003": "Yassine Karim (Student 3)"
+        "1001": { en: "Ahmed Mohamed (Student 1)", fr: "Ahmed Mohamed (Étudiant 1)", ar: "أحمد محمد (طالب 1)" },
+        "1002": { en: "Fatima Zohra (Student 2)", fr: "Fatima Zohra (Étudiante 2)", ar: "فاطمة الزهراء (طالبة 2)" },
+        "1003": { en: "Yassine Karim (Student 3)", fr: "Yassine Karim (Étudiant 3)", ar: "ياسين كريم (طالب 3)" }
     };
 
     function login() {
@@ -327,7 +355,10 @@
             errorMsg.style.display = "none";
             document.getElementById('login-box').style.display = "none";
             document.getElementById('portal-content').style.display = "block";
-            document.getElementById('welcome-msg').innerText = "Welcome " + allowedStudents[idInput] + " 🌸";
+            
+            const studentName = allowedStudents[idInput][currentLang];
+            const t = translations[currentLang];
+            document.getElementById('welcome-msg').innerText = t.welcome + studentName + " 🌸";
             
             if(document.getElementById('remember-me').checked) {
                 localStorage.setItem('savedStudentId', idInput);
