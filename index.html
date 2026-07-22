@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الطلاب | Student Portal</title>
+    <style>
+        :root {
+            --bg-color: #fce4ec;
+            --card-bg: #ffffff;
+            --primary-pink: #f48fb1;
+            --pastel-purple: #ce93d8;
+            --pastel-blue: #90caf9;
+            --pastel-green: #a5d6a7;
+            --text-color: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 2px solid #f8bbd0;
+        }
+
+        h2 {
+            color: #ad1457;
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid var(--pastel-purple);
+            border-radius: 12px;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            background-color: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #ec407a;
+        }
+
+        .portal-content {
+            display: none;
+            text-align: right;
+        }
+
+        .card {
+            background-color: #f3e5f5;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border-right: 5px solid var(--pastel-purple);
+        }
+
+        .card.attendance {
+            background-color: #e8f5e9;
+            border-right-color: var(--pastel-green);
+        }
+
+        .error {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- شاشة تسجيل الدخول الأيقونية -->
+    <div id="login-box">
+        <h2>🌸 بوابة الطلاب</h2>
+        <p class="subtitle">يرجى أدخال رقم الطالب المعتمد للدخول</p>
+        <input type="number" id="student-id" placeholder="أدخل رقم البطاقة الجامعية">
+        <button onclick="login()">دخول للبوابة ✨</button>
+        <p id="error-msg" class="error">❌ رقم الطالب غير مسجل أو غير صحيح!</p>
+    </div>
+
+    <!-- شاشة التطبيق الداخلية المحمية -->
+    <div id="portal-content" class="portal-content">
+        <h2 id="welcome-msg">مرحباً بك! 👋</h2>
+        <p class="subtitle">جدولكِ الأكاديمي وسجل الحضور</p>
+
+        <div class="card">
+            <h3>📅 جدول اليوم</h3>
+            <p><strong>المادة:</strong> برمجة وتطبيقات ويب</p>
+            <p><strong>التوقيت:</strong> 10:00 صباحاً - 12:00 ظهراً</p>
+            <p><strong>القاعة:</strong> مدرج A3</p>
+        </div>
+
+        <div class="card attendance">
+            <h3>✅ نسبة الحضور والغياب</h3>
+            <p><strong>حالة الحضور:</strong> منتظم 🌸</p>
+            <p><strong>عدد الغيابات:</strong> 0 محاضرة</p>
+        </div>
+
+        <button onclick="logout()" style="background-color: #b0bec5; margin-top: 20px;">تسجيل الخروج</button>
+    </div>
+</div>
+
+<script>
+    // قائمة الأرقام المعتمدة للطلاب الثلاثة الوهميين
+    const allowedStudents = {
+        "1001": "أحمد محمد (طالب 1)",
+        "1002": "فاطمة الزهراء (طالبة 2)",
+        "1003": "ياسين كريم (طالب 3)"
+    };
+
+    function login() {
+        const idInput = document.getElementById('student-id').value;
+        const errorMsg = document.getElementById('error-msg');
+        
+        if (allowedStudents[idInput]) {
+            errorMsg.style.display = "none";
+            document.getElementById('login-box').style.display = "none";
+            document.getElementById('portal-content').style.display = "block";
+            document.getElementById('welcome-msg').innerText = "مرحباً بكِ " + allowedStudents[idInput] + " 🌸";
+        } else {
+            errorMsg.style.display = "block";
+        }
+    }
+
+    function logout() {
+        document.getElementById('portal-content').style.display = "none";
+        document.getElementById('login-box').style.display = "block";
+        document.getElementById('student-id').value = "";
+    }
+</script>
+
+</body>
+</html>
