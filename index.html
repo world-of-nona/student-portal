@@ -52,7 +52,7 @@
 
         .top-bar {
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -62,10 +62,11 @@
         }
 
         .datetime-box {
-            font-family: monospace;
-            background: rgba(255, 255, 255, 0.5);
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.6);
             padding: 6px 10px;
             border-radius: 8px;
+            font-size: 12px;
         }
 
         .controls-box {
@@ -111,9 +112,7 @@
             transition: all 0.3s ease;
         }
 
-        h2 {
-            margin-bottom: 5px;
-        }
+        h2 { margin-bottom: 5px; }
 
         p.subtitle {
             font-size: 13px;
@@ -164,9 +163,7 @@
             transition: 0.3s;
         }
 
-        .portal-content {
-            display: none;
-        }
+        .portal-content { display: none; }
 
         .card {
             background: rgba(0,0,0,0.03);
@@ -175,13 +172,8 @@
             margin-top: 12px;
         }
 
-        /* Dynamic border alignment based on direction */
-        [dir="ltr"] .card {
-            border-left: 4px solid var(--accent-color);
-        }
-        [dir="rtl"] .card {
-            border-right: 4px solid var(--accent-color);
-        }
+        [dir="ltr"] .card { border-left: 4px solid var(--accent-color); }
+        [dir="rtl"] .card { border-right: 4px solid var(--accent-color); }
 
         .error {
             color: #d32f2f;
@@ -243,18 +235,53 @@
 </div>
 
 <script>
-    let currentLang = 'en'; // اللغة الافتراضية
+    let currentLang = 'en';
 
-    // تحديث الوقت والتاريخ بناءً على اللغة المفعلة
+    // أيام وأشهر مخصصة للتأكد من المسميات الدقيقة
+    const arDays = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+    const arMonths = ["جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان", "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+    
+    const frDays = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+    const frMonths = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+    const enDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const enMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     function updateDateTime() {
         const now = new Date();
-        let locale = 'en-US';
-        if (currentLang === 'fr') locale = 'fr-FR';
-        if (currentLang === 'ar') locale = 'ar-DZ';
+        const dayIdx = now.getDay();
+        const dateNum = now.getDate();
+        const monthIdx = now.getMonth();
+        const yearNum = now.getFullYear();
 
-        const options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-        document.getElementById('live-datetime').innerText = now.toLocaleString(locale, options);
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        if (minutes < 10) minutes = '0' + minutes;
+
+        let str = "";
+
+        if (currentLang === 'ar') {
+            const period = hours >= 12 ? 'مساءً' : 'صباحاً';
+            let displayHours = hours % 12;
+            if (displayHours === 0) displayHours = 12;
+            str = `${arDays[dayIdx]} ${dateNum} ${arMonths[monthIdx]} ${yearNum} - ${displayHours}:${minutes} ${period}`;
+        } 
+        else if (currentLang === 'fr') {
+            const period = hours >= 12 ? 'Soir' : 'Matin';
+            let displayHours = hours % 12;
+            if (displayHours === 0) displayHours = 12;
+            str = `${frDays[dayIdx]} ${dateNum} ${frMonths[monthIdx]} ${yearNum} - ${displayHours}.${minutes} ${period}`;
+        } 
+        else { // en
+            const period = hours >= 12 ? 'PM' : 'AM';
+            let displayHours = hours % 12;
+            if (displayHours === 0) displayHours = 12;
+            str = `${enDays[dayIdx]}, ${dateNum} ${enMonths[monthIdx]} ${yearNum} - ${displayHours}:${minutes} ${period}`;
+        }
+
+        document.getElementById('live-datetime').innerText = str;
     }
+
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
@@ -320,7 +347,7 @@
     };
 
     function setLanguage(lang) {
-        currentLang = lang; // حفظ اللغة الحالية لتحديث التاريخ والوقت فوراً
+        currentLang = lang;
         const t = translations[lang];
         document.documentElement.dir = t.dir;
         document.getElementById('title-txt').innerText = t.title;
@@ -338,7 +365,7 @@
         document.getElementById('course-txt').innerHTML = t.course;
         document.getElementById('time-txt').innerHTML = t.time;
         document.getElementById('logout-btn-txt').innerText = t.logout;
-        updateDateTime(); // تحديث فوري للوقت والتاريخ باللغة الجديدة
+        updateDateTime();
     }
 
     const allowedStudents = {
