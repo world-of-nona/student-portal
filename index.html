@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- هذا السطر هو المسؤول عن جعل التطبيق يتكيف مع شاشات الهواتف والكمبيوتر -->
+    <!-- هذا السطر ضروري جداً لتكيف التطبيق مع كل مقاسات الشاشات (هاتف، لوحي، كمبيوتر) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة الطلاب - جامعة برج بوعريريج</title>
     <style>
@@ -21,32 +21,29 @@
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* شريط علوي يفصل بين اليمين واليسار */
+        /* شريط الوقت والتاريخ: أقصى اليمين وأقصى اليسار */
         .top-bar {
             display: flex;
-            justify-content: space-between; /* يفصل العناصر لأقصى اليمين واليسار */
+            justify-content: space-between;
             align-items: center;
             background-color: var(--pastel-pink);
             padding: 15px 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             font-weight: bold;
-            flex-wrap: wrap; /* يتكيف مع الشاشات الصغيرة */
+            flex-wrap: wrap; /* يسمح بنزول العناصر تحت بعضها في الشاشات الصغيرة جداً */
         }
 
         .container {
-            flex-grow: 1;
-            width: 90%;
-            max-width: 1200px; /* لا يتجاوز هذا العرض في شاشات الكمبيوتر الكبيرة */
+            width: 95%;
+            max-width: 1200px;
             margin: 20px auto;
             background-color: white;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow-x: auto; /* يجعل الجدول قابلاً للسحب في الهواتف حتى لا يتشوه */
         }
 
         h1, h2 {
@@ -54,21 +51,43 @@
             color: #5E35B1;
         }
 
+        /* تنسيق جدول الطلاب */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: var(--pastel-purple);
+            color: #4A148C;
+        }
+
         /* أزرار ونماذج تفاعلية */
         .btn {
-            background-color: #81C784;
+            background-color: #BA68C8;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 16px;
             border-radius: 8px;
             cursor: pointer;
             margin: 10px 0;
+            display: block;
             width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .btn:hover {
-            background-color: #66BB6A;
+            background-color: #9C27B0;
         }
 
         .form-group {
@@ -86,7 +105,7 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            box-sizing: border-box; /* لمنع خروج الحقل عن الشاشة */
+            box-sizing: border-box;
         }
 
         /* قسم التسجيل مخفي افتراضياً */
@@ -96,40 +115,36 @@
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
+        
+        .error-msg { color: red; font-weight: bold; text-align: center; }
+        .success-msg { color: green; font-weight: bold; text-align: center; }
 
-        /* تصميم متجاوب (Media Queries) للشاشات الصغيرة */
-        @media (max-width: 600px) {
-            .top-bar {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- الشريط العلوي (التاريخ والوقت) -->
+    <!-- الشريط العلوي -->
     <div class="top-bar">
         <div id="date-display">📅 التاريخ: جاري التحميل...</div>
         <div id="time-display">⏰ الوقت: جاري التحميل...</div>
     </div>
 
     <div class="container">
-        <h1>مرحباً بكم في بوابة الطلاب 🎓</h1>
-        <p style="text-align: center;">خاص بطلاب جامعة برج بوعريريج</p>
+        <h1>بوابة جدول وحضور الطلاب 🎓</h1>
+        <p style="text-align: center;">جامعة برج بوعريريج</p>
 
         <!-- زر لفتح قسم التسجيل -->
-        <button class="btn" onclick="toggleRegistration()" style="background-color: #BA68C8;">➕ تسجيل طالب جديد</button>
+        <button class="btn" onclick="toggleRegistration()">➕ تسجيل طالب جديد</button>
 
         <!-- قسم تسجيل الطالب الجديد -->
         <div id="registrationSection">
-            <h2>نموذج التسجيل 📝</h2>
+            <h2>نموذج تسجيل طالب جديد 📝</h2>
             
             <div class="form-group">
                 <label>رقم بطاقة الطالب (ID Card):</label>
-                <input type="text" id="studentId" placeholder="أدخل رقم البطاقة هنا...">
+                <input type="text" id="studentId" placeholder="مثال: 2026001">
             </div>
 
             <div class="form-group">
@@ -146,73 +161,102 @@
                 <input type="email" id="studentEmail" placeholder="example@univ.bba.dz">
             </div>
 
-            <button class="btn" onclick="submitRegistration()">تأكيد التسجيل ✅</button>
-            <p id="message" style="text-align: center; font-weight: bold; margin-top: 10px;"></p>
+            <button class="btn" onclick="submitRegistration()" style="background-color: #81C784;">تأكيد التسجيل ✅</button>
+            <p id="message"></p>
         </div>
+
+        <!-- جدول الطلاب الحاليين -->
+        <h2>قائمة الطلاب المسجلين 📋</h2>
+        <table id="studentsTable">
+            <thead>
+                <tr>
+                    <th>رقم البطاقة (ID)</th>
+                    <th>الجنس</th>
+                    <th>البريد الإلكتروني الجامعي</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- الطلاب الوهميين الثلاثة -->
+                <tr>
+                    <td>2024001</td>
+                    <td>ذكر 👨‍🎓</td>
+                    <td>ahmed.ali@univ.bba.dz</td>
+                </tr>
+                <tr>
+                    <td>2024002</td>
+                    <td>أنثى 👩‍🎓</td>
+                    <td>sara.mohammed@univ.bba.dz</td>
+                </tr>
+                <tr>
+                    <td>2024003</td>
+                    <td>أنثى 👩‍🎓</td>
+                    <td>lila.khalid@univ.bba.dz</td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 
-    <!-- كود الجافاسكربت لتشغيل الوقت والتأكد من الإيميل -->
     <script>
         // دالة لعرض الوقت والتاريخ بجهتين مختلفتين
         function updateDateTime() {
             const now = new Date();
-            
-            // ضبط التاريخ (أقصى اليمين حسب اتجاه الصفحة rtl)
             const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('date-display').innerText = '📅 التاريخ: ' + now.toLocaleDateString('ar-DZ', dateOptions);
-            
-            // ضبط الوقت (أقصى اليسار)
             const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            
+            document.getElementById('date-display').innerText = '📅 التاريخ: ' + now.toLocaleDateString('ar-DZ', dateOptions);
             document.getElementById('time-display').innerText = '⏰ الوقت: ' + now.toLocaleTimeString('ar-DZ', timeOptions);
         }
-        
-        // تحديث الوقت كل ثانية
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
         // إظهار وإخفاء نموذج التسجيل
         function toggleRegistration() {
             const section = document.getElementById('registrationSection');
-            if (section.style.display === 'none' || section.style.display === '') {
-                section.style.display = 'block';
-            } else {
-                section.style.display = 'none';
-            }
+            section.style.display = (section.style.display === 'none' || section.style.display === '') ? 'block' : 'none';
         }
 
-        // دالة التحقق من التسجيل (بما في ذلك شرط إيميل الجامعة)
+        // دالة التحقق من التسجيل وإضافة الطالب للجدول
         function submitRegistration() {
             const id = document.getElementById('studentId').value;
             const gender = document.getElementById('studentGender').value;
             const email = document.getElementById('studentEmail').value;
             const messageBox = document.getElementById('message');
 
+            // التحقق من الحقول الفارغة
             if (id === '' || gender === '' || email === '') {
-                messageBox.style.color = 'red';
+                messageBox.className = 'error-msg';
                 messageBox.innerText = '⚠️ يرجى ملء جميع الحقول أولاً.';
                 return;
             }
 
             // التحقق من نهاية الإيميل
             if (!email.endsWith('@univ.bba.dz')) {
-                messageBox.style.color = 'red';
-                messageBox.innerText = '❌ عذراً، هذا التطبيق مخصص لطلاب جامعتنا فقط. يجب أن ينتهي البريد بـ @univ.bba.dz';
+                messageBox.className = 'error-msg';
+                messageBox.innerText = '❌ عذراً، يجب أن ينتهي البريد بـ @univ.bba.dz';
                 return;
             }
 
-            // في حال نجاح الشروط
-            messageBox.style.color = 'green';
-            messageBox.innerText = '🎉 تم تسجيل الطالب بنجاح!';
+            // إضافة الطالب إلى الجدول
+            const table = document.getElementById('studentsTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
             
-            // تفريغ الحقول بعد التسجيل
+            newRow.insertCell(0).innerText = id;
+            newRow.insertCell(1).innerText = gender + (gender === 'ذكر' ? ' 👨‍🎓' : ' 👩‍🎓');
+            newRow.insertCell(2).innerText = email;
+
+            // رسالة النجاح
+            messageBox.className = 'success-msg';
+            messageBox.innerText = '🎉 تم تسجيل الطالب بنجاح وإضافته للجدول!';
+            
+            // تفريغ الحقول وإغلاق النافذة بعد ثانيتين
             setTimeout(() => {
                 document.getElementById('studentId').value = '';
                 document.getElementById('studentGender').value = '';
                 document.getElementById('studentEmail').value = '';
                 messageBox.innerText = '';
-                toggleRegistration(); // إغلاق النافذة
-            }, 3000);
+                toggleRegistration();
+            }, 2000);
         }
     </script>
 </body>
