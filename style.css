@@ -2,8 +2,8 @@
 
 :root {
     --bg-gradient: linear-gradient(135deg, #E2E6F9 0%, #F5E8FA 50%, #E8EDFF 100%);
-    --card-bg: rgba(255, 255, 255, 0.92); /* زيادة خفيفة في الكثافة لخفة الأداء */
-    --border-color: rgba(255, 255, 255, 0.95);
+    --card-bg: #FFFFFF; /* خلفية بيضاء صلبة تماماً للبطاقات */
+    --border-color: #EAEBF5;
     --text-color: #4A4A68;
     --subtitle-color: #7C7C9A;
     --primary-gradient: linear-gradient(135deg, #F4C5D4 0%, #E8A0BF 100%);
@@ -14,8 +14,8 @@
 
 [data-theme="boy"] {
     --bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #E0F7FA 50%, #D4E0FC 100%);
-    --card-bg: rgba(255, 255, 255, 0.92);
-    --border-color: rgba(255, 255, 255, 0.95);
+    --card-bg: #FFFFFF;
+    --border-color: #EAEBF5;
     --text-color: #37474F;
     --subtitle-color: #616161;
     --primary-gradient: linear-gradient(135deg, #90CAF9 0%, #80DEEA 100%);
@@ -41,7 +41,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Static Decorations */
+/* Static Background Decorations */
 .bg-decorations {
     position: absolute;
     width: 100%;
@@ -66,11 +66,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.85);
+    background: #FFFFFF;
     padding: 12px 25px;
     font-size: 13.5px;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     z-index: 20;
 }
 
@@ -133,20 +133,17 @@ body {
     font-size: 22px;
 }
 
-/* Glassmorphism Optimized Container */
+/* Clean Solid Container */
 .container {
     position: relative;
     width: 100%;
     max-width: 420px;
     padding: 35px 28px;
     background: var(--card-bg);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     border-radius: 32px;
     border: 1.5px solid var(--border-color);
-    box-shadow: 0 12px 30px rgba(107, 107, 138, 0.06);
+    box-shadow: 0 8px 24px rgba(107, 107, 138, 0.08);
     text-align: center;
-    transform: translateZ(0); /* تسريع الأداء عبر GPU */
 }
 
 .logo-badge {
@@ -255,7 +252,7 @@ button.login-btn {
 }
 
 .card {
-    background: #FFFFFF;
+    background: #F8F9FF;
     padding: 16px;
     border-radius: 16px;
     margin-top: 15px;
