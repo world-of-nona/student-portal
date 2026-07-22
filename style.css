@@ -2,25 +2,25 @@
 
 :root {
     --bg-gradient: linear-gradient(135deg, #E2E6F9 0%, #F5E8FA 50%, #E8EDFF 100%);
-    --card-bg: rgba(255, 255, 255, 0.82);
-    --border-color: rgba(255, 255, 255, 0.9);
+    --card-bg: rgba(255, 255, 255, 0.92); /* زيادة خفيفة في الكثافة لخفة الأداء */
+    --border-color: rgba(255, 255, 255, 0.95);
     --text-color: #4A4A68;
     --subtitle-color: #7C7C9A;
     --primary-gradient: linear-gradient(135deg, #F4C5D4 0%, #E8A0BF 100%);
-    --primary-shadow: rgba(244, 197, 212, 0.5);
-    --input-bg: rgba(248, 249, 255, 0.9);
+    --primary-shadow: rgba(244, 197, 212, 0.35);
+    --input-bg: #F8F9FF;
     --accent-color: #E8A0BF;
 }
 
 [data-theme="boy"] {
     --bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #E0F7FA 50%, #D4E0FC 100%);
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --border-color: rgba(255, 255, 255, 0.9);
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --border-color: rgba(255, 255, 255, 0.95);
     --text-color: #37474F;
     --subtitle-color: #616161;
     --primary-gradient: linear-gradient(135deg, #90CAF9 0%, #80DEEA 100%);
-    --primary-shadow: rgba(144, 202, 249, 0.5);
-    --input-bg: rgba(240, 248, 255, 0.9);
+    --primary-shadow: rgba(144, 202, 249, 0.35);
+    --input-bg: #F0F8FF;
     --accent-color: #64B5F6;
 }
 
@@ -39,10 +39,9 @@ body {
     color: var(--text-color);
     position: relative;
     overflow-x: hidden;
-    transition: background 0.4s ease;
 }
 
-/* Background Static Decorations (No Animations) */
+/* Static Decorations */
 .bg-decorations {
     position: absolute;
     width: 100%;
@@ -67,12 +66,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.85);
     padding: 12px 25px;
     font-size: 13.5px;
     font-weight: 600;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     z-index: 20;
 }
 
@@ -104,7 +102,7 @@ body {
 }
 
 .control-btn {
-    background: rgba(255, 255, 255, 0.85);
+    background: #FFFFFF;
     border: 1.5px solid var(--border-color);
     border-radius: 50%;
     width: 42px;
@@ -114,52 +112,41 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
-}
-
-.control-btn:hover {
-    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
 .flags-popup {
     position: absolute;
     top: 50px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: #FFFFFF;
     border: 1.5px solid var(--border-color);
     border-radius: 16px;
     padding: 8px 14px;
     display: none;
     gap: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
     z-index: 30;
 }
 
 .flags-popup span {
     cursor: pointer;
     font-size: 22px;
-    transition: transform 0.2s;
 }
 
-.flags-popup span:hover {
-    transform: scale(1.25);
-}
-
-/* Glassmorphism Container */
+/* Glassmorphism Optimized Container */
 .container {
     position: relative;
     width: 100%;
     max-width: 420px;
     padding: 35px 28px;
     background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 32px;
     border: 1.5px solid var(--border-color);
-    box-shadow: 0 20px 40px rgba(107, 107, 138, 0.08);
+    box-shadow: 0 12px 30px rgba(107, 107, 138, 0.06);
     text-align: center;
-    transition: all 0.3s ease;
+    transform: translateZ(0); /* تسريع الأداء عبر GPU */
 }
 
 .logo-badge {
@@ -171,13 +158,13 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 12px;
-    box-shadow: 0 8px 18px rgba(244, 197, 212, 0.4);
+    box-shadow: 0 4px 12px rgba(244, 197, 212, 0.3);
     font-size: 30px;
 }
 
 [data-theme="boy"] .logo-badge {
     background: linear-gradient(135deg, #E3F2FD 0%, #90CAF9 100%);
-    box-shadow: 0 8px 18px rgba(144, 202, 249, 0.4);
+    box-shadow: 0 4px 12px rgba(144, 202, 249, 0.3);
 }
 
 h2 {
@@ -220,7 +207,6 @@ p.subtitle {
     font-size: 13.5px;
     color: var(--text-color);
     outline: none;
-    transition: all 0.3s ease;
 }
 
 [dir="ltr"] .input-wrapper .form-input { padding-left: 45px; }
@@ -229,7 +215,6 @@ p.subtitle {
 .form-input:focus {
     border-color: var(--accent-color);
     background: #FFFFFF;
-    box-shadow: 0 0 0 4px rgba(244, 197, 212, 0.25);
 }
 
 .remember-box {
@@ -261,14 +246,8 @@ button.login-btn {
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 8px 20px var(--primary-shadow);
-    transition: all 0.3s ease;
+    box-shadow: 0 6px 16px var(--primary-shadow);
     margin-top: 8px;
-}
-
-button.login-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px var(--primary-shadow);
 }
 
 .portal-content {
@@ -276,11 +255,11 @@ button.login-btn:hover {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.6);
+    background: #FFFFFF;
     padding: 16px;
     border-radius: 16px;
     margin-top: 15px;
-    border: 1px solid rgba(255,255,255,0.8);
+    border: 1px solid #EAEBF5;
 }
 
 [dir="ltr"] .card { border-left: 4px solid var(--accent-color); }
@@ -310,9 +289,6 @@ button.login-btn:hover {
     color: var(--accent-color);
     cursor: pointer;
     font-weight: 600;
-}
-.toggle-reg-link:hover {
-    text-decoration: underline;
 }
 
 footer {
