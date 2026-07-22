@@ -39,10 +39,10 @@ body {
     color: var(--text-color);
     position: relative;
     overflow-x: hidden;
-    transition: all 0.4s ease;
+    transition: background 0.4s ease;
 }
 
-/* Background Animations */
+/* Background Static Decorations (No Animations) */
 .bg-decorations {
     position: absolute;
     width: 100%;
@@ -53,28 +53,13 @@ body {
     z-index: 0;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
-}
-
-@keyframes float-reverse {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(10px) rotate(-2deg); }
-}
-
-@keyframes pulse-glow {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 0.9; transform: scale(1.05); }
-}
-
-.cloud-1 { position: absolute; bottom: -20px; left: -50px; opacity: 0.85; animation: float 8s ease-in-out infinite; }
-.cloud-2 { position: absolute; top: -30px; right: -40px; opacity: 0.8; animation: float-reverse 9s ease-in-out infinite; }
-.cloud-3 { position: absolute; top: 15%; left: 8%; opacity: 0.6; animation: float 11s ease-in-out infinite; }
-.flower-1 { position: absolute; top: 18%; right: 15%; animation: pulse-glow 4s ease-in-out infinite; }
-.flower-2 { position: absolute; bottom: 15%; left: 12%; animation: pulse-glow 5s ease-in-out infinite 1s; }
-.sparkle-1 { position: absolute; top: 30%; right: 25%; animation: float 6s ease-in-out infinite; }
-.sparkle-2 { position: absolute; bottom: 25%; right: 10%; animation: float-reverse 7s ease-in-out infinite; }
+.cloud-1 { position: absolute; bottom: -20px; left: -50px; opacity: 0.85; }
+.cloud-2 { position: absolute; top: -30px; right: -40px; opacity: 0.8; }
+.cloud-3 { position: absolute; top: 15%; left: 8%; opacity: 0.6; }
+.flower-1 { position: absolute; top: 18%; right: 15%; opacity: 0.85; }
+.flower-2 { position: absolute; bottom: 15%; left: 12%; opacity: 0.85; }
+.sparkle-1 { position: absolute; top: 30%; right: 25%; opacity: 0.8; }
+.sparkle-2 { position: absolute; bottom: 25%; right: 10%; opacity: 0.85; }
 
 /* Top Bar */
 .top-bar {
