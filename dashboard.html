@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>الرئيسية - لوحة التحكم 📊</title>
+    <title>لوحة التحكم الرئيسية 📊</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .menu-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #EFEFEF;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .menu-card:active {
+            transform: scale(0.97);
+        }
+        .menu-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .menu-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .menu-sub {
+            font-size: 10px;
+            color: #888;
+        }
+    </style>
 </head>
 <body class="dashboard-body">
 
@@ -13,131 +51,50 @@
         <!-- Header -->
         <header class="app-header">
             <div class="user-info">
-                <div class="avatar-small">🎓</div>
                 <div>
-                    <h3 class="user-name">أهلاً، سارة! 👋</h3>
-                    <span class="user-role">L1 Groupe B15 • طالبة جامعية</span>
+                    <h3 class="user-name">مرحباً بك 👋</h3>
+                    <span class="user-role">Sciences de la Nature et de la Vie • L1</span>
                 </div>
             </div>
-            <button class="icon-btn">🔔<span class="dot"></span></button>
+            <a href="settings.html" style="text-decoration:none; font-size:20px;">⚙️</a>
         </header>
 
         <!-- Main Content -->
         <main class="dashboard-content">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" placeholder="ابحث عن مادة، قاعة، أو أستاذ...">
-            </div>
 
-            <!-- Banner -->
+            <!-- Hero Banner -->
             <div class="hero-card">
-                <div class="hero-text">
-                    <h2>صباح الخير! ☀️</h2>
-                    <p>لديك اليوم 4 حصص دراسية + فترة استراحة ☕.</p>
-                    <button class="chip-btn">المدرج B 📍</button>
-                </div>
-                <div class="hero-icon">📚</div>
+                <h3 style="font-size:16px; margin-bottom:6px;">السنة الأولى جامعي 🎓</h3>
+                <p style="font-size:12px; opacity:0.9; margin-bottom:12px;">تتبعي منهاج الدروس، الجدول الزمني، واحسبي معدلك بضغطة زر.</p>
+                <a href="calculator.html" class="chip-btn" style="background:white; color:#8A70D6;">احسب معدلك الآن 🧮</a>
             </div>
 
-            <!-- Quick Stats -->
-            <div class="stats-grid">
-                <div class="stat-card purple">
-                    <span class="stat-icon">📖</span>
-                    <div>
-                        <h4>4</h4>
-                        <p>حصص اليوم</p>
-                    </div>
-                </div>
-
-                <!-- كارت المنهاج السنوي (مرتبط بصفحة الفصل الأول) -->
-                <a href="semester1.html" class="stat-card green" style="text-decoration: none; color: inherit;">
-                    <span class="stat-icon">📚</span>
-                    <div>
-                        <h4>المنهاج</h4>
-                        <p>البرنامج السنوي</p>
-                    </div>
+            <!-- Quick Grid Menu -->
+            <h4 style="font-size:14px; color:#555; margin-bottom:10px;">الوصول السريع 🚀</h4>
+            <div class="grid-menu">
+                <a href="semester1.html" class="menu-card">
+                    <span class="menu-icon">📚</span>
+                    <span class="menu-title">السداسي الأول</span>
+                    <span class="menu-sub">7 مواد • 30 رصيد</span>
                 </a>
 
-                <div class="stat-card yellow">
-                    <span class="stat-icon">⏳</span>
-                    <div>
-                        <h4>3 س</h4>
-                        <p>فترة الاستراحة</p>
-                    </div>
-                </div>
-                <div class="stat-card pink">
-                    <span class="stat-icon">⚠️</span>
-                    <div>
-                        <h4>1 يوم</h4>
-                        <p>أيام الغياب</p>
-                    </div>
-                </div>
-            </div>
+                <a href="semester2.html" class="menu-card">
+                    <span class="menu-icon">🌿</span>
+                    <span class="menu-title">السداسي الثاني</span>
+                    <span class="menu-sub">7 مواد • 30 رصيد</span>
+                </a>
 
-            <!-- Today's Classes (جدول اليوم الأول - الإثنين) -->
-            <div class="section-block">
-                <div class="section-title">
-                    <h3>جدول اليوم (الإثنين) 🗓️</h3>
-                    <a href="schedule.html">عرض الأسبوع كامل</a>
-                </div>
+                <a href="calculator.html" class="menu-card">
+                    <span class="menu-icon">🧮</span>
+                    <span class="menu-title">حاسبة المعدل</span>
+                    <span class="menu-sub">حساب دقيق 40/60</span>
+                </a>
 
-                <!-- الحصة الأولى -->
-                <div class="class-card">
-                    <div class="time-badge">08:00 - 09:30</div>
-                    <div class="class-info">
-                        <h4>Techniques of Expression (French)</h4>
-                        <p>Course • LOUKIL B. • Amphitheater B</p>
-                    </div>
-                    <span class="status-tag present">تم الحضور</span>
-                </div>
-
-                <!-- الحصة الثانية -->
-                <div class="class-card active-class">
-                    <div class="time-badge">09:30 - 11:00</div>
-                    <div class="class-info">
-                        <h4>Universal History of Sciences</h4>
-                        <p>Course • BAAZIZ N. • Amphitheater B</p>
-                    </div>
-                    <span class="status-tag upcoming">قادمة الآن</span>
-                </div>
-
-                <!-- الحصة الثالثة -->
-                <div class="class-card">
-                    <div class="time-badge">11:00 - 12:30</div>
-                    <div class="class-info">
-                        <h4>General and Organic Chemistry</h4>
-                        <p>Course • HAMMA A. • Amphitheater B</p>
-                    </div>
-                </div>
-
-                <!-- فترة الاستراحة والغداء -->
-                <div class="class-card" style="background: #FFF9E6; border: 1.5px dashed #FFE082;">
-                    <div class="time-badge" style="color: #B78103;">12:30 - 15:30</div>
-                    <div class="class-info">
-                        <h4 style="color: #B78103;">فترة استراحة وغداء ☕🍽️</h4>
-                        <p style="color: #8C6A00;">وقت حر / استراحة بين الحصص</p>
-                    </div>
-                    <span class="status-tag" style="background: #FFE082; color: #5D4037;">استراحة</span>
-                </div>
-
-                <!-- الحصة الرابعة -->
-                <div class="class-card">
-                    <div class="time-badge">15:30 - 17:00</div>
-                    <div class="class-info">
-                        <h4>Cellular Biology</h4>
-                        <p>DW • SEDDIKI • Classroom 3.08</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Excuse Card -->
-            <div class="notice-card">
-                <div class="notice-icon">⭐</div>
-                <div class="notice-text">
-                    <h4>تقديم عذر غياب</h4>
-                    <p>يمكنك رفع الأعذار الطبية والاستئذان بسهولة.</p>
-                </div>
-                <button class="notice-btn">تقديم 📝</button>
+                <a href="schedule.html" class="menu-card">
+                    <span class="menu-icon">📅</span>
+                    <span class="menu-title">الجدول الزمني</span>
+                    <span class="menu-sub">الحصص والقاعات</span>
+                </a>
             </div>
 
             <footer class="app-footer">
@@ -145,7 +102,7 @@
             </footer>
         </main>
 
-        <!-- Bottom Navigation Bar -->
+        <!-- Navigation Bar -->
         <nav class="bottom-nav">
             <a href="dashboard.html" class="nav-btn active">
                 <span class="nav-icon">📊</span>
@@ -159,9 +116,9 @@
                 <span class="nav-icon">📖</span>
                 <span>المنهاج</span>
             </a>
-            <a href="#" class="nav-btn">
-                <span class="nav-icon">📝</span>
-                <span>الأعذار</span>
+            <a href="calculator.html" class="nav-btn">
+                <span class="nav-icon">🧮</span>
+                <span>المعدل</span>
             </a>
             <a href="settings.html" class="nav-btn">
                 <span class="nav-icon">⚙️</span>
@@ -170,6 +127,5 @@
         </nav>
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>
