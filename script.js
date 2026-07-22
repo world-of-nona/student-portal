@@ -1,29 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form');
-    const loginScreen = document.getElementById('login-screen');
-    const dashboardScreen = document.getElementById('dashboard-screen');
+    
+    // 1. إدارة التنقل بين أزرار الشريط السفلي (Bottom Nav)
+    const navButtons = document.querySelectorAll('.nav-btn');
+    
+    navButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            // إزالة التفعيل عن باقي الأزرار
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            // تفعيل الزر المبتكر المختار
+            button.classList.add('active');
+        });
+    });
 
-    // 1. الانتقال عند الضغط على تسجيل الدخول
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // منع إعادة تحميل الصفحة
-
-            // إخفاء شاشة الدخول وإظهار لوحة التحكم
-            loginScreen.classList.remove('active-screen');
-            dashboardScreen.classList.add('active-screen');
-
-            // التمرير لأعلى الشاشة
-            window.scrollTo(0, 0);
+    // 2. التفاعل مع زر تقديم طلب عذر غياب 📝
+    const noticeBtn = document.querySelector('.notice-btn');
+    if (noticeBtn) {
+        noticeBtn.addEventListener('click', () => {
+            alert('📝 تم فتح نموذج تقديم عذر غياب جديد.');
         });
     }
 
-    // 2. التنقل بين أزرار الشريط السفلي (Bottom Nav)
-    const navBtns = document.querySelectorAll('.nav-btn');
-    navBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            navBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    // 3. التفاعل مع زر الإشعارات 🔔
+    const notificationBtn = document.querySelector('.icon-btn');
+    if (notificationBtn) {
+        notificationBtn.addEventListener('click', () => {
+            alert('🔔 لديك 3 إشعارات جديدة بخصوص المحاضرات.');
         });
-    });
+    }
+
+    // 4. التفاعل مع زر عرض الخريطة 📍
+    const chipBtn = document.querySelector('.chip-btn');
+    if (chipBtn) {
+        chipBtn.addEventListener('click', () => {
+            alert('📍 القاعة 204 تقع في الدور الثاني - المبنى B.');
+        });
+    }
+
 });
