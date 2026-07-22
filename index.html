@@ -49,7 +49,7 @@
             box-sizing: border-box;
         }
 
-        /* Top Bar: Date on extreme right, Time on extreme letter/left */
+        /* Top Bar: Date on extreme right, Time on extreme left */
         .top-bar {
             width: 100%;
             display: flex;
@@ -253,12 +253,14 @@
             text-decoration: underline;
         }
 
+        /* Footer Style - Bold and Beautiful */
         footer {
-            margin-top: 15px;
-            font-size: 11px;
-            opacity: 0.7;
+            margin-top: 20px;
+            font-size: 13px;
+            font-weight: bold;
             text-align: center;
             padding: 10px;
+            opacity: 0.9;
         }
 
         /* Responsive adjustments for tablets and large phones */
@@ -272,16 +274,15 @@
 </head>
 <body data-theme="girl" data-mode="light">
 
-<!-- Top Bar: Date on extreme right/left depending on direction, Time on opposite -->
+<!-- Top Bar -->
 <div class="top-bar">
     <div class="datetime-box" id="live-date">Date</div>
     <div class="datetime-box" id="live-time">Time</div>
 </div>
 
 <div class="main-wrapper">
-    <!-- Central Controls: Language Emoji & Gender/Color Emoji -->
+    <!-- Central Controls -->
     <div class="central-controls">
-        <!-- Language Selector Dropdown Button -->
         <div style="position: relative;">
             <button class="control-btn" onclick="toggleFlagsMenu()" title="Language">🌐</button>
             <div id="flags-popup" class="flags-popup">
@@ -291,7 +292,6 @@
             </div>
         </div>
 
-        <!-- Gender / Color Theme Selector Button -->
         <button class="control-btn" id="gender-icon-btn" onclick="toggleGenderTheme()" title="Theme Color">♀️</button>
     </div>
 
@@ -355,12 +355,12 @@
     </div>
 </div>
 
-<footer>All rights reserved World of Nona 2026</footer>
+<!-- Footer with Dynamic Multi-language Rights -->
+<footer id="footer-txt">✨ © All rights reserved World of Nona 2026 🎓💫</footer>
 
 <script>
     let currentLang = 'en';
 
-    // Update Date and Time with proper regional formats
     function updateDateTime() {
         const now = new Date();
         let locale = 'en-US';
@@ -376,13 +376,11 @@
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
-    // Toggle Flags Dropdown Menu
     function toggleFlagsMenu() {
         const popup = document.getElementById('flags-popup');
         popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
     }
 
-    // Toggle Gender / Pastel Color Theme (Pink ♀️ / Blue ♂️)
     function toggleGenderTheme() {
         const body = document.body;
         const btn = document.getElementById('gender-icon-btn');
@@ -418,6 +416,7 @@
             male: "Male 👨‍🎓",
             female: "Female 👩‍🎓",
             regSubmit: "Register ✅",
+            footerText: "✨ © All rights reserved World of Nona 2026 🎓💫",
             dir: "ltr"
         },
         fr: {
@@ -442,6 +441,7 @@
             male: "Masculin 👨‍🎓",
             female: "Féminin 👩‍🎓",
             regSubmit: "S'inscrire ✅",
+            footerText: "✨ © Tous droits réservés World of Nona 2026 🎓💫",
             dir: "ltr"
         },
         ar: {
@@ -466,6 +466,7 @@
             male: "ذكر 👨‍🎓",
             female: "أنثى 👩‍🎓",
             regSubmit: "تأكيد التسجيل ✅",
+            footerText: "✨ © جميع الحقوق محفوضة لـ World of Nona 2026 🎓💫",
             dir: "rtl"
         }
     };
@@ -497,10 +498,10 @@
         document.getElementById('opt-male').innerText = t.male;
         document.getElementById('opt-female').innerText = t.female;
         document.getElementById('reg-submit-txt').innerText = t.regSubmit;
+        document.getElementById('footer-txt').innerText = t.footerText;
         updateDateTime();
     }
 
-    // Default registered students + saved local registrations
     let allowedStudents = JSON.parse(localStorage.getItem('customStudents')) || {
         "1001": { en: "Ahmed Mohamed (Student 1)", fr: "Ahmed Mohamed (Étudiant 1)", ar: "أحمد محمد (طالب 1)" },
         "1002": { en: "Fatima Zohra (Student 2)", fr: "Fatima Zohra (Étudiante 2)", ar: "فاطمة الزهراء (طالبة 2)" },
@@ -541,14 +542,12 @@
             return;
         }
 
-        // Save new student
         allowedStudents[id] = { en: name, fr: name, ar: name };
         localStorage.setItem('customStudents', JSON.stringify(allowedStudents));
 
         succEl.innerText = currentLang === 'ar' ? '🎉 تم التسجيل بنجاح! يمكنك الدخول الآن.' : '🎉 Registered successfully! You can login now.';
         succEl.style.display = 'block';
 
-        // Clear fields and hide after 2 seconds
         setTimeout(() => {
             document.getElementById('reg-id').value = '';
             document.getElementById('reg-name').value = '';
