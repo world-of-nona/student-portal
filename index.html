@@ -1,18 +1,39 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة الطلاب | Student Portal</title>
+    <title>Student Portal</title>
     <style>
         :root {
+            /* Default: Girl Pastel Theme */
             --bg-color: #fce4ec;
             --card-bg: #ffffff;
-            --primary-pink: #f48fb1;
-            --pastel-purple: #ce93d8;
-            --pastel-blue: #90caf9;
-            --pastel-green: #a5d6a7;
+            --primary-color: #f48fb1;
+            --accent-color: #ce93d8;
+            --border-color: #f8bbd0;
             --text-color: #4a4a4a;
+            --input-bg: #ffffff;
+        }
+
+        /* Boy Pastel Theme */
+        [data-theme="boy"] {
+            --bg-color: #e3f2fd;
+            --card-bg: #ffffff;
+            --primary-color: #90caf9;
+            --accent-color: #80deea;
+            --border-color: #bbdefb;
+            --text-color: #37474f;
+            --input-bg: #ffffff;
+        }
+
+        /* Dark Mode */
+        [data-mode="dark"] {
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --border-color: #0f3460;
+            --text-color: #e94560;
+            --input-bg: #0f3460;
         }
 
         body {
@@ -20,130 +41,282 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        /* Top Bar for DateTime & Controls */
+        .top-bar {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .datetime-box {
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .controls-box {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flags-box span {
+            cursor: pointer;
+            font-size: 18px;
+            margin: 0 2px;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .flags-box span:hover {
+            transform: scale(1.2);
         }
 
         .container {
             background-color: var(--card-bg);
             padding: 25px;
             border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
             text-align: center;
-            border: 2px solid #f8bbd0;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
         h2 {
-            color: #ad1457;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         p.subtitle {
-            font-size: 14px;
-            color: #888;
+            font-size: 13px;
+            opacity: 0.8;
             margin-bottom: 20px;
         }
 
-        input {
+        input, select {
             width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid var(--pastel-purple);
-            border-radius: 12px;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
             outline: none;
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
         }
 
-        button {
+        .remember-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+
+        .remember-box select {
+            width: auto;
+            padding: 4px 8px;
+            margin: 0;
+            font-size: 12px;
+        }
+
+        button.login-btn {
             width: 95%;
             padding: 12px;
-            background-color: var(--primary-pink);
+            background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 12px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
             margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #ec407a;
+            transition: 0.3s;
         }
 
         .portal-content {
             display: none;
-            text-align: right;
+            text-align: left;
         }
 
         .card {
-            background-color: #f3e5f5;
-            padding: 15px;
-            border-radius: 12px;
-            margin-top: 15px;
-            border-right: 5px solid var(--pastel-purple);
-        }
-
-        .card.attendance {
-            background-color: #e8f5e9;
-            border-right-color: var(--pastel-green);
+            background: rgba(0,0,0,0.03);
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 12px;
+            border-left: 4px solid var(--accent-color);
         }
 
         .error {
             color: #d32f2f;
-            font-size: 14px;
-            margin-top: 10px;
+            font-size: 13px;
+            margin-top: 8px;
             display: none;
         }
     </style>
 </head>
-<body>
+<body data-theme="girl" data-mode="light">
+
+<!-- Top Control Bar -->
+<div class="top-bar">
+    <div class="datetime-box" id="live-datetime">Loading...</div>
+    <div class="controls-box">
+        <button class="icon-btn" onclick="toggleGenderTheme()" title="Switch Theme">🌸/🦋</button>
+        <button class="icon-btn" onclick="toggleDarkMode()" title="Night Mode">☀️</button>
+        <div class="flags-box">
+            <span onclick="setLanguage('en')" title="English">🇬🇧</span>
+            <span onclick="setLanguage('fr')" title="Français">🇫🇷</span>
+            <span onclick="setLanguage('ar')" title="العربية">🇩🇿</span>
+        </div>
+    </div>
+</div>
 
 <div class="container">
-    <!-- شاشة تسجيل الدخول الأيقونية -->
+    <!-- Login Form -->
     <div id="login-box">
-        <h2>🌸 بوابة الطلاب</h2>
-        <p class="subtitle">يرجى أدخال رقم الطالب المعتمد للدخول</p>
-        <input type="number" id="student-id" placeholder="أدخل رقم البطاقة الجامعية">
-        <button onclick="login()">دخول للبوابة ✨</button>
-        <p id="error-msg" class="error">❌ رقم الطالب غير مسجل أو غير صحيح!</p>
+        <h2 id="title-txt">🌸 Student Portal</h2>
+        <p class="subtitle" id="subtitle-txt">Please enter your student ID to login</p>
+        
+        <input type="number" id="student-id" placeholder="Enter Student ID">
+        
+        <!-- Remember Me Option -->
+        <div class="remember-box">
+            <input type="checkbox" id="remember-me" style="width: auto;">
+            <label for="remember-me" id="remember-lbl">Remember me for:</label>
+            <select id="remember-duration">
+                <option value="1">1 Day 📅</option>
+                <option value="2">2 Days 📅</option>
+                <option value="7">1 Week 🗓️</option>
+                <option value="365">Always ♾️</option>
+            </select>
+        </div>
+
+        <button class="login-btn" id="login-btn-txt" onclick="login()">Login ✨</button>
+        <p id="error-msg" class="error">❌ Student ID not registered!</p>
     </div>
 
-    <!-- شاشة التطبيق الداخلية المحمية -->
+    <!-- Protected Application Screen -->
     <div id="portal-content" class="portal-content">
-        <h2 id="welcome-msg">مرحباً بك! 👋</h2>
-        <p class="subtitle">جدولكِ الأكاديمي وسجل الحضور</p>
+        <h2 id="welcome-msg">Welcome! 👋</h2>
+        <p class="subtitle" id="portal-sub">Your academic schedule and attendance</p>
 
         <div class="card">
-            <h3>📅 جدول اليوم</h3>
-            <p><strong>المادة:</strong> برمجة وتطبيقات ويب</p>
-            <p><strong>التوقيت:</strong> 10:00 صباحاً - 12:00 ظهراً</p>
-            <p><strong>القاعة:</strong> مدرج A3</p>
+            <h3 id="schedule-title">📅 Today's Schedule</h3>
+            <p><strong>Course:</strong> Web Development</p>
+            <p><strong>Time:</strong> 10:00 - 12:00</p>
         </div>
 
-        <div class="card attendance">
-            <h3>✅ نسبة الحضور والغياب</h3>
-            <p><strong>حالة الحضور:</strong> منتظم 🌸</p>
-            <p><strong>عدد الغيابات:</strong> 0 محاضرة</p>
-        </div>
-
-        <button onclick="logout()" style="background-color: #b0bec5; margin-top: 20px;">تسجيل الخروج</button>
+        <button class="login-btn" onclick="logout()" style="background-color: #888; margin-top: 15px;" id="logout-btn-txt">Logout</button>
     </div>
 </div>
 
 <script>
-    // قائمة الأرقام المعتمدة للطلاب الثلاثة الوهميين
+    // Live English Date & Time
+    function updateDateTime() {
+        const now = new Date();
+        const options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        document.getElementById('live-datetime').innerText = now.toLocaleString('en-US', options);
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // Theme Switchers
+    function toggleGenderTheme() {
+        const body = document.body;
+        body.setAttribute('data-theme', body.getAttribute('data-theme') === 'girl' ? 'boy' : 'girl');
+    }
+
+    function toggleDarkMode() {
+        const body = document.body;
+        body.setAttribute('data-mode', body.getAttribute('data-mode') === 'light' ? 'dark' : 'light');
+    }
+
+    // Translations Dictionary (Default: English)
+    const translations = {
+        en: {
+            title: "🌸 Student Portal",
+            subtitle: "Please enter your student ID to login",
+            placeholder: "Enter Student ID",
+            remember: "Remember me for:",
+            loginBtn: "Login ✨",
+            error: "❌ Student ID not registered!",
+            logout: "Logout",
+            dir: "ltr",
+            align: "left"
+        },
+        fr: {
+            title: "🌸 Portail Étudiant",
+            subtitle: "Veuillez entrer votre numéro d'étudiant",
+            placeholder: "Numéro de carte universitaire",
+            remember: "Se souvenir de moi:",
+            loginBtn: "Connexion ✨",
+            error: "❌ Numéro non enregistré!",
+            logout: "Déconnexion",
+            dir: "ltr",
+            align: "left"
+        },
+        ar: {
+            title: "🌸 بوابة الطلاب",
+            subtitle: "يرجى إدخال رقم الطالب المعتمد للدخول",
+            placeholder: "أدخل رقم البطاقة الجامعية",
+            remember: "تذكرني لمدة:",
+            loginBtn: "دخول للبوابة ✨",
+            error: "❌ رقم الطالب غير مسجل!",
+            logout: "تسجيل الخروج",
+            dir: "rtl",
+            align: "right"
+        }
+    };
+
+    function setLanguage(lang) {
+        const t = translations[lang];
+        document.documentElement.dir = t.dir;
+        document.getElementById('title-txt').innerText = t.title;
+        document.getElementById('subtitle-txt').innerText = t.subtitle;
+        document.getElementById('student-id').placeholder = t.placeholder;
+        document.getElementById('remember-lbl').innerText = t.remember;
+        document.getElementById('login-btn-txt').innerText = t.loginBtn;
+        document.getElementById('error-msg').innerText = t.error;
+        document.getElementById('logout-btn-txt').innerText = t.logout;
+        document.getElementById('portal-content').style.textAlign = t.align;
+    }
+
+    // Student Database
     const allowedStudents = {
-        "1001": "أحمد محمد (طالب 1)",
-        "1002": "فاطمة الزهراء (طالبة 2)",
-        "1003": "ياسين كريم (طالب 3)"
+        "1001": "Ahmed Mohamed (Student 1)",
+        "1002": "Fatima Zohra (Student 2)",
+        "1003": "Yassine Karim (Student 3)"
     };
 
     function login() {
@@ -154,7 +327,11 @@
             errorMsg.style.display = "none";
             document.getElementById('login-box').style.display = "none";
             document.getElementById('portal-content').style.display = "block";
-            document.getElementById('welcome-msg').innerText = "مرحباً بكِ " + allowedStudents[idInput] + " 🌸";
+            document.getElementById('welcome-msg').innerText = "Welcome " + allowedStudents[idInput] + " 🌸";
+            
+            if(document.getElementById('remember-me').checked) {
+                localStorage.setItem('savedStudentId', idInput);
+            }
         } else {
             errorMsg.style.display = "block";
         }
@@ -164,6 +341,15 @@
         document.getElementById('portal-content').style.display = "none";
         document.getElementById('login-box').style.display = "block";
         document.getElementById('student-id').value = "";
+        localStorage.removeItem('savedStudentId');
+    }
+
+    window.onload = function() {
+        const savedId = localStorage.getItem('savedStudentId');
+        if(savedId && allowedStudents[savedId]) {
+            document.getElementById('student-id').value = savedId;
+            document.getElementById('remember-me').checked = true;
+        }
     }
 </script>
 
