@@ -1,19 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. إدارة التنقل بين أزرار الشريط السفلي (Bottom Nav)
-    const navButtons = document.querySelectorAll('.nav-btn');
-    
-    navButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            // إزالة التفعيل عن باقي الأزرار
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            // تفعيل الزر المبتكر المختار
-            button.classList.add('active');
-        });
-    });
 
-    // 2. التفاعل مع زر تقديم طلب عذر غياب 📝
+    // 1. 🌙 إدارة الوضع الليلي (Dark Mode) والحفاظ على الاختيار عبر الصفحات
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const isDarkMode = localStorage.getItem('theme') === 'dark';
+
+    // تطبيق الثيم الداكن تلقائياً إذا تم تفعيله سابقاً
+    if (isDarkMode) {
+        document.body.classList.add('dark-theme');
+        if (darkModeToggle) darkModeToggle.checked = true;
+    }
+
+    // عند تغيير حالة مفتاح الوضع الليلي في صفحة الإعدادات
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('change', () => {
+            if (darkModeToggle.checked) {
+                document.body.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark'); // حفظ الاختيار
+            } else {
+                document.body.classList.remove('dark-theme');
+                localStorage.setItem('theme', 'light'); // حفظ الاختيار
+            }
+        });
+    }
+
+    // 2. 🌐 إدارة تغيير لغة التطبيق
+    const languageSelect = document.getElementById('language-select');
+    if (languageSelect) {
+        languageSelect.addEventListener('change', (e) => {
+            const selectedLangText = e.target.options[e.target.selectedIndex].text;
+            alert(`🌐 سيتم تغيير لغة التطبيق إلى: ${selectedLangText}`);
+        });
+    }
+
+    // 3. 📝 التفاعل مع زر تقديم طلب عذر غياب
     const noticeBtn = document.querySelector('.notice-btn');
     if (noticeBtn) {
         noticeBtn.addEventListener('click', () => {
@@ -21,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. التفاعل مع زر الإشعارات 🔔
+    // 4. 🔔 التفاعل مع زر الإشعارات
     const notificationBtn = document.querySelector('.icon-btn');
     if (notificationBtn) {
         notificationBtn.addEventListener('click', () => {
@@ -29,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. التفاعل مع زر عرض الخريطة 📍
+    // 5. 📍 التفاعل مع زر عرض القاعة / الخريطة
     const chipBtn = document.querySelector('.chip-btn');
     if (chipBtn) {
         chipBtn.addEventListener('click', () => {
