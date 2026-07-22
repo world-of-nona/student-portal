@@ -2,139 +2,184 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم - جدول وحضور الطالب</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تطبيق جدول وحضور الطلاب 🎓</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="app-layout">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="user-profile">
-                <div class="avatar-3d">🎓</div>
-                <h3>أهلاً، سارة! 👋</h3>
-                <span class="student-id">طالبة جامعية</span>
+    <div class="mobile-container">
+        
+        <!-- 🔒 الشاشة الأولى: واجهة تسجيل الدخول -->
+        <section id="login-screen" class="screen active-screen">
+            <div class="login-card">
+                <div class="brand-badge">🎓</div>
+                <h2>أهلاً بك! 👋</h2>
+                <p class="subtitle">سجلي دخولك لمتابعة جدولك وحضورك اليومي</p>
+
+                <form id="login-form">
+                    <div class="input-group">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="username" placeholder="اسم المستخدم / الرقم الجامعي" required>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" placeholder="كلمة المرور" required>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" checked> تذكرني
+                        </label>
+                        <a href="#" class="forgot-pass">نسيت كلمة المرور؟</a>
+                    </div>
+
+                    <button type="submit" class="primary-btn">تسجيل الدخول 🚀</button>
+                </form>
             </div>
+            
+            <footer class="app-footer">
+                All rights reserved World of Nona 2026
+            </footer>
+        </section>
 
-            <nav class="nav-menu">
-                <a href="#" class="nav-item active"><span class="icon">📊</span> الرئيسية</a>
-                <a href="#" class="nav-item"><span class="icon">📅</span> الجدول الأسبوعي</a>
-                <a href="#" class="nav-item"><span class="icon">✅</span> سجل الحضور</a>
-                <a href="#" class="nav-item"><span class="icon">📝</span> طلبات الاستئذان</a>
-                <a href="#" class="nav-item"><span class="icon">⚙️</span> الإعدادات</a>
-            </nav>
 
-            <div class="premium-card">
-                <div class="crown-icon">👑</div>
-                <h4>الحساب المتميز</h4>
-                <p>تنبيهات تلقائية للغياب والحضور</p>
-                <button class="upgrade-btn">ترقية الآن</button>
-            </div>
-        </aside>
+        <!-- 📊 الشاشة الثانية: لوحة التحكم (تظهر بعد الدخول) -->
+        <section id="dashboard-screen" class="screen">
+            
+            <!-- Top Header Bar -->
+            <header class="app-header">
+                <div class="user-info">
+                    <div class="avatar-small">🎓</div>
+                    <div>
+                        <h3 class="user-name">أهلاً، سارة! 👋</h3>
+                        <span class="user-role">طالبة جامعية</span>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <button class="icon-btn">🔔<span class="dot"></span></button>
+                </div>
+            </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Header Bar -->
-            <header class="top-header">
+            <main class="dashboard-content">
+                <!-- Search -->
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
                     <input type="text" placeholder="ابحث عن مادة، قاعة، أو دكتور...">
                 </div>
-                <div class="header-actions">
-                    <button class="icon-btn">🔔<span class="badge">3</span></button>
-                    <button class="icon-btn">👤</button>
-                </div>
-            </header>
 
-            <!-- Hero Welcome Card -->
-            <section class="hero-card">
-                <div class="hero-text">
-                    <h2>صباح الخير، سارة! ☀️</h2>
-                    <p>لديك اليوم 3 محاضرات. المحاضرة القادمة: <strong>قواعد البيانات</strong> في القاعة 204.</p>
-                    <button class="action-btn">عرض القاعة على الخريطة 📍</button>
-                </div>
-                <div class="hero-illustration">📚</div>
-            </section>
-
-            <!-- Quick Stats Row -->
-            <section class="stats-grid">
-                <div class="stat-card purple">
-                    <div class="stat-icon">📖</div>
-                    <div class="stat-info">
-                        <span>محاضرات اليوم</span>
-                        <h3>3 محاضرات</h3>
+                <!-- Hero Welcome Banner -->
+                <div class="hero-card">
+                    <div class="hero-text">
+                        <h2>صباح الخير! ☀️</h2>
+                        <p>لديك اليوم 3 محاضرات. المحاضرة القادمة: <strong>قواعد البيانات</strong>.</p>
+                        <button class="chip-btn">القاعة 204 📍</button>
                     </div>
-                </div>
-                <div class="stat-card green">
-                    <div class="stat-icon">✅</div>
-                    <div class="stat-info">
-                        <span>نسبة الحضور</span>
-                        <h3>96%</h3>
-                    </div>
-                </div>
-                <div class="stat-card yellow">
-                    <div class="stat-icon">⏳</div>
-                    <div class="stat-info">
-                        <span>ساعات الدراسة</span>
-                        <h3>18 ساعة</h3>
-                    </div>
-                </div>
-                <div class="stat-card pink">
-                    <div class="stat-icon">⚠️</div>
-                    <div class="stat-info">
-                        <span>أيام الغياب</span>
-                        <h3>يوم واحد</h3>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Schedules & Activity Grid -->
-            <section class="content-grid">
-                <div class="card schedule-card">
-                    <div class="card-header">
-                        <h3>جدول اليوم 🗓️</h3>
-                        <a href="#" class="see-all">عرض الكل</a>
-                    </div>
-                    <div class="class-list">
-                        <div class="class-item">
-                            <div class="class-time">08:00 ص</div>
-                            <div class="class-details">
-                                <h4>هندسة البرمجيات</h4>
-                                <p>د. أحمد العلي • قاعة 101</p>
-                            </div>
-                            <span class="status-tag present">تم الحضور</span>
-                        </div>
-                        <div class="class-item active-class">
-                            <div class="class-time">10:00 ص</div>
-                            <div class="class-details">
-                                <h4>قواعد البيانات</h4>
-                                <p>د. مريم القحطاني • قاعة 204</p>
-                            </div>
-                            <span class="status-tag upcoming">قادمة الان</span>
-                        </div>
-                    </div>
+                    <div class="hero-icon">📚</div>
                 </div>
 
-                <div class="card banner-card">
-                    <div class="banner-content">
-                        <span class="star-icon">⭐</span>
+                <!-- Quick Stats Grid (2x2 on Mobile) -->
+                <div class="stats-grid">
+                    <div class="stat-card purple">
+                        <span class="stat-icon">📖</span>
                         <div>
-                            <h4>هل تحتاج لتقديم عذر غياب؟</h4>
-                            <p>يمكنك تقديم طلب الاستئذان رفع الأعذار بسهولة من هنا.</p>
+                            <h4>3</h4>
+                            <p>محاضرات اليوم</p>
                         </div>
-                        <button class="banner-btn">تقديم طلب 📝</button>
+                    </div>
+                    <div class="stat-card green">
+                        <span class="stat-icon">✅</span>
+                        <div>
+                            <h4>96%</h4>
+                            <p>نسبة الحضور</p>
+                        </div>
+                    </div>
+                    <div class="stat-card yellow">
+                        <span class="stat-icon">⏳</span>
+                        <div>
+                            <h4>18 س</h4>
+                            <p>ساعات الدراسة</p>
+                        </div>
+                    </div>
+                    <div class="stat-card pink">
+                        <span class="stat-icon">⚠️</span>
+                        <div>
+                            <h4>1 يوم</h4>
+                            <p>أيام الغياب</p>
+                        </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Footer -->
-            <footer>
+                <!-- Today Schedule -->
+                <div class="section-block">
+                    <div class="section-title">
+                        <h3>جدول اليوم 🗓️</h3>
+                        <a href="#">عرض الكل</a>
+                    </div>
+
+                    <div class="class-card">
+                        <div class="time-badge">08:00 ص</div>
+                        <div class="class-info">
+                            <h4>هندسة البرمجيات</h4>
+                            <p>د. أحمد العلي • قاعة 101</p>
+                        </div>
+                        <span class="status-tag present">تم الحضور</span>
+                    </div>
+
+                    <div class="class-card active-class">
+                        <div class="time-badge">10:00 ص</div>
+                        <div class="class-info">
+                            <h4>قواعد البيانات</h4>
+                            <p>د. مريم القحطاني • قاعة 204</p>
+                        </div>
+                        <span class="status-tag upcoming">قادمة الآن</span>
+                    </div>
+                </div>
+
+                <!-- Excuse Request Banner -->
+                <div class="notice-card">
+                    <div class="notice-icon">⭐</div>
+                    <div class="notice-text">
+                        <h4>تقديم عذر غياب</h4>
+                        <p>يمكنك رفع الأعذار الطبية والاستئذان بسهولة.</p>
+                    </div>
+                    <button class="notice-btn">تقديم 📝</button>
+                </div>
+            </main>
+
+            <!-- Bottom Navigation Bar (خاص بالهواتف) -->
+            <nav class="bottom-nav">
+                <a href="#" class="nav-btn active">
+                    <span class="nav-icon">📊</span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="#" class="nav-btn">
+                    <span class="nav-icon">📅</span>
+                    <span>الجدول</span>
+                </a>
+                <a href="#" class="nav-btn">
+                    <span class="nav-icon">✅</span>
+                    <span>الحضور</span>
+                </a>
+                <a href="#" class="nav-btn">
+                    <span class="nav-icon">📝</span>
+                    <span>الأعذار</span>
+                </a>
+                <a href="#" class="nav-btn">
+                    <span class="nav-icon">⚙️</span>
+                    <span>الإعدادات</span>
+                </a>
+            </nav>
+
+            <footer class="app-footer dashboard-footer">
                 All rights reserved World of Nona 2026
             </footer>
-        </main>
+        </section>
+
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
