@@ -1,11 +1,71 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مواد الفصل الثاني - L1 🌿</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Programme Semestre 2 🌿</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        .unit-header {
+            background: #8A70D6;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            margin: 18px 0 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .subject-card-detailed {
+            background: white;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #EFEFEF;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            text-align: right;
+        }
+        .subject-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .subject-code {
+            background: #F0ECFF;
+            color: #8A70D6;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+        .subject-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            background: #F9F9F9;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 11px;
+            color: #555;
+            text-align: center;
+            margin-top: 8px;
+        }
+        .eval-badge {
+            font-size: 11px;
+            color: #666;
+            margin-top: 6px;
+            display: block;
+        }
+    </style>
 </head>
 <body class="dashboard-body">
 
@@ -15,59 +75,175 @@
             <div class="user-info">
                 <a href="dashboard.html" style="text-decoration:none; font-size:20px; margin-left:10px;">⬅️</a>
                 <div>
-                    <h3 class="user-name">الفصل الثاني (Semestre 2) 🍃</h3>
-                    <span class="user-role">علوم الطبيعة والحياة • L1</span>
+                    <h3 class="user-name">Semestre 2 🍃</h3>
+                    <span class="user-role">Sciences de la Nature et de la Vie • L1</span>
                 </div>
             </div>
         </header>
 
         <!-- Navigation Tabs -->
         <div style="display:flex; gap:10px; padding:15px;">
-            <a href="semester1.html" class="chip-btn" style="flex:1; text-align:center; background:#EFEFEF; color:#666; text-decoration:none;">الفصل الأول</a>
-            <a href="semester2.html" class="chip-btn" style="flex:1; text-align:center; background:#8A70D6; color:white; text-decoration:none;">الفصل الثاني</a>
+            <a href="semester1.html" class="chip-btn" style="flex:1; text-align:center; background:#EFEFEF; color:#666;">الفصل الأول</a>
+            <a href="semester2.html" class="chip-btn" style="flex:1; text-align:center; background:#8A70D6; color:white;">الفصل الثاني</a>
         </div>
 
-        <!-- Subjects List -->
         <main class="dashboard-content">
-            <div class="section-block">
-                <!-- البيولوجيا الحيوانية -->
-                <a href="subjects/animal_bio.html" style="text-decoration: none;">
-                    <div class="class-card">
-                        <div class="class-info">
-                            <h4>Animal Biology 🐾</h4>
-                            <p>Biologie Animale • وحدة أساسية</p>
-                        </div>
-                        <span style="color:#8A70D6; font-size:18px;">❮</span>
-                    </div>
-                </a>
 
-                <!-- البيولوجيا النباتية -->
-                <a href="subjects/vegetable_bio.html" style="text-decoration: none;">
-                    <div class="class-card">
-                        <div class="class-info">
-                            <h4>Vegetable Biology 🌿</h4>
-                            <p>Biologie Végétale • وحدة أساسية</p>
-                        </div>
-                        <span style="color:#8A70D6; font-size:18px;">❮</span>
+            <!-- Global Summary -->
+            <div class="hero-card" style="padding: 15px; background: linear-gradient(135deg, #8A70D6, #9B82E3);">
+                <div style="width:100%;">
+                    <h4 style="margin-bottom:8px; font-size:15px;">📊 ملخص السداسي الثاني</h4>
+                    <div style="display:flex; justify-content:space-around; font-size:12px; text-align:center;">
+                        <div><b>17</b><br>المعامل الكلي</div>
+                        <div><b>30</b><br>مجموع الأرصدة</div>
+                        <div><b>375h</b><br>الحجم الساعي</div>
                     </div>
-                </a>
+                </div>
+            </div>
 
-                <!-- الفيزياء -->
-                <a href="subjects/physics.html" style="text-decoration: none;">
-                    <div class="class-card">
-                        <div class="class-info">
-                            <h4>Physics ⚡</h4>
-                            <p>Physique • وحدة أساسية</p>
-                        </div>
-                        <span style="color:#8A70D6; font-size:18px;">❮</span>
-                    </div>
-                </a>
+            <!-- UEF -->
+            <div class="unit-header">
+                <span>UE Fondamentale (UEF 2.1)</span>
+                <span>Crédits: 18 | Coeff: 9</span>
+            </div>
+
+            <div class="subject-card-detailed">
+                <div class="subject-top-row">
+                    <span class="subject-title">Thermodynamique & Chimie 🌡️</span>
+                    <span class="subject-code">F 2.1.1</span>
+                </div>
+                <div class="details-grid">
+                    <div>Crédits: <b>6</b></div>
+                    <div>Coeff: <b>3</b></div>
+                    <div>VHS: <b>67h30</b></div>
+                </div>
+                <span class="eval-badge">⏱️ Cours 1h30 | TD 1h30 | TP 1h30 • 📝 CC 40% + Exam 60%</span>
+            </div>
+
+            <div class="subject-card-detailed">
+                <div class="subject-top-row">
+                    <span class="subject-title">Biologie Végétale 🌿</span>
+                    <span class="subject-code">F 2.1.2</span>
+                </div>
+                <div class="details-grid">
+                    <div>Crédits: <b>6</b></div>
+                    <div>Coeff: <b>3</b></div>
+                    <div>VHS: <b>67h30</b></div>
+                </div>
+                <span class="eval-badge">⏱️ Cours 1h30 | TP 3h00 • 📝 CC 40% + Exam 60%</span>
+            </div>
+
+            <div class="subject-card-detailed">
+                <div class="subject-top-row">
+                    <span class="subject-title">Biologie Animale 🐾</span>
+                    <span class="subject-code">F 2.1.3</span>
+                </div>
+                <div class="details-grid">
+                    <div>Crédits: <b>6</b></div>
+                    <div>Coeff: <b>3</b></div>
+                    <div>VHS: <b>67h30</b></div>
+                </div>
+                <span class="eval-badge">⏱️ Cours 1h30 | TP 3h00 • 📝 CC 40% + Exam 60%</span>
+            </div>
+
+            <!-- UEM -->
+            <div class="unit-header" style="background:#7B61FF;">
+                <span>UE Méthodologie (UEM 2.1)</span>
+                <span>Crédits: 9 | Coeff: 5</span>
+            </div>
+
+            <div class="subject-card-detailed">
+                <div class="subject-top-row">
+                    <span class="subject-title">Physique ⚡</span>
+                    <span class="subject-code">M 2.1.1</span>
+                </div>
+                <div class="details-grid">
+                    <div>Crédits: <b>5</b></div>
+                    <div>Coeff: <b>3</b></div>
+                    <div>VHS: <b>60h00</b></div>
+                </div>
+                <span class="eval-badge">⏱️ Cours 1h30 | TD 1h30 | TP 1h00 • 📝 CC 40% + Exam 60%</span>
+            </div>
+
+            <div class="subject-card-detailed">
+                <div class="subject-top-row">
+                    <span class="subject-title">TCE 2 (English) 🌐</span>
+                    <span class="subject-code">M 2.1.2</span>
+                </div>
+                <div class="details-grid">
+                    <div>Crédits: <b>4</b></div>
+                    <div>Coeff: <b>2</b></div>
+                    <div>VHS: <b>45h00</b></div>
+                </div>
+                <span class="eval-badge">⏱️ Cours 1h30 | TD 1h30 • 📝 CC 40% + Exam 60%</span>
+            </div>
+
+            <!-- UED -->
+            <div class="unit-header" style="background:#A58CE9;">
+                <span>UE Découverte (UED 2.1)</span>
+                <span>Crédits: 2 | Coeff: 2</span>
+            </div>
+
+            <div class="subject-card-detailed">
+                <div class="subject-top-row">
+                    <span class="subject-title">Sciences de la vie & Impacts 🍃</span>
+                    <span class="subject-code">D 2.1.1</span>
+                </div>
+                <div class="details-grid">
+                    <div>Crédits: <b>2</b></div>
+                    <div>Coeff: <b>2</b></div>
+                    <div>VHS: <b>45h00</b></div>
+                </div>
+                <span class="eval-badge">⏱️ Cours 1h30 | TD 1h30 • 📝 CC 40% + Exam 60%</span>
+            </div>
+
+            <!-- UET -->
+            <div class="unit-header" style="background:#907AD6;">
+                <span>UE Transversale (UET 2.1)</span>
+                <span>Crédits: 1 | Coeff: 1</span>
+            </div>
+
+            <div class="subject-card-detailed">
+                <div class="subject-top-row">
+                    <span class="subject-title">MTT 2 (Méthode de Travail) 📖</span>
+                    <span class="subject-code">T 2.1.1</span>
+                </div>
+                <div class="details-grid">
+                    <div>Crédits: <b>1</b></div>
+                    <div>Coeff: <b>1</b></div>
+                    <div>VHS: <b>22h30</b></div>
+                </div>
+                <span class="eval-badge">⏱️ Cours 1h30 • 📝 Exam 100%</span>
             </div>
 
             <footer class="app-footer">
                 All rights reserved World of Nona 2026
             </footer>
         </main>
+
+        <!-- Navigation Bar -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-btn">
+                <span class="nav-icon">📊</span>
+                <span>الرئيسية</span>
+            </a>
+            <a href="schedule.html" class="nav-btn">
+                <span class="nav-icon">📅</span>
+                <span>الجدول</span>
+            </a>
+            <a href="semester1.html" class="nav-btn active">
+                <span class="nav-icon">📖</span>
+                <span>المنهاج</span>
+            </a>
+            <a href="calculator.html" class="nav-btn">
+                <span class="nav-icon">🧮</span>
+                <span>المعدل</span>
+            </a>
+            <a href="settings.html" class="nav-btn">
+                <span class="nav-icon">⚙️</span>
+                <span>الإعدادات</span>
+            </a>
+        </nav>
     </div>
 
 </body>
