@@ -34,7 +34,7 @@ function toggleGenderTheme() {
 
 const translations = {
     en: {
-        title: "🌸 Student Portal",
+        title: "🧬 Student Portal 🔬",
         subtitle: "Please enter your student ID to login",
         placeholder: "Enter Student ID",
         remember: "Remember me for:",
@@ -59,7 +59,7 @@ const translations = {
         dir: "ltr"
     },
     fr: {
-        title: "🌸 Portail Étudiant",
+        title: "🧬 Portail Étudiant 🔬",
         subtitle: "Veuillez entrer votre numéro d'étudiant",
         placeholder: "Numéro de carte universitaire",
         remember: "Se souvenir de moi:",
@@ -84,7 +84,7 @@ const translations = {
         dir: "ltr"
     },
     ar: {
-        title: "🌸 بوابة الطلاب",
+        title: "🧬 بوابة الطلاب 🔬",
         subtitle: "يرجى إدخال رقم الطالب المعتمد للدخول",
         placeholder: "أدخل رقم البطاقة الجامعية",
         remember: "تذكرني لمدة:",
