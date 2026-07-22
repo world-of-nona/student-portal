@@ -16,7 +16,7 @@
                 <div class="avatar-small">🎓</div>
                 <div>
                     <h3 class="user-name">أهلاً، سارة! 👋</h3>
-                    <span class="user-role">طالبة جامعية</span>
+                    <span class="user-role">L1 Groupe B15 • طالبة جامعية</span>
                 </div>
             </div>
             <button class="icon-btn">🔔<span class="dot"></span></button>
@@ -26,15 +26,15 @@
         <main class="dashboard-content">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" placeholder="ابحث عن مادة، قاعة، أو دكتور...">
+                <input type="text" placeholder="ابحث عن مادة، قاعة، أو أستاذ...">
             </div>
 
             <!-- Banner -->
             <div class="hero-card">
                 <div class="hero-text">
                     <h2>صباح الخير! ☀️</h2>
-                    <p>لديك اليوم 3 محاضرات. المحاضرة القادمة: <strong>قواعد البيانات</strong>.</p>
-                    <button class="chip-btn">القاعة 204 📍</button>
+                    <p>لديك اليوم 4 حصص دراسية + فترة استراحة ☕.</p>
+                    <button class="chip-btn">المدرج B 📍</button>
                 </div>
                 <div class="hero-icon">📚</div>
             </div>
@@ -44,8 +44,8 @@
                 <div class="stat-card purple">
                     <span class="stat-icon">📖</span>
                     <div>
-                        <h4>3</h4>
-                        <p>محاضرات اليوم</p>
+                        <h4>4</h4>
+                        <p>حصص اليوم</p>
                     </div>
                 </div>
                 <div class="stat-card green">
@@ -58,8 +58,8 @@
                 <div class="stat-card yellow">
                     <span class="stat-icon">⏳</span>
                     <div>
-                        <h4>18 س</h4>
-                        <p>ساعات الدراسة</p>
+                        <h4>3 س</h4>
+                        <p>فترة الاستراحة</p>
                     </div>
                 </div>
                 <div class="stat-card pink">
@@ -71,29 +71,59 @@
                 </div>
             </div>
 
-            <!-- Today's Classes -->
+            <!-- Today's Classes (جدول اليوم الأول - الإثنين) -->
             <div class="section-block">
                 <div class="section-title">
-                    <h3>جدول اليوم 🗓️</h3>
-                    <a href="schedule.html">عرض الكل</a>
+                    <h3>جدول اليوم (الإثنين) 🗓️</h3>
+                    <a href="schedule.html">عرض الأسبوع كامل</a>
                 </div>
 
+                <!-- الحصة الأولى -->
                 <div class="class-card">
-                    <div class="time-badge">08:00 ص</div>
+                    <div class="time-badge">08:00 - 09:30</div>
                     <div class="class-info">
-                        <h4>هندسة البرمجيات</h4>
-                        <p>د. أحمد العلي • قاعة 101</p>
+                        <h4>Techniques of Expression (French)</h4>
+                        <p>Course • LOUKIL B. • Amphitheater B</p>
                     </div>
                     <span class="status-tag present">تم الحضور</span>
                 </div>
 
+                <!-- الحصة الثانية -->
                 <div class="class-card active-class">
-                    <div class="time-badge">10:00 ص</div>
+                    <div class="time-badge">09:30 - 11:00</div>
                     <div class="class-info">
-                        <h4>قواعد البيانات</h4>
-                        <p>د. مريم القحطاني • قاعة 204</p>
+                        <h4>Universal History of Sciences</h4>
+                        <p>Course • BAAZIZ N. • Amphitheater B</p>
                     </div>
                     <span class="status-tag upcoming">قادمة الآن</span>
+                </div>
+
+                <!-- الحصة الثالثة -->
+                <div class="class-card">
+                    <div class="time-badge">11:00 - 12:30</div>
+                    <div class="class-info">
+                        <h4>General and Organic Chemistry</h4>
+                        <p>Course • HAMMA A. • Amphitheater B</p>
+                    </div>
+                </div>
+
+                <!-- فترة الاستراحة والغداء -->
+                <div class="class-card" style="background: #FFF9E6; border: 1.5px dashed #FFE082;">
+                    <div class="time-badge" style="color: #B78103;">12:30 - 15:30</div>
+                    <div class="class-info">
+                        <h4 style="color: #B78103;">فترة استراحة وغداء ☕🍽️</h4>
+                        <p style="color: #8C6A00;">وقت حر / استراحة بين الحصص</p>
+                    </div>
+                    <span class="status-tag" style="background: #FFE082; color: #5D4037;">استراحة</span>
+                </div>
+
+                <!-- الحصة الرابعة -->
+                <div class="class-card">
+                    <div class="time-badge">15:30 - 17:00</div>
+                    <div class="class-info">
+                        <h4>Cellular Biology</h4>
+                        <p>DW • SEDDIKI • Classroom 3.08</p>
+                    </div>
                 </div>
             </div>
 
