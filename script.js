@@ -1,234 +1,341 @@
-let currentLang = 'en';
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Poppins:wght@400;500;600&display=swap');
 
-function updateDateTime() {
-    const now = new Date();
-    let locale = 'en-US';
-    if (currentLang === 'fr') locale = 'fr-FR';
-    if (currentLang === 'ar') locale = 'ar-DZ';
-
-    const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-    const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-
-    document.getElementById('live-date').innerText = now.toLocaleDateString(locale, dateOptions);
-    document.getElementById('live-time').innerText = now.toLocaleTimeString(locale, timeOptions);
-}
-setInterval(updateDateTime, 1000);
-updateDateTime();
-
-function toggleFlagsMenu() {
-    const popup = document.getElementById('flags-popup');
-    popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+:root {
+    --bg-gradient: linear-gradient(135deg, #E2E6F9 0%, #F5E8FA 50%, #E8EDFF 100%);
+    --card-bg: rgba(255, 255, 255, 0.82);
+    --border-color: rgba(255, 255, 255, 0.9);
+    --text-color: #4A4A68;
+    --subtitle-color: #7C7C9A;
+    --primary-gradient: linear-gradient(135deg, #F4C5D4 0%, #E8A0BF 100%);
+    --primary-shadow: rgba(244, 197, 212, 0.5);
+    --input-bg: rgba(248, 249, 255, 0.9);
+    --accent-color: #E8A0BF;
 }
 
-function toggleGenderTheme() {
-    const body = document.body;
-    const btn = document.getElementById('gender-icon-btn');
-    if (body.getAttribute('data-theme') === 'girl') {
-        body.setAttribute('data-theme', 'boy');
-        btn.innerText = '♂️';
-    } else {
-        body.setAttribute('data-theme', 'girl');
-        btn.innerText = '♀️';
-    }
+[data-theme="boy"] {
+    --bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #E0F7FA 50%, #D4E0FC 100%);
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --border-color: rgba(255, 255, 255, 0.9);
+    --text-color: #37474F;
+    --subtitle-color: #616161;
+    --primary-gradient: linear-gradient(135deg, #90CAF9 0%, #80DEEA 100%);
+    --primary-shadow: rgba(144, 202, 249, 0.5);
+    --input-bg: rgba(240, 248, 255, 0.9);
+    --accent-color: #64B5F6;
 }
 
-const translations = {
-    en: {
-        title: "🧬 Student Portal 🔬",
-        subtitle: "Please enter your student ID to login",
-        placeholder: "Enter Student ID",
-        remember: "Remember me for:",
-        opt1: "1 Day 📅", opt2: "2 Days 📅", opt7: "1 Week 🗓️", opt365: "Always ♾️",
-        loginBtn: "Login ✨",
-        error: "❌ Student ID not registered!",
-        welcome: "Welcome ",
-        portalSub: "Your academic schedule and attendance",
-        scheduleTitle: "📅 Today's Schedule",
-        course: "<strong>Course:</strong> Web Development",
-        time: "<strong>Time:</strong> 10:00 - 12:00",
-        logout: "Logout",
-        regToggle: "➕ New Student? Register here",
-        regTitle: "Register New Student",
-        regIdPh: "Enter Student ID",
-        regNamePh: "Full Name",
-        genderDefault: "Select Gender",
-        male: "Male 👨‍🎓",
-        female: "Female 👩‍🎓",
-        regSubmit: "Register ✅",
-        footerText: "✨ © All rights reserved World of Nona 2026 🎓💫",
-        dir: "ltr"
-    },
-    fr: {
-        title: "🧬 Portail Étudiant 🔬",
-        subtitle: "Veuillez entrer votre numéro d'étudiant",
-        placeholder: "Numéro de carte universitaire",
-        remember: "Se souvenir de moi:",
-        opt1: "1 Jour 📅", opt2: "2 Jours 📅", opt7: "1 Semaine 🗓️", opt365: "Toujours ♾️",
-        loginBtn: "Connexion ✨",
-        error: "❌ Numéro non enregistré!",
-        welcome: "Bienvenue ",
-        portalSub: "Votre emploi du temps et présence",
-        scheduleTitle: "📅 Emploi du temps du jour",
-        course: "<strong>Matière :</strong> Développement Web",
-        time: "<strong>Heure :</strong> 10:00 - 12:00",
-        logout: "Déconnexion",
-        regToggle: "➕ Nouvel étudiant ? Inscrivez-vous",
-        regTitle: "Inscription d'un nouvel étudiant",
-        regIdPh: "Numéro de carte (ID)",
-        regNamePh: "Nom complet",
-        genderDefault: "Sélectionner le genre",
-        male: "Masculin 👨‍🎓",
-        female: "Féminin 👩‍🎓",
-        regSubmit: "S'inscrire ✅",
-        footerText: "✨ © Tous droits réservés World of Nona 2026 🎓💫",
-        dir: "ltr"
-    },
-    ar: {
-        title: "🧬 بوابة الطلاب 🔬",
-        subtitle: "يرجى إدخال رقم الطالب المعتمد للدخول",
-        placeholder: "أدخل رقم البطاقة الجامعية",
-        remember: "تذكرني لمدة:",
-        opt1: "يوم واحد 📅", opt2: "يومان 📅", opt7: "أسبوع 🗓️", opt365: "دائماً ♾️",
-        loginBtn: "دخول للبوابة ✨",
-        error: "❌ رقم الطالب غير مسجل!",
-        welcome: "مرحباً بك ",
-        portalSub: "جدولك الأكاديمي وسجل الحضور",
-        scheduleTitle: "📅 جدول اليوم",
-        course: "<strong>المادة:</strong> برمجة وتطبيقات ويب",
-        time: "<strong>التوقيت:</strong> 10:00 - 12:00",
-        logout: "تسجيل الخروج",
-        regToggle: "➕ طالب جديد؟ سجل هنا",
-        regTitle: "تسجيل طالب جديد",
-        regIdPh: "أدخل رقم بطاقة الطالب (ID)",
-        regNamePh: "الاسم الكامل",
-        genderDefault: "اختر الجنس",
-        male: "ذكر 👨‍🎓",
-        female: "أنثى 👩‍🎓",
-        regSubmit: "تأكيد التسجيل ✅",
-        footerText: "✨ © جميع الحقوق محفوظة لـ World of Nona 2026 🎓💫",
-        dir: "rtl"
-    }
-};
-
-function setLanguage(lang) {
-    currentLang = lang;
-    const t = translations[lang];
-    document.documentElement.dir = t.dir;
-    document.getElementById('title-txt').innerText = t.title;
-    document.getElementById('subtitle-txt').innerText = t.subtitle;
-    document.getElementById('student-id').placeholder = t.placeholder;
-    document.getElementById('remember-lbl').innerText = t.remember;
-    document.getElementById('opt-1').innerText = t.opt1;
-    document.getElementById('opt-2').innerText = t.opt2;
-    document.getElementById('opt-7').innerText = t.opt7;
-    document.getElementById('opt-365').innerText = t.opt365;
-    document.getElementById('login-btn-txt').innerText = t.loginBtn;
-    document.getElementById('error-msg').innerText = t.error;
-    document.getElementById('portal-sub').innerText = t.portalSub;
-    document.getElementById('schedule-title').innerText = t.scheduleTitle;
-    document.getElementById('course-txt').innerHTML = t.course;
-    document.getElementById('time-txt').innerHTML = t.time;
-    document.getElementById('logout-btn-txt').innerText = t.logout;
-    document.getElementById('reg-toggle-txt').innerText = t.regToggle;
-    document.getElementById('reg-title').innerText = t.regTitle;
-    document.getElementById('reg-id').placeholder = t.regIdPh;
-    document.getElementById('reg-name').placeholder = t.regNamePh;
-    document.getElementById('opt-gender-default').innerText = t.genderDefault;
-    document.getElementById('opt-male').innerText = t.male;
-    document.getElementById('opt-female').innerText = t.female;
-    document.getElementById('reg-submit-txt').innerText = t.regSubmit;
-    document.getElementById('footer-txt').innerText = t.footerText;
-    updateDateTime();
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', 'Poppins', sans-serif;
 }
 
-let allowedStudents = JSON.parse(localStorage.getItem('customStudents')) || {
-    "1001": { en: "Ahmed Mohamed (Student 1)", fr: "Ahmed Mohamed (Étudiant 1)", ar: "أحمد محمد (طالب 1)" },
-    "1002": { en: "Fatima Zohra (Student 2)", fr: "Fatima Zohra (Étudiante 2)", ar: "فاطمة الزهراء (طالبة 2)" },
-    "1003": { en: "Yassine Karim (Student 3)", fr: "Yassine Karim (Étudiant 3)", ar: "ياسين كريم (طالب 3)" }
-};
-
-function toggleRegisterForm() {
-    const regBox = document.getElementById('register-box');
-    regBox.style.display = regBox.style.display === 'block' ? 'none' : 'block';
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    position: relative;
+    overflow-x: hidden;
+    transition: all 0.4s ease;
 }
 
-function registerStudent() {
-    const id = document.getElementById('reg-id').value.trim();
-    const name = document.getElementById('reg-name').value.trim();
-    const gender = document.getElementById('reg-gender').value;
-    const email = document.getElementById('reg-email').value.trim();
-    const errEl = document.getElementById('reg-error-msg');
-    const succEl = document.getElementById('reg-success-msg');
-
-    errEl.style.display = 'none';
-    succEl.style.display = 'none';
-
-    if (!id || !name || !gender || !email) {
-        errEl.innerText = currentLang === 'ar' ? '⚠️ يرجى ملء جميع الحقول!' : '⚠️ Please fill all fields!';
-        errEl.style.display = 'block';
-        return;
-    }
-
-    if (!email.endsWith('@univ.bba.dz')) {
-        errEl.innerText = currentLang === 'ar' ? '❌ البريد يجب أن ينتهي بـ @univ.bba.dz' : '❌ Email must end with @univ.bba.dz';
-        errEl.style.display = 'block';
-        return;
-    }
-
-    if (allowedStudents[id]) {
-        errEl.innerText = currentLang === 'ar' ? '❌ رقم الطالب مسجل مسبقاً!' : '❌ Student ID already registered!';
-        errEl.style.display = 'block';
-        return;
-    }
-
-    allowedStudents[id] = { en: name, fr: name, ar: name };
-    localStorage.setItem('customStudents', JSON.stringify(allowedStudents));
-
-    succEl.innerText = currentLang === 'ar' ? '🎉 تم التسجيل بنجاح! يمكنك الدخول الآن.' : '🎉 Registered successfully! You can login now.';
-    succEl.style.display = 'block';
-
-    setTimeout(() => {
-        document.getElementById('reg-id').value = '';
-        document.getElementById('reg-name').value = '';
-        document.getElementById('reg-gender').value = '';
-        document.getElementById('reg-email').value = '';
-        toggleRegisterForm();
-        succEl.style.display = 'none';
-    }, 2000);
+/* Background Animations */
+.bg-decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
 }
 
-function login() {
-    const idInput = document.getElementById('student-id').value.trim();
-    const errorMsg = document.getElementById('error-msg');
-    
-    if (allowedStudents[idInput]) {
-        errorMsg.style.display = "none";
-        document.getElementById('login-box').style.display = "none";
-        document.getElementById('portal-content').style.display = "block";
-        
-        const studentName = allowedStudents[idInput][currentLang] || allowedStudents[idInput]['en'];
-        const t = translations[currentLang];
-        document.getElementById('welcome-msg').innerText = t.welcome + studentName + " 🌸";
-        
-        if(document.getElementById('remember-me').checked) {
-            localStorage.setItem('savedStudentId', idInput);
-        }
-    } else {
-        errorMsg.style.display = "block";
-    }
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
 }
 
-function logout() {
-    document.getElementById('portal-content').style.display = "none";
-    document.getElementById('login-box').style.display = "block";
-    document.getElementById('student-id').value = "";
-    localStorage.removeItem('savedStudentId');
+@keyframes float-reverse {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(10px) rotate(-2deg); }
 }
 
-window.onload = function() {
-    const savedId = localStorage.getItem('savedStudentId');
-    if(savedId && allowedStudents[savedId]) {
-        document.getElementById('student-id').value = savedId;
-        document.getElementById('remember-me').checked = true;
-    }
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.05); }
+}
+
+.cloud-1 { position: absolute; bottom: -20px; left: -50px; opacity: 0.85; animation: float 8s ease-in-out infinite; }
+.cloud-2 { position: absolute; top: -30px; right: -40px; opacity: 0.8; animation: float-reverse 9s ease-in-out infinite; }
+.cloud-3 { position: absolute; top: 15%; left: 8%; opacity: 0.6; animation: float 11s ease-in-out infinite; }
+.flower-1 { position: absolute; top: 18%; right: 15%; animation: pulse-glow 4s ease-in-out infinite; }
+.flower-2 { position: absolute; bottom: 15%; left: 12%; animation: pulse-glow 5s ease-in-out infinite 1s; }
+.sparkle-1 { position: absolute; top: 30%; right: 25%; animation: float 6s ease-in-out infinite; }
+.sparkle-2 { position: absolute; bottom: 25%; right: 10%; animation: float-reverse 7s ease-in-out infinite; }
+
+/* Top Bar */
+.top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    padding: 12px 25px;
+    font-size: 13.5px;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    z-index: 20;
+}
+
+.datetime-box {
+    font-family: 'Poppins', monospace;
+}
+
+/* Main Wrapper */
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    z-index: 10;
+}
+
+.central-controls {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1.5px solid var(--border-color);
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+.flags-popup {
+    position: absolute;
+    top: 50px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid var(--border-color);
+    border-radius: 16px;
+    padding: 8px 14px;
+    display: none;
+    gap: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    z-index: 30;
+}
+
+.flags-popup span {
+    cursor: pointer;
+    font-size: 22px;
+    transition: transform 0.2s;
+}
+
+.flags-popup span:hover {
+    transform: scale(1.25);
+}
+
+/* Glassmorphism Container */
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 28px;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
+    border: 1.5px solid var(--border-color);
+    box-shadow: 0 20px 40px rgba(107, 107, 138, 0.08);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.logo-badge {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #FFF0F5 0%, #F4C5D4 100%);
+    border-radius: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 18px rgba(244, 197, 212, 0.4);
+    font-size: 30px;
+}
+
+[data-theme="boy"] .logo-badge {
+    background: linear-gradient(135deg, #E3F2FD 0%, #90CAF9 100%);
+    box-shadow: 0 8px 18px rgba(144, 202, 249, 0.4);
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+p.subtitle {
+    font-size: 13px;
+    color: var(--subtitle-color);
+    margin-bottom: 22px;
+    line-height: 1.4;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.input-icon {
+    position: absolute;
+    font-size: 16px;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+}
+
+[dir="ltr"] .input-icon { left: 16px; }
+[dir="rtl"] .input-icon { right: 16px; }
+
+.form-input {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 18px;
+    border: 1.5px solid #EAEBF5;
+    background: var(--input-bg);
+    font-size: 13.5px;
+    color: var(--text-color);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+[dir="ltr"] .input-wrapper .form-input { padding-left: 45px; }
+[dir="rtl"] .input-wrapper .form-input { padding-right: 45px; }
+
+.form-input:focus {
+    border-color: var(--accent-color);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(244, 197, 212, 0.25);
+}
+
+.remember-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12px;
+    margin: 14px 0;
+    color: var(--subtitle-color);
+}
+
+.remember-box select {
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid #D8D8E8;
+    background: #fff;
+    font-size: 12px;
+    outline: none;
+}
+
+button.login-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 20px;
+    background: var(--primary-gradient);
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px var(--primary-shadow);
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+button.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px var(--primary-shadow);
+}
+
+.portal-content {
+    display: none;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 16px;
+    border-radius: 16px;
+    margin-top: 15px;
+    border: 1px solid rgba(255,255,255,0.8);
+}
+
+[dir="ltr"] .card { border-left: 4px solid var(--accent-color); }
+[dir="rtl"] .card { border-right: 4px solid var(--accent-color); }
+
+.error, .success-msg {
+    font-size: 12.5px;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+    font-weight: 600;
+}
+.error { color: #d32f2f; }
+.success-msg { color: #388e3c; }
+
+#register-box {
+    display: none;
+    margin-top: 18px;
+    border-top: 1.5px dashed rgba(200, 200, 220, 0.5);
+    padding-top: 16px;
+}
+
+.toggle-reg-link {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-weight: 600;
+}
+.toggle-reg-link:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: auto;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-align: center;
+    padding: 16px;
+    color: var(--subtitle-color);
+    z-index: 20;
 }
