@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>حاسبة المعدل الجامعي 🧮</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        .calc-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .calc-tab-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 12px;
+            background: #EFEFEF;
+            color: #666;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .calc-tab-btn.active {
+            background: #8A70D6;
+            color: white;
+            box-shadow: 0 4px 10px rgba(138, 112, 214, 0.3);
+        }
+        .subject-input-card {
+            background: white;
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: 1px solid #EFEFEF;
+            text-align: right;
+        }
+        .subject-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .subject-title-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+        }
+        .subject-coeff-badge {
+            background: #F0ECFF;
+            color: #8A70D6;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+        .inputs-row {
+            display: flex;
+            gap: 10px;
+        }
+        .input-group {
+            flex: 1;
+        }
+        .input-group label {
+            display: block;
+            font-size: 11px;
+            color: #777;
+            margin-bottom: 4px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            outline: none;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .input-group input:focus {
+            border-color: #8A70D6;
+        }
+        .result-box {
+            background: linear-gradient(135deg, #8A70D6, #A58CE9);
+            color: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(138, 112, 214, 0.25);
+        }
+        .result-score {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+        .result-status {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .calculate-btn {
+            width: 100%;
+            background: #8A70D6;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(138, 112, 214, 0.3);
+            font-family: 'Tajawal', sans-serif;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <div class="mobile-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="user-info">
+                <a href="dashboard.html" style="text-decoration:none; font-size:20px; margin-left:10px;">⬅️</a>
+                <div>
+                    <h3 class="user-name">حاسبة المعدل 🧮</h3>
+                    <span class="user-role">Sciences de la Nature et de la Vie • L1</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+
+            <!-- Tabs -->
+            <div class="calc-tabs">
+                <button class="calc-tab-btn active" onclick="switchCalcSemester(1)">السداسي 1</button>
+                <button class="calc-tab-btn" onclick="switchCalcSemester(2)">السداسي 2</button>
+                <button class="calc-tab-btn" onclick="switchCalcSemester('annual')">السنوي 🎓</button>
+            </div>
+
+            <!-- Form S1 -->
+            <form id="form-s1">
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Chimie générale et organique 🧪</span>
+                        <span class="subject-coeff-badge">المعامل: 3</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input" data-coeff="3">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input" data-coeff="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Biologie cellulaire 🔬</span>
+                        <span class="subject-coeff-badge">المعامل: 4</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input" data-coeff="4">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input" data-coeff="4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Mathématique Statistique 📐</span>
+                        <span class="subject-coeff-badge">المعامل: 2</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input" data-coeff="2">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input" data-coeff="2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Géologie 🌋</span>
+                        <span class="subject-coeff-badge">المعامل: 3</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input" data-coeff="3">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input" data-coeff="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">TCE 1 (Français) 🗣️</span>
+                        <span class="subject-coeff-badge">المعامل: 2</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input" data-coeff="2">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input" data-coeff="2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">MTT 1 📝</span>
+                        <span class="subject-coeff-badge">المعامل: 2</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input" data-coeff="2">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input" data-coeff="2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Histoire des Sciences 📜</span>
+                        <span class="subject-coeff-badge">المعامل: 1</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>الامتحان فقط (Exam 100%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-only-input" data-coeff="1">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="calculate-btn" onclick="calculateS1()">حساب معدل الفصل الأول 🚀</button>
+            </form>
+
+            <!-- Form S2 -->
+            <form id="form-s2" style="display: none;">
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Thermodynamique & Chimie 🌡️</span>
+                        <span class="subject-coeff-badge">المعامل: 3</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input-s2" data-coeff="3">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input-s2" data-coeff="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Biologie Végétale 🌿</span>
+                        <span class="subject-coeff-badge">المعامل: 3</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input-s2" data-coeff="3">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input-s2" data-coeff="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Biologie Animale 🐾</span>
+                        <span class="subject-coeff-badge">المعامل: 3</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input-s2" data-coeff="3">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input-s2" data-coeff="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Physique ⚡</span>
+                        <span class="subject-coeff-badge">المعامل: 3</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input-s2" data-coeff="3">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input-s2" data-coeff="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">TCE 2 (English) 🌐</span>
+                        <span class="subject-coeff-badge">المعامل: 2</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input-s2" data-coeff="2">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input-s2" data-coeff="2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">Sciences de la vie & Impacts 🍃</span>
+                        <span class="subject-coeff-badge">المعامل: 2</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>CC (40%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="cc-input-s2" data-coeff="2">
+                        </div>
+                        <div class="input-group">
+                            <label>Exam (60%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-input-s2" data-coeff="2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-input-card">
+                    <div class="subject-header-info">
+                        <span class="subject-title-text">MTT 2 📖</span>
+                        <span class="subject-coeff-badge">المعامل: 1</span>
+                    </div>
+                    <div class="inputs-row">
+                        <div class="input-group">
+                            <label>الامتحان فقط (Exam 100%)</label>
+                            <input type="number" step="0.01" min="0" max="20" placeholder="00.00" class="exam-only-s2" data-coeff="1">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="calculate-btn" onclick="calculateS2()">حساب معدل الفصل الثاني 🚀</button>
+            </form>
+
+            <!-- Form Annual -->
+            <div id="form-annual" style="display: none;">
+                <div class="subject-input-card">
+                    <label style="font-size:13px; font-weight:700; color:#333; display:block; margin-bottom:6px;">معدل السداسي الأول (S1)</label>
+                    <input type="number" id="avg-s1-input" step="0.01" min="0" max="20" placeholder="مثال: 11.50" style="width:100%; padding:10px; border:1px solid #DDD; border-radius:8px;">
+                </div>
+                <div class="subject-input-card">
+                    <label style="font-size:13px; font-weight:700; color:#333; display:block; margin-bottom:6px;">معدل السداسي الثاني (S2)</label>
+                    <input type="number" id="avg-s2-input" step="0.01" min="0" max="20" placeholder="مثال: 10.80" style="width:100%; padding:10px; border:1px solid #DDD; border-radius:8px;">
+                </div>
+                <button type="button" class="calculate-btn" onclick="calculateAnnual()">حساب المعدل السنوي 🎓</button>
+            </div>
+
+            <!-- Display Result -->
+            <div id="result-display" class="result-box" style="display: none;">
+                <span style="font-size: 14px; opacity: 0.9;">المعدل المحصل عليه</span>
+                <div id="final-score" class="result-score">00.00</div>
+                <span id="final-status" class="result-status">ناجح 🥳</span>
+            </div>
+
+            <footer class="app-footer">
+                All rights reserved World of Nona 2026
+            </footer>
+        </main>
+
+        <!-- Navigation Bar -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-btn">
+                <span class="nav-icon">📊</span>
+                <span>الرئيسية</span>
+            </a>
+            <a href="schedule.html" class="nav-btn">
+                <span class="nav-icon">📅</span>
+                <span>الجدول</span>
+            </a>
+            <a href="semester1.html" class="nav-btn">
+                <span class="nav-icon">📖</span>
+                <span>المنهاج</span>
+            </a>
+            <a href="calculator.html" class="nav-btn active">
+                <span class="nav-icon">🧮</span>
+                <span>المعدل</span>
+            </a>
+            <a href="settings.html" class="nav-btn">
+                <span class="nav-icon">⚙️</span>
+                <span>الإعدادات</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        let lastS1Avg = null;
+        let lastS2Avg = null;
+
+        function switchCalcSemester(tab) {
+            const buttons = document.querySelectorAll('.calc-tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+
+            document.getElementById('form-s1').style.display = 'none';
+            document.getElementById('form-s2').style.display = 'none';
+            document.getElementById('form-annual').style.display = 'none';
+            document.getElementById('result-display').style.display = 'none';
+
+            if(tab === 1) {
+                buttons[0].classList.add('active');
+                document.getElementById('form-s1').style.display = 'block';
+            } else if(tab === 2) {
+                buttons[1].classList.add('active');
+                document.getElementById('form-s2').style.display = 'block';
+            } else {
+                buttons[2].classList.add('active');
+                document.getElementById('form-annual').style.display = 'block';
+                if(lastS1Avg !== null) document.getElementById('avg-s1-input').value = lastS1Avg.toFixed(2);
+                if(lastS2Avg !== null) document.getElementById('avg-s2-input').value = lastS2Avg.toFixed(2);
+            }
+        }
+
+        function calculateS1() {
+            const ccInputs = document.querySelectorAll('#form-s1 .cc-input');
+            const examInputs = document.querySelectorAll('#form-s1 .exam-input');
+            const examOnlyInput = document.querySelector('#form-s1 .exam-only-input');
+
+            let totalPoints = 0;
+            const totalCoeff = 17;
+
+            for(let i = 0; i < ccInputs.length; i++) {
+                let cc = parseFloat(ccInputs[i].value) || 0;
+                let exam = parseFloat(examInputs[i].value) || 0;
+                let coeff = parseFloat(ccInputs[i].dataset.coeff);
+                let subjectAvg = (cc * 0.4) + (exam * 0.6);
+                totalPoints += (subjectAvg * coeff);
+            }
+
+            let examOnlyVal = parseFloat(examOnlyInput.value) || 0;
+            let examOnlyCoeff = parseFloat(examOnlyInput.dataset.coeff);
+            totalPoints += (examOnlyVal * examOnlyCoeff);
+
+            let finalAvg = totalPoints / totalCoeff;
+            lastS1Avg = finalAvg;
+            showResult(finalAvg);
+        }
+
+        function calculateS2() {
+            const ccInputs = document.querySelectorAll('#form-s2 .cc-input-s2');
+            const examInputs = document.querySelectorAll('#form-s2 .exam-input-s2');
+            const examOnlyInput = document.querySelector('#form-s2 .exam-only-s2');
+
+            let totalPoints = 0;
+            const totalCoeff = 17;
+
+            for(let i = 0; i < ccInputs.length; i++) {
+                let cc = parseFloat(ccInputs[i].value) || 0;
+                let exam = parseFloat(examInputs[i].value) || 0;
+                let coeff = parseFloat(ccInputs[i].dataset.coeff);
+                let subjectAvg = (cc * 0.4) + (exam * 0.6);
+                totalPoints += (subjectAvg * coeff);
+            }
+
+            let examOnlyVal = parseFloat(examOnlyInput.value) || 0;
+            let examOnlyCoeff = parseFloat(examOnlyInput.dataset.coeff);
+            totalPoints += (examOnlyVal * examOnlyCoeff);
+
+            let finalAvg = totalPoints / totalCoeff;
+            lastS2Avg = finalAvg;
+            showResult(finalAvg);
+        }
+
+        function calculateAnnual() {
+            let s1 = parseFloat(document.getElementById('avg-s1-input').value) || 0;
+            let s2 = parseFloat(document.getElementById('avg-s2-input').value) || 0;
+            let annualAvg = (s1 + s2) / 2;
+            showResult(annualAvg);
+        }
+
+        function showResult(avg) {
+            const resultBox = document.getElementById('result-display');
+            const scoreDisplay = document.getElementById('final-score');
+            const statusDisplay = document.getElementById('final-status');
+
+            scoreDisplay.innerText = avg.toFixed(2);
+            if(avg >= 10.00) {
+                statusDisplay.innerText = "ناجح ومستوفٍ للسداسي 🥳🎉";
+                statusDisplay.style.background = "rgba(76, 175, 80, 0.3)";
+            } else {
+                statusDisplay.innerText = "دورة استدراكية (Rattrapage) ⚠️";
+                statusDisplay.style.background = "rgba(244, 67, 54, 0.3)";
+            }
+            resultBox.style.display = 'block';
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
