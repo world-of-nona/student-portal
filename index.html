@@ -1,441 +1,219 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <!-- هذا السطر هو المسؤول عن جعل التطبيق يتكيف مع شاشات الهواتف والكمبيوتر -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal</title>
+    <title>بوابة الطلاب - جامعة برج بوعريريج</title>
     <style>
+        /* ألوان الباستيل المريحة للطلاب */
         :root {
-            /* Default: Girl Pastel Theme (Pink) */
-            --bg-color: #fce4ec;
-            --card-bg: #ffffff;
-            --primary-color: #f48fb1;
-            --accent-color: #ce93d8;
-            --border-color: #f8bbd0;
-            --text-color: #4a4a4a;
-            --input-bg: #ffffff;
-        }
-
-        /* Boy Pastel Theme (Blue) */
-        [data-theme="boy"] {
-            --bg-color: #e3f2fd;
-            --card-bg: #ffffff;
-            --primary-color: #90caf9;
-            --accent-color: #80deea;
-            --border-color: #bbdefb;
-            --text-color: #37474f;
-            --input-bg: #ffffff;
-        }
-
-        /* Dark Mode */
-        [data-mode="dark"] {
-            --bg-color: #1a1a2e;
-            --card-bg: #16213e;
-            --border-color: #0f3460;
-            --text-color: #e94560;
-            --input-bg: #0f3460;
+            --pastel-blue: #E3F2FD;
+            --pastel-pink: #FCE4EC;
+            --pastel-green: #E8F5E9;
+            --pastel-purple: #F3E5F5;
+            --text-color: #333333;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--pastel-blue);
             color: var(--text-color);
             margin: 0;
-            padding: 15px;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             min-height: 100vh;
-            transition: all 0.3s ease;
         }
 
-        /* Top Bar: Date & Time positioning based on language direction */
+        /* شريط علوي يفصل بين اليمين واليسار */
         .top-bar {
-            width: 100%;
-            max-width: 420px;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* يفصل العناصر لأقصى اليمين واليسار */
             align-items: center;
-            margin-bottom: 10px;
-            font-size: 12px;
+            background-color: var(--pastel-pink);
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             font-weight: bold;
-        }
-
-        .datetime-box {
-            font-family: monospace;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 5px 8px;
-            border-radius: 8px;
-        }
-
-        /* Central Controls: Language dropdown & Gender Theme */
-        .central-controls {
-            width: 100%;
-            max-width: 420px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .control-btn {
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid var(--border-color);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s;
-        }
-
-        .control-btn:hover {
-            transform: scale(1.1);
-        }
-
-        /* Flags Popup Menu */
-        .flags-popup {
-            position: absolute;
-            top: 48px;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 8px 12px;
-            display: none;
-            gap: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            z-index: 10;
-        }
-
-        .flags-popup span {
-            cursor: pointer;
-            font-size: 22px;
-            transition: transform 0.2s;
-        }
-
-        .flags-popup span:hover {
-            transform: scale(1.25);
+            flex-wrap: wrap; /* يتكيف مع الشاشات الصغيرة */
         }
 
         .container {
-            background-color: var(--card-bg);
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            width: 100%;
-            max-width: 380px;
-            text-align: inherit;
-            border: 2px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        h2 {
-            margin-bottom: 5px;
-        }
-
-        p.subtitle {
-            font-size: 13px;
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
-
-        input, select {
+            flex-grow: 1;
             width: 90%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 2px solid var(--accent-color);
-            border-radius: 10px;
-            outline: none;
-            text-align: inherit;
-            font-size: 14px;
-            background-color: var(--input-bg);
-            color: var(--text-color);
+            max-width: 1200px; /* لا يتجاوز هذا العرض في شاشات الكمبيوتر الكبيرة */
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        .remember-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 12px;
-            margin: 10px 0;
+        h1, h2 {
+            text-align: center;
+            color: #5E35B1;
         }
 
-        .remember-box select {
-            width: auto;
-            padding: 4px 8px;
-            margin: 0;
-            font-size: 12px;
-        }
-
-        button.login-btn {
-            width: 95%;
-            padding: 12px;
-            background-color: var(--primary-color);
+        /* أزرار ونماذج تفاعلية */
+        .btn {
+            background-color: #81C784;
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
             cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
+            margin: 10px 0;
+            width: 100%;
         }
 
-        .portal-content {
+        .btn:hover {
+            background-color: #66BB6A;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box; /* لمنع خروج الحقل عن الشاشة */
+        }
+
+        /* قسم التسجيل مخفي افتراضياً */
+        #registrationSection {
             display: none;
-        }
-
-        .card {
-            background: rgba(0,0,0,0.03);
-            padding: 12px;
+            background-color: var(--pastel-green);
+            padding: 20px;
             border-radius: 10px;
-            margin-top: 12px;
+            margin-top: 20px;
         }
 
-        [dir="ltr"] .card {
-            border-left: 4px solid var(--accent-color);
-        }
-        [dir="rtl"] .card {
-            border-right: 4px solid var(--accent-color);
-        }
-
-        .error {
-            color: #d32f2f;
-            font-size: 13px;
-            margin-top: 8px;
-            display: none;
-        }
-
-        footer {
-            margin-top: 15px;
-            font-size: 11px;
-            opacity: 0.7;
-            text-align: center;
+        /* تصميم متجاوب (Media Queries) للشاشات الصغيرة */
+        @media (max-width: 600px) {
+            .top-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
         }
     </style>
 </head>
-<body data-theme="girl" data-mode="light">
+<body>
 
-<!-- Top Bar: Date & Time (Dynamic positioning via CSS layout) -->
-<div class="top-bar">
-    <div class="datetime-box" id="live-date">Date</div>
-    <div class="datetime-box" id="live-time">Time</div>
-</div>
-
-<!-- Central Controls: Language Emoji & Gender/Color Emoji -->
-<div class="central-controls">
-    <!-- Language Selector Dropdown Button -->
-    <div style="position: relative;">
-        <button class="control-btn" onclick="toggleFlagsMenu()" title="Language">🌐</button>
-        <div id="flags-popup" class="flags-popup">
-            <span onclick="setLanguage('en'); toggleFlagsMenu();" title="English">🇬🇧</span>
-            <span onclick="setLanguage('fr'); toggleFlagsMenu();" title="Français">🇫🇷</span>
-            <span onclick="setLanguage('ar'); toggleFlagsMenu();" title="العربية">🇩🇿</span>
-        </div>
+    <!-- الشريط العلوي (التاريخ والوقت) -->
+    <div class="top-bar">
+        <div id="date-display">📅 التاريخ: جاري التحميل...</div>
+        <div id="time-display">⏰ الوقت: جاري التحميل...</div>
     </div>
 
-    <!-- Gender / Color Theme Selector Button -->
-    <button class="control-btn" id="gender-icon-btn" onclick="toggleGenderTheme()" title="Theme Color">♀️</button>
-</div>
+    <div class="container">
+        <h1>مرحباً بكم في بوابة الطلاب 🎓</h1>
+        <p style="text-align: center;">خاص بطلاب جامعة برج بوعريريج</p>
 
-<div class="container">
-    <div id="login-box">
-        <h2 id="title-txt">🌸 Student Portal</h2>
-        <p class="subtitle" id="subtitle-txt">Please enter your student ID to login</p>
-        
-        <input type="number" id="student-id" placeholder="Enter Student ID">
-        
-        <div class="remember-box">
-            <input type="checkbox" id="remember-me" style="width: auto;">
-            <label for="remember-me" id="remember-lbl">Remember me for:</label>
-            <select id="remember-duration">
-                <option value="1" id="opt-1">1 Day 📅</option>
-                <option value="2" id="opt-2">2 Days 📅</option>
-                <option value="7" id="opt-7">1 Week 🗓️</option>
-                <option value="365" id="opt-365">Always ♾️</option>
-            </select>
+        <!-- زر لفتح قسم التسجيل -->
+        <button class="btn" onclick="toggleRegistration()" style="background-color: #BA68C8;">➕ تسجيل طالب جديد</button>
+
+        <!-- قسم تسجيل الطالب الجديد -->
+        <div id="registrationSection">
+            <h2>نموذج التسجيل 📝</h2>
+            
+            <div class="form-group">
+                <label>رقم بطاقة الطالب (ID Card):</label>
+                <input type="text" id="studentId" placeholder="أدخل رقم البطاقة هنا...">
+            </div>
+
+            <div class="form-group">
+                <label>الجنس:</label>
+                <select id="studentGender">
+                    <option value="">-- اختر --</option>
+                    <option value="ذكر">ذكر 👨‍🎓</option>
+                    <option value="أنثى">أنثى 👩‍🎓</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>البريد الإلكتروني الجامعي:</label>
+                <input type="email" id="studentEmail" placeholder="example@univ.bba.dz">
+            </div>
+
+            <button class="btn" onclick="submitRegistration()">تأكيد التسجيل ✅</button>
+            <p id="message" style="text-align: center; font-weight: bold; margin-top: 10px;"></p>
         </div>
 
-        <button class="login-btn" id="login-btn-txt" onclick="login()">Login ✨</button>
-        <p id="error-msg" class="error">❌ Student ID not registered!</p>
     </div>
 
-    <div id="portal-content" class="portal-content">
-        <h2 id="welcome-msg">Welcome! 👋</h2>
-        <p class="subtitle" id="portal-sub">Your academic schedule and attendance</p>
-
-        <div class="card">
-            <h3 id="schedule-title">📅 Today's Schedule</h3>
-            <p id="course-txt"><strong>Course:</strong> Web Development</p>
-            <p id="time-txt"><strong>Time:</strong> 10:00 - 12:00</p>
-        </div>
-
-        <button class="login-btn" onclick="logout()" style="background-color: #888; margin-top: 15px;" id="logout-btn-txt">Logout</button>
-    </div>
-</div>
-
-<footer>All rights reserved World of Nona 2026</footer>
-
-<script>
-    let currentLang = 'en';
-
-    // Update Date and Time with proper regional formats
-    function updateDateTime() {
-        const now = new Date();
-        let locale = 'en-US';
-        if (currentLang === 'fr') locale = 'fr-FR';
-        if (currentLang === 'ar') locale = 'ar-DZ';
-
-        const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-
-        document.getElementById('live-date').innerText = now.toLocaleDateString(locale, dateOptions);
-        document.getElementById('live-time').innerText = now.toLocaleTimeString(locale, timeOptions);
-    }
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
-
-    // Toggle Flags Dropdown Menu
-    function toggleFlagsMenu() {
-        const popup = document.getElementById('flags-popup');
-        popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    // Toggle Gender / Pastel Color Theme (Pink ♀️ / Blue ♂️)
-    function toggleGenderTheme() {
-        const body = document.body;
-        const btn = document.getElementById('gender-icon-btn');
-        if (body.getAttribute('data-theme') === 'girl') {
-            body.setAttribute('data-theme', 'boy');
-            btn.innerText = '♂️'; // رمز الذكر الأزرق
-        } else {
-            body.setAttribute('data-theme', 'girl');
-            btn.innerText = '♀️'; // رمز الأنثى الوردي
+    <!-- كود الجافاسكربت لتشغيل الوقت والتأكد من الإيميل -->
+    <script>
+        // دالة لعرض الوقت والتاريخ بجهتين مختلفتين
+        function updateDateTime() {
+            const now = new Date();
+            
+            // ضبط التاريخ (أقصى اليمين حسب اتجاه الصفحة rtl)
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('date-display').innerText = '📅 التاريخ: ' + now.toLocaleDateString('ar-DZ', dateOptions);
+            
+            // ضبط الوقت (أقصى اليسار)
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('time-display').innerText = '⏰ الوقت: ' + now.toLocaleTimeString('ar-DZ', timeOptions);
         }
-    }
-
-    const translations = {
-        en: {
-            title: "🌸 Student Portal",
-            subtitle: "Please enter your student ID to login",
-            placeholder: "Enter Student ID",
-            remember: "Remember me for:",
-            opt1: "1 Day 📅", opt2: "2 Days 📅", opt7: "1 Week 🗓️", opt365: "Always ♾️",
-            loginBtn: "Login ✨",
-            error: "❌ Student ID not registered!",
-            welcome: "Welcome ",
-            portalSub: "Your academic schedule and attendance",
-            scheduleTitle: "📅 Today's Schedule",
-            course: "<strong>Course:</strong> Web Development",
-            time: "<strong>Time:</strong> 10:00 - 12:00",
-            logout: "Logout",
-            dir: "ltr"
-        },
-        fr: {
-            title: "🌸 Portail Étudiant",
-            subtitle: "Veuillez entrer votre numéro d'étudiant",
-            placeholder: "Numéro de carte universitaire",
-            remember: "Se souvenir de moi:",
-            opt1: "1 Jour 📅", opt2: "2 Jours 📅", opt7: "1 Semaine 🗓️", opt365: "Toujours ♾️",
-            loginBtn: "Connexion ✨",
-            error: "❌ Numéro non enregistré!",
-            welcome: "Bienvenue ",
-            portalSub: "Votre emploi du temps et présence",
-            scheduleTitle: "📅 Emploi du temps du jour",
-            course: "<strong>Matière :</strong> Développement Web",
-            time: "<strong>Heure :</strong> 10:00 - 12:00",
-            logout: "Déconnexion",
-            dir: "ltr"
-        },
-        ar: {
-            title: "🌸 بوابة الطلاب",
-            subtitle: "يرجى إدخال رقم الطالب المعتمد للدخول",
-            placeholder: "أدخل رقم البطاقة الجامعية",
-            remember: "تذكرني لمدة:",
-            opt1: "يوم واحد 📅", opt2: "يومان 📅", opt7: "أسبوع 🗓️", opt365: "دائماً ♾️",
-            loginBtn: "دخول للبوابة ✨",
-            error: "❌ رقم الطالب غير مسجل!",
-            welcome: "مرحباً بك ",
-            portalSub: "جدولك الأكاديمي وسجل الحضور",
-            scheduleTitle: "📅 جدول اليوم",
-            course: "<strong>المادة:</strong> برمجة وتطبيقات ويب",
-            time: "<strong>التوقيت:</strong> 10:00 - 12:00",
-            logout: "تسجيل الخروج",
-            dir: "rtl"
-        }
-    };
-
-    function setLanguage(lang) {
-        currentLang = lang;
-        const t = translations[lang];
-        document.documentElement.dir = t.dir;
-        document.getElementById('title-txt').innerText = t.title;
-        document.getElementById('subtitle-txt').innerText = t.subtitle;
-        document.getElementById('student-id').placeholder = t.placeholder;
-        document.getElementById('remember-lbl').innerText = t.remember;
-        document.getElementById('opt-1').innerText = t.opt1;
-        document.getElementById('opt-2').innerText = t.opt2;
-        document.getElementById('opt-7').innerText = t.opt7;
-        document.getElementById('opt-365').innerText = t.opt365;
-        document.getElementById('login-btn-txt').innerText = t.loginBtn;
-        document.getElementById('error-msg').innerText = t.error;
-        document.getElementById('portal-sub').innerText = t.portalSub;
-        document.getElementById('schedule-title').innerText = t.scheduleTitle;
-        document.getElementById('course-txt').innerHTML = t.course;
-        document.getElementById('time-txt').innerHTML = t.time;
-        document.getElementById('logout-btn-txt').innerText = t.logout;
+        
+        // تحديث الوقت كل ثانية
+        setInterval(updateDateTime, 1000);
         updateDateTime();
-    }
 
-    const allowedStudents = {
-        "1001": { en: "Ahmed Mohamed (Student 1)", fr: "Ahmed Mohamed (Étudiant 1)", ar: "أحمد محمد (طالب 1)" },
-        "1002": { en: "Fatima Zohra (Student 2)", fr: "Fatima Zohra (Étudiante 2)", ar: "فاطمة الزهراء (طالبة 2)" },
-        "1003": { en: "Yassine Karim (Student 3)", fr: "Yassine Karim (Étudiant 3)", ar: "ياسين كريم (طالب 3)" }
-    };
-
-    function login() {
-        const idInput = document.getElementById('student-id').value;
-        const errorMsg = document.getElementById('error-msg');
-        
-        if (allowedStudents[idInput]) {
-            errorMsg.style.display = "none";
-            document.getElementById('login-box').style.display = "none";
-            document.getElementById('portal-content').style.display = "block";
-            
-            const studentName = allowedStudents[idInput][currentLang];
-            const t = translations[currentLang];
-            document.getElementById('welcome-msg').innerText = t.welcome + studentName + " 🌸";
-            
-            if(document.getElementById('remember-me').checked) {
-                localStorage.setItem('savedStudentId', idInput);
+        // إظهار وإخفاء نموذج التسجيل
+        function toggleRegistration() {
+            const section = document.getElementById('registrationSection');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
             }
-        } else {
-            errorMsg.style.display = "block";
         }
-    }
 
-    function logout() {
-        document.getElementById('portal-content').style.display = "none";
-        document.getElementById('login-box').style.display = "block";
-        document.getElementById('student-id').value = "";
-        localStorage.removeItem('savedStudentId');
-    }
+        // دالة التحقق من التسجيل (بما في ذلك شرط إيميل الجامعة)
+        function submitRegistration() {
+            const id = document.getElementById('studentId').value;
+            const gender = document.getElementById('studentGender').value;
+            const email = document.getElementById('studentEmail').value;
+            const messageBox = document.getElementById('message');
 
-    window.onload = function() {
-        const savedId = localStorage.getItem('savedStudentId');
-        if(savedId && allowedStudents[savedId]) {
-            document.getElementById('student-id').value = savedId;
-            document.getElementById('remember-me').checked = true;
+            if (id === '' || gender === '' || email === '') {
+                messageBox.style.color = 'red';
+                messageBox.innerText = '⚠️ يرجى ملء جميع الحقول أولاً.';
+                return;
+            }
+
+            // التحقق من نهاية الإيميل
+            if (!email.endsWith('@univ.bba.dz')) {
+                messageBox.style.color = 'red';
+                messageBox.innerText = '❌ عذراً، هذا التطبيق مخصص لطلاب جامعتنا فقط. يجب أن ينتهي البريد بـ @univ.bba.dz';
+                return;
+            }
+
+            // في حال نجاح الشروط
+            messageBox.style.color = 'green';
+            messageBox.innerText = '🎉 تم تسجيل الطالب بنجاح!';
+            
+            // تفريغ الحقول بعد التسجيل
+            setTimeout(() => {
+                document.getElementById('studentId').value = '';
+                document.getElementById('studentGender').value = '';
+                document.getElementById('studentEmail').value = '';
+                messageBox.innerText = '';
+                toggleRegistration(); // إغلاق النافذة
+            }, 3000);
         }
-    }
-</script>
-
+    </script>
 </body>
 </html>
