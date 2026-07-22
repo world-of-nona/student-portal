@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. 🌙 إدارة الوضع الليلي (Dark Mode) والحفاظ على الاختيار عبر الصفحات
+    // 1. 🌙 إدارة الوضع الليلي (Dark Mode) والحفاظ على الاختيار عبر كافة الصفحات
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const isDarkMode = localStorage.getItem('theme') === 'dark';
 
@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
         darkModeToggle.addEventListener('change', () => {
             if (darkModeToggle.checked) {
                 document.body.classList.add('dark-theme');
-                localStorage.setItem('theme', 'dark'); // حفظ الاختيار
+                localStorage.setItem('theme', 'dark');
             } else {
                 document.body.classList.remove('dark-theme');
-                localStorage.setItem('theme', 'light'); // حفظ الاختيار
+                localStorage.setItem('theme', 'light');
             }
         });
     }
@@ -55,5 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('📍 القاعة 204 تقع في الدور الثاني - المبنى B.');
         });
     }
+
+    // 6. 📅 ميزة تفاعلية جديدة: الضغط على أي حصة في الجدول لعرض التفاصيل
+    const classCards = document.querySelectorAll('.class-card');
+    classCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('h4')?.innerText || 'المادة';
+            const details = card.querySelector('p')?.innerText || '';
+            const time = card.querySelector('.time-badge')?.innerText || '';
+            
+            // يظهر التنبيه فقط إذا كانت الحصة تحتوي على توقيت
+            if (time) {
+                alert(`📖 تفاصيل المحاضرة:\n\n📌 المادة: ${title}\n⏰ التوقيت: ${time}\n🏛️ التفاصيل: ${details}`);
+            }
+        });
+    });
 
 });
