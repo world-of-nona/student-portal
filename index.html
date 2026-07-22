@@ -6,7 +6,7 @@
     <title>Student Portal</title>
     <style>
         :root {
-            /* Default: Girl Pastel Theme */
+            /* Default: Girl Pastel Theme (Pink) */
             --bg-color: #fce4ec;
             --card-bg: #ffffff;
             --primary-color: #f48fb1;
@@ -16,7 +16,7 @@
             --input-bg: #ffffff;
         }
 
-        /* Boy Pastel Theme */
+        /* Boy Pastel Theme (Blue) */
         [data-theme="boy"] {
             --bg-color: #e3f2fd;
             --card-bg: #ffffff;
@@ -50,54 +50,77 @@
             transition: all 0.3s ease;
         }
 
+        /* Top Bar: Date & Time positioning based on language direction */
         .top-bar {
             width: 100%;
-            max-width: 440px;
+            max-width: 420px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            font-size: 13px;
+            margin-bottom: 10px;
+            font-size: 12px;
             font-weight: bold;
         }
 
         .datetime-box {
-            font-family: inherit;
+            font-family: monospace;
             background: rgba(255, 255, 255, 0.6);
-            padding: 6px 10px;
+            padding: 5px 8px;
             border-radius: 8px;
-            font-size: 12px;
         }
 
-        .controls-box {
+        /* Central Controls: Language dropdown & Gender Theme */
+        .central-controls {
+            width: 100%;
+            max-width: 420px;
             display: flex;
-            gap: 8px;
+            justify-content: center;
             align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            position: relative;
         }
 
-        .icon-btn {
-            background: rgba(255, 255, 255, 0.6);
-            border: none;
+        .control-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--border-color);
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .flags-box span {
-            cursor: pointer;
-            font-size: 18px;
-            margin: 0 2px;
             transition: transform 0.2s;
-            display: inline-block;
         }
 
-        .flags-box span:hover {
-            transform: scale(1.2);
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Flags Popup Menu */
+        .flags-popup {
+            position: absolute;
+            top: 48px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px 12px;
+            display: none;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .flags-popup span {
+            cursor: pointer;
+            font-size: 22px;
+            transition: transform 0.2s;
+        }
+
+        .flags-popup span:hover {
+            transform: scale(1.25);
         }
 
         .container {
@@ -112,7 +135,9 @@
             transition: all 0.3s ease;
         }
 
-        h2 { margin-bottom: 5px; }
+        h2 {
+            margin-bottom: 5px;
+        }
 
         p.subtitle {
             font-size: 13px;
@@ -163,7 +188,9 @@
             transition: 0.3s;
         }
 
-        .portal-content { display: none; }
+        .portal-content {
+            display: none;
+        }
 
         .card {
             background: rgba(0,0,0,0.03);
@@ -172,8 +199,12 @@
             margin-top: 12px;
         }
 
-        [dir="ltr"] .card { border-left: 4px solid var(--accent-color); }
-        [dir="rtl"] .card { border-right: 4px solid var(--accent-color); }
+        [dir="ltr"] .card {
+            border-left: 4px solid var(--accent-color);
+        }
+        [dir="rtl"] .card {
+            border-right: 4px solid var(--accent-color);
+        }
 
         .error {
             color: #d32f2f;
@@ -181,21 +212,37 @@
             margin-top: 8px;
             display: none;
         }
+
+        footer {
+            margin-top: 15px;
+            font-size: 11px;
+            opacity: 0.7;
+            text-align: center;
+        }
     </style>
 </head>
 <body data-theme="girl" data-mode="light">
 
+<!-- Top Bar: Date & Time (Dynamic positioning via CSS layout) -->
 <div class="top-bar">
-    <div class="datetime-box" id="live-datetime">Loading...</div>
-    <div class="controls-box">
-        <button class="icon-btn" onclick="toggleGenderTheme()" title="Switch Theme">🌸/🦋</button>
-        <button class="icon-btn" onclick="toggleDarkMode()" title="Night Mode">☀️</button>
-        <div class="flags-box">
-            <span onclick="setLanguage('en')" title="English">🇬🇧</span>
-            <span onclick="setLanguage('fr')" title="Français">🇫🇷</span>
-            <span onclick="setLanguage('ar')" title="العربية">🇩🇿</span>
+    <div class="datetime-box" id="live-date">Date</div>
+    <div class="datetime-box" id="live-time">Time</div>
+</div>
+
+<!-- Central Controls: Language Emoji & Gender/Color Emoji -->
+<div class="central-controls">
+    <!-- Language Selector Dropdown Button -->
+    <div style="position: relative;">
+        <button class="control-btn" onclick="toggleFlagsMenu()" title="Language">🌐</button>
+        <div id="flags-popup" class="flags-popup">
+            <span onclick="setLanguage('en'); toggleFlagsMenu();" title="English">🇬🇧</span>
+            <span onclick="setLanguage('fr'); toggleFlagsMenu();" title="Français">🇫🇷</span>
+            <span onclick="setLanguage('ar'); toggleFlagsMenu();" title="العربية">🇩🇿</span>
         </div>
     </div>
+
+    <!-- Gender / Color Theme Selector Button -->
+    <button class="control-btn" id="gender-icon-btn" onclick="toggleGenderTheme()" title="Theme Color">♀️</button>
 </div>
 
 <div class="container">
@@ -234,65 +281,44 @@
     </div>
 </div>
 
+<footer>All rights reserved World of Nona 2026</footer>
+
 <script>
     let currentLang = 'en';
 
-    // أيام وأشهر مخصصة للتأكد من المسميات الدقيقة
-    const arDays = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
-    const arMonths = ["جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان", "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
-    
-    const frDays = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-    const frMonths = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-
-    const enDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const enMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
+    // Update Date and Time with proper regional formats
     function updateDateTime() {
         const now = new Date();
-        const dayIdx = now.getDay();
-        const dateNum = now.getDate();
-        const monthIdx = now.getMonth();
-        const yearNum = now.getFullYear();
+        let locale = 'en-US';
+        if (currentLang === 'fr') locale = 'fr-FR';
+        if (currentLang === 'ar') locale = 'ar-DZ';
 
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-        if (minutes < 10) minutes = '0' + minutes;
+        const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
 
-        let str = "";
-
-        if (currentLang === 'ar') {
-            const period = hours >= 12 ? 'مساءً' : 'صباحاً';
-            let displayHours = hours % 12;
-            if (displayHours === 0) displayHours = 12;
-            str = `${arDays[dayIdx]} ${dateNum} ${arMonths[monthIdx]} ${yearNum} - ${displayHours}:${minutes} ${period}`;
-        } 
-        else if (currentLang === 'fr') {
-            const period = hours >= 12 ? 'Soir' : 'Matin';
-            let displayHours = hours % 12;
-            if (displayHours === 0) displayHours = 12;
-            str = `${frDays[dayIdx]} ${dateNum} ${frMonths[monthIdx]} ${yearNum} - ${displayHours}.${minutes} ${period}`;
-        } 
-        else { // en
-            const period = hours >= 12 ? 'PM' : 'AM';
-            let displayHours = hours % 12;
-            if (displayHours === 0) displayHours = 12;
-            str = `${enDays[dayIdx]}, ${dateNum} ${enMonths[monthIdx]} ${yearNum} - ${displayHours}:${minutes} ${period}`;
-        }
-
-        document.getElementById('live-datetime').innerText = str;
+        document.getElementById('live-date').innerText = now.toLocaleDateString(locale, dateOptions);
+        document.getElementById('live-time').innerText = now.toLocaleTimeString(locale, timeOptions);
     }
-
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
-    function toggleGenderTheme() {
-        const body = document.body;
-        body.setAttribute('data-theme', body.getAttribute('data-theme') === 'girl' ? 'boy' : 'girl');
+    // Toggle Flags Dropdown Menu
+    function toggleFlagsMenu() {
+        const popup = document.getElementById('flags-popup');
+        popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
     }
 
-    function toggleDarkMode() {
+    // Toggle Gender / Pastel Color Theme (Pink ♀️ / Blue ♂️)
+    function toggleGenderTheme() {
         const body = document.body;
-        body.setAttribute('data-mode', body.getAttribute('data-mode') === 'light' ? 'dark' : 'light');
+        const btn = document.getElementById('gender-icon-btn');
+        if (body.getAttribute('data-theme') === 'girl') {
+            body.setAttribute('data-theme', 'boy');
+            btn.innerText = '♂️'; // رمز الذكر الأزرق
+        } else {
+            body.setAttribute('data-theme', 'girl');
+            btn.innerText = '♀️'; // رمز الأنثى الوردي
+        }
     }
 
     const translations = {
