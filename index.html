@@ -2,47 +2,413 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>تسجيل الدخول 🎓</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World of Nona 🌿 - تسجيل الدخول</title>
+    <!-- خط Tajawal الأصيل -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2A9D8F;
+            --primary-dark: #1F7268;
+            --bg-mint: #F0F7F4;
+            --card-bg: #FFFFFF;
+            --text-color: #2D3748;
+            --text-muted: #718096;
+            --border-color: #E2E8F0;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-mint);
+            background-image: radial-gradient(#2a9d8f15 1px, transparent 1px);
+            background-size: 20px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .mobile-card {
+            width: 100%;
+            max-width: 430px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 30px rgba(42, 157, 143, 0.12);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid rgba(42, 157, 143, 0.15);
+        }
+
+        /* Header Visual Layer */
+        .app-header {
+            background: linear-gradient(135deg, #2A9D8F 0%, #3B9A74 100%);
+            color: white;
+            padding: 30px 20px 25px 20px;
+            text-align: center;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            position: relative;
+        }
+
+        .app-header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .app-header p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* Custom Tabs Switcher */
+        .tab-switcher {
+            display: flex;
+            background: #E8F3EE;
+            margin: 20px 20px 10px 20px;
+            padding: 5px;
+            border-radius: var(--radius-md);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--card-bg);
+            color: var(--primary-green);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Form Area */
+        .form-container {
+            padding: 15px 20px 25px 20px;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 14px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .input-control {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            background-color: #FAFCFA;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-control:focus {
+            border-color: var(--primary-green);
+            background-color: #FFFFFF;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-row .input-group {
+            flex: 1;
+        }
+
+        /* OTP Input Flex Layout */
+        .otp-box {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-otp {
+            padding: 0 12px;
+            background-color: #E8F3EE;
+            color: var(--primary-dark);
+            border: 1px solid var(--primary-green);
+            border-radius: var(--radius-md);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* Remember Me Select box */
+        .remember-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            font-size: 12px;
+        }
+
+        .remember-select {
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-size: 11px;
+            outline: none;
+        }
+
+        /* Primary Action Buttons */
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(42, 157, 143, 0.25);
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 11px;
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        .btn-guest {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: var(--primary-green);
+            border: 1.5px dashed var(--primary-green);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Nature Decorative Vector Footer */
+        .nature-decoration {
+            text-align: center;
+            padding: 10px 0 5px 0;
+            font-size: 18px;
+            user-select: none;
+        }
+
+        .app-footer {
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-muted);
+            padding: 12px 0;
+            border-top: 1px solid #F0F0F0;
+            direction: ltr;
+        }
+    </style>
 </head>
-<body class="login-body">
+<body>
 
-    <div class="login-wrapper">
-        <div class="login-card">
-            <div class="brand-badge">🎓</div>
-            <h2>أهلاً بك! 👋</h2>
-            <p class="subtitle">سجلي دخولك لمتابعة جدولك وحضورك اليومي</p>
+<div class="mobile-card">
+    <!-- Header visual -->
+    <header class="app-header">
+        <h1>World of Nona 🌿</h1>
+        <p>منصة علوم الطبيعة والحياة - L1 SNV</p>
+    </header>
 
-            <form action="dashboard.html" method="GET">
-                <div class="input-group">
-                    <span class="input-icon">👤</span>
-                    <input type="text" placeholder="اسم المستخدم / الرقم الجامعي" required>
-                </div>
-
-                <div class="input-group">
-                    <span class="input-icon">🔒</span>
-                    <input type="password" placeholder="كلمة المرور" required>
-                </div>
-
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" checked> تذكرني
-                    </label>
-                    <a href="#" class="forgot-pass">نسيت كلمة المرور؟</a>
-                </div>
-
-                <button type="submit" class="primary-btn">تسجيل الدخول 🚀</button>
-            </form>
-        </div>
-
-        <footer class="app-footer">
-            All rights reserved World of Nona 2026
-        </footer>
+    <!-- Navigation Tabs -->
+    <div class="tab-switcher">
+        <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
+        <button class="tab-btn" onclick="switchTab('signup')">إنشاء حساب</button>
     </div>
 
-    <!-- ربط ملف الجافا سكريبت -->
-    <script src="script.js"></script>
+    <!-- Forms Area -->
+    <div class="form-container">
+        
+        <!-- 1. LOGIN FORM -->
+        <form id="loginForm" class="form-section active" onsubmit="event.preventDefault();">
+            <div class="input-group">
+                <label>البريد الإلكتروني أو رقم البطاقة 🪪</label>
+                <input type="text" class="input-control" placeholder="أدخل البريد الجامعي أو الرقم" required>
+            </div>
+
+            <div class="input-group">
+                <label>كلمة المرور 🔒</label>
+                <input type="password" class="input-control" placeholder="••••••••" required>
+            </div>
+
+            <div class="remember-container">
+                <label>☑️ تذكرني في هذا الجهاز:</label>
+                <select class="remember-select">
+                    <option value="week">لمدة أسبوع</option>
+                    <option value="month">لمدة شهر</option>
+                    <option value="year">لمدة سنة</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-primary">دخول للحساب 🚀</button>
+
+            <div class="divider">أو للتصفح السريع</div>
+
+            <button type="button" class="btn-guest" onclick="location.href='dashboard.html'">الدخول كضيف 👤</button>
+        </form>
+
+        <!-- 2. SIGNUP FORM -->
+        <form id="signupForm" class="form-section" onsubmit="event.preventDefault();">
+            
+            <div class="input-group">
+                <label>رقم بطاقة الطالب / البريد الجامعي 📧</label>
+                <div class="otp-box">
+                    <input type="text" class="input-control" placeholder="مثال: student@univ.dz" required>
+                    <button type="button" class="btn-otp">إرسال الرمز</button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>كود التحقق (OTP) 🔑</label>
+                <input type="text" class="input-control" placeholder="أدخل الكود المكون من 4 أرقام">
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" class="input-control" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>تأكيد كلمة المرور</label>
+                    <input type="password" class="input-control" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>الجنس 👤</label>
+                <select class="input-control">
+                    <option value="male">ذكر</option>
+                    <option value="female">أنثى</option>
+                </select>
+            </div>
+
+            <!-- State & University Dynamic Selects -->
+            <div class="input-row">
+                <div class="input-group">
+                    <label>الولاية 📍</label>
+                    <select id="stateSelect" class="input-control" onchange="updateUniversities()">
+                        <option value="">اختر الولاية</option>
+                        <option value="algiers">الجزائر</option>
+                        <option value="setif">سطيف</option>
+                        <option value="oran">وهران</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>الجامعة 🏛️</label>
+                    <select id="univSelect" class="input-control">
+                        <option value="">اختر الجامعة تلقائياً</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Section, Groupe, Sous-Groupe -->
+            <div class="input-row">
+                <div class="input-group">
+                    <label>القسم (Section)</label>
+                    <input type="text" class="input-control" placeholder="A / B / C">
+                </div>
+                <div class="input-group">
+                    <label>المجموعة (Groupe)</label>
+                    <input type="text" class="input-control" placeholder="G01">
+                </div>
+                <div class="input-group">
+                    <label>الفرعية (Sous-groupe)</label>
+                    <input type="text" class="input-control" placeholder="SG01">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary" style="margin-top: 10px;">إنشاء حساب جديد ✨</button>
+        </form>
+
+    </div>
+
+    <!-- Decorative Nature Elements -->
+    <div class="nature-decoration">🌱 🌿 🍃</div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        All rights reserved World of Nona 2026
+    </footer>
+</div>
+
+<script>
+    // Tab switching logic
+    function switchTab(tabName) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.form-section').forEach(form => form.classList.remove('active'));
+
+        if (tabName === 'login') {
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            document.getElementById('loginForm').classList.add('active');
+        } else {
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            document.getElementById('signupForm').classList.add('active');
+        }
+    }
+
+    // Mock functions for university selection
+    const mockUniversities = {
+        algiers: ["جامعة هواري بومدين (USTHB)", "جامعة بن يوسف بن خدة (الجزائر 1)"],
+        setif: ["جامعة فرحات عباس (سطيف 1)"],
+        oran: ["جامعة وهران 1 أحمد بن بلة"]
+    };
+
+    function updateUniversities() {
+        const state = document.getElementById('stateSelect').value;
+        const univSelect = document.getElementById('univSelect');
+        univSelect.innerHTML = '<option value="">اختر الجامعة</option>';
+
+        if (state && mockUniversities[state]) {
+            mockUniversities[state].forEach(univ => {
+                const opt = document.createElement('option');
+                opt.value = univ;
+                opt.textContent = univ;
+                univSelect.appendChild(opt);
+            });
+        }
+    }
+</script>
+
 </body>
 </html>
