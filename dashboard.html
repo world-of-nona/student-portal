@@ -2,130 +2,391 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>لوحة التحكم الرئيسية 📊</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World of Nona 🎓 - لوحة التحكم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        .grid-menu {
+        :root {
+            --primary-pastel: #74C69D;
+            --primary-dark: #2B4C3F;
+            --accent-yellow: #FFD166;
+            --accent-pink: #FFB7B2;
+            --accent-purple: #B5E2FA;
+            --bg-cream: #F4F7F4;
+            --card-bg: #FFFFFF;
+            --text-main: #2D3748;
+            --text-muted: #8C9BA5;
+
+            --clay-shadow-card: 0 12px 28px rgba(116, 198, 157, 0.15), inset 0 2px 3px #FFFFFF;
+            --clay-shadow-btn: 0 6px 14px rgba(116, 198, 157, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            background-image: radial-gradient(#74c69d20 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 430px;
+            background: #FFFFFF;
+            border-radius: 32px;
+            box-shadow: var(--clay-shadow-card);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 4px solid #FFFFFF;
+            padding-bottom: 20px;
+        }
+
+        /* Header Navigation Bar */
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px 10px 20px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-3d {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 4px 10px rgba(255, 183, 178, 0.4), inset 0 2px 2px #FFFFFF;
+            border: 2px solid #FFFFFF;
+        }
+
+        .user-info h3 {
+            font-size: 15px;
+            color: var(--primary-dark);
+            font-weight: 800;
+        }
+
+        .user-info p {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            background: #F4F8F5;
+            border-radius: 14px;
+            border: 1.5px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: inset 0 2px 3px #FFFFFF;
+        }
+
+        /* 3D Welcome Banner (Inspired by Image Hero Section) */
+        .welcome-banner {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C7E9C0 100%);
+            margin: 10px 20px;
+            padding: 20px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(116, 198, 157, 0.2);
+            border: 2px solid #FFFFFF;
+            position: relative;
+        }
+
+        .banner-text h2 {
+            font-size: 17px;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .banner-text p {
+            font-size: 12px;
+            color: #3A6351;
+            font-weight: 600;
+        }
+
+        .banner-icon {
+            font-size: 45px;
+            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.1));
+        }
+
+        /* Soft 3D Quick Stats Grid */
+        .section-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin: 15px 20px 10px 20px;
+        }
+
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            margin-top: 15px;
+            padding: 0 20px;
         }
-        .menu-card {
-            background: white;
-            border-radius: 16px;
-            padding: 16px;
-            text-decoration: none;
-            color: #333;
-            border: 1px solid #EFEFEF;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+
+        .stat-card {
+            background: #FFFFFF;
+            padding: 15px;
+            border-radius: 20px;
+            border: 2px solid #F0F4F1;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
+            gap: 6px;
+        }
+
+        .stat-card.yellow { background: #FFFBF0; border-color: #FFE6A7; }
+        .stat-card.pink { background: #FFF5F5; border-color: #FFD6D6; }
+        .stat-card.green { background: #F0F9F4; border-color: #C7E9C0; }
+        .stat-card.purple { background: #F4F8FF; border-color: #D0E1FD; }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
+        }
+
+        .stat-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            background: #FFFFFF;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        /* Modules Grid (SNV L1 Subjects) */
+        .modules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0 20px;
+        }
+
+        .module-item {
+            background: #FFFFFF;
+            border: 2px solid #F0F4F1;
+            border-radius: 18px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            cursor: pointer;
             transition: transform 0.2s;
         }
-        .menu-card:active {
-            transform: scale(0.97);
+
+        .module-item:active {
+            transform: scale(0.98);
         }
-        .menu-icon {
-            font-size: 28px;
-            margin-bottom: 8px;
+
+        .module-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .menu-title {
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 2px;
+
+        .module-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: #E8F5E9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: inset 0 2px 2px #FFFFFF;
         }
-        .menu-sub {
-            font-size: 10px;
-            color: #888;
+
+        .module-details h4 {
+            font-size: 13.5px;
+            color: var(--primary-dark);
+            font-weight: 800;
+        }
+
+        .module-details p {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .arrow-icon {
+            font-size: 14px;
+            color: var(--primary-pastel);
+            font-weight: 800;
+        }
+
+        /* Brand Footer */
+        .app-footer {
+            text-align: center;
+            font-size: 10.5px;
+            color: var(--text-muted);
+            padding: 20px 0 5px 0;
+            direction: ltr;
+            font-weight: 500;
         }
     </style>
 </head>
-<body class="dashboard-body">
+<body>
 
-    <div class="mobile-container">
-        <!-- Header -->
-        <header class="app-header">
+<div class="app-container">
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+        <div class="user-profile">
+            <div class="avatar-3d">👩‍🎓</div>
             <div class="user-info">
-                <div>
-                    <h3 class="user-name">مرحباً بك 👋</h3>
-                    <span class="user-role">Sciences de la Nature et de la Vie • L1</span>
+                <h3>مرحباً بكِ، طالبة SNV! 🌿</h3>
+                <p>السنة الأولى L1 - السداسي 1</p>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <button class="icon-btn">🔔</button>
+            <button class="icon-btn" onclick="location.href='index.html'">🚪</button>
+        </div>
+    </header>
+
+    <!-- Welcome Banner 3D -->
+    <section class="welcome-banner">
+        <div class="banner-text">
+            <h2>مرحباً بكِ في World of Nona 🧬</h2>
+            <p>منصتك الشاملة لملخصات وتمارين علوم الطبيعة والحياة</p>
+        </div>
+        <div class="banner-icon">🔬</div>
+    </section>
+
+    <!-- Quick Stats Grid -->
+    <h3 class="section-title">إحصائياتكِ الدراسية 📊</h3>
+    <section class="stats-grid">
+        <div class="stat-card green">
+            <div class="stat-header">
+                <span class="stat-label">الملخصات</span>
+                <div class="stat-icon">📚</div>
+            </div>
+            <div class="stat-value">24</div>
+        </div>
+        <div class="stat-card yellow">
+            <div class="stat-header">
+                <span class="stat-label">السلاسل (TD)</span>
+                <div class="stat-icon">📝</div>
+            </div>
+            <div class="stat-value">12</div>
+        </div>
+        <div class="stat-card pink">
+            <div class="stat-header">
+                <span class="stat-label">الأعمال التطبيقية (TP)</span>
+                <div class="stat-icon">🧪</div>
+            </div>
+            <div class="stat-value">08</div>
+        </div>
+        <div class="stat-card purple">
+            <div class="stat-header">
+                <span class="stat-label">الامتحانات</span>
+                <div class="stat-icon">🎓</div>
+            </div>
+            <div class="stat-value">05</div>
+        </div>
+    </section>
+
+    <!-- Modules List (Matières SNV L1) -->
+    <h3 class="section-title">المقاييس الدراسية (Modules) 📖</h3>
+    <section class="modules-list">
+        <div class="module-item">
+            <div class="module-info">
+                <div class="module-badge">🧫</div>
+                <div class="module-details">
+                    <h4>بيولوجيا الخلية (Biologie Cellulaire)</h4>
+                    <p>8 دروس • 3 أعمال موجهة (TD)</p>
                 </div>
             </div>
-            <a href="settings.html" style="text-decoration:none; font-size:20px;">⚙️</a>
-        </header>
+            <div class="arrow-icon">◀</div>
+        </div>
 
-        <!-- Main Content -->
-        <main class="dashboard-content">
-
-            <!-- Hero Banner -->
-            <div class="hero-card">
-                <h3 style="font-size:16px; margin-bottom:6px;">السنة الأولى جامعي 🎓</h3>
-                <p style="font-size:12px; opacity:0.9; margin-bottom:12px;">تتبعي منهاج الدروس، الجدول الزمني، واحسبي معدلك بضغطة زر.</p>
-                <a href="calculator.html" class="chip-btn" style="background:white; color:#8A70D6;">احسب معدلك الآن 🧮</a>
+        <div class="module-item">
+            <div class="module-info">
+                <div class="module-badge">⚗️</div>
+                <div class="module-details">
+                    <h4>الكيمياء العامة (Chimie Générale)</h4>
+                    <p>6 دروس • 2 أعمال موجهة (TD)</p>
+                </div>
             </div>
+            <div class="arrow-icon">◀</div>
+        </div>
 
-            <!-- Quick Grid Menu -->
-            <h4 style="font-size:14px; color:#555; margin-bottom:10px;">الوصول السريع 🚀</h4>
-            <div class="grid-menu">
-                <a href="semester1.html" class="menu-card">
-                    <span class="menu-icon">📚</span>
-                    <span class="menu-title">السداسي الأول</span>
-                    <span class="menu-sub">7 مواد • 30 رصيد</span>
-                </a>
-
-                <a href="semester2.html" class="menu-card">
-                    <span class="menu-icon">🌿</span>
-                    <span class="menu-title">السداسي الثاني</span>
-                    <span class="menu-sub">7 مواد • 30 رصيد</span>
-                </a>
-
-                <a href="calculator.html" class="menu-card">
-                    <span class="menu-icon">🧮</span>
-                    <span class="menu-title">حاسبة المعدل</span>
-                    <span class="menu-sub">حساب دقيق 40/60</span>
-                </a>
-
-                <a href="schedule.html" class="menu-card">
-                    <span class="menu-icon">📅</span>
-                    <span class="menu-title">الجدول الزمني</span>
-                    <span class="menu-sub">الحصص والقاعات</span>
-                </a>
+        <div class="module-item">
+            <div class="module-info">
+                <div class="module-badge">🌿</div>
+                <div class="module-details">
+                    <h4>بيولوجيا الكائنات (Biologie des Organismes)</h4>
+                    <p>5 دروس • 2 أعمال تطبيقية (TP)</p>
+                </div>
             </div>
+            <div class="arrow-icon">◀</div>
+        </div>
 
-            <footer class="app-footer">
-                All rights reserved World of Nona 2026
-            </footer>
-        </main>
+        <div class="module-item">
+            <div class="module-info">
+                <div class="module-badge">📐</div>
+                <div class="module-details">
+                    <h4>الرياضيات والإحصاء (Mathématiques)</h4>
+                    <p>4 دروس • 2 أعمال موجهة (TD)</p>
+                </div>
+            </div>
+            <div class="arrow-icon">◀</div>
+        </div>
+    </section>
 
-        <!-- Navigation Bar -->
-        <nav class="bottom-nav">
-            <a href="dashboard.html" class="nav-btn active">
-                <span class="nav-icon">📊</span>
-                <span>الرئيسية</span>
-            </a>
-            <a href="schedule.html" class="nav-btn">
-                <span class="nav-icon">📅</span>
-                <span>الجدول</span>
-            </a>
-            <a href="semester1.html" class="nav-btn">
-                <span class="nav-icon">📖</span>
-                <span>المنهاج</span>
-            </a>
-            <a href="calculator.html" class="nav-btn">
-                <span class="nav-icon">🧮</span>
-                <span>المعدل</span>
-            </a>
-            <a href="settings.html" class="nav-btn">
-                <span class="nav-icon">⚙️</span>
-                <span>الإعدادات</span>
-            </a>
-        </nav>
-    </div>
+    <!-- Footer -->
+    <footer class="app-footer">
+        All rights reserved World of Nona 2026
+    </footer>
+</div>
 
 </body>
 </html>
