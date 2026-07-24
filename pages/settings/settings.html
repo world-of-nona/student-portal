@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعدادات - World of Nona ⚙️</title>
+
+    <!-- ربط الملفات العامة والخاصة بالصفحة -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+
+    <header id="main-navbar">
+        <!-- سيتم تحميل القائمة من navbar.html -->
+    </header>
+
+    <main id="app-content">
+        <section class="settings-header">
+            <h1>إعدادات التطبيق ⚙️</h1>
+            <p>تخصيص التفضيلات، الإشعارات، والأمان 🛡️</p>
+        </section>
+
+        <!-- قسم التفضيلات العامة -->
+        <div class="card settings-card">
+            <h3>التفضيلات العامة 🎨</h3>
+            
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="theme-select">المظهر / النمط 🌙</label>
+                    <p>اختر بين المظهر الفاتح أو الداكن</p>
+                </div>
+                <select id="theme-select" class="form-control select-input">
+                    <option value="light">فاتح (Light)</option>
+                    <option value="dark">داكن (Dark)</option>
+                </select>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="lang-select">اللغة 🌐</label>
+                    <p>لغة عرض واجهة التطبيق</p>
+                </div>
+                <select id="lang-select" class="form-control select-input">
+                    <option value="ar" selected>العربية</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- قسم الإشعارات -->
+        <div class="card settings-card">
+            <h3>التنبيهات والإشعارات 🔔</h3>
+            
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label>إشعارات المحاضرات ⏰</label>
+                    <p>تنبيهكِ قبل موعد المحاضرة بـ 15 دقيقة</p>
+                </div>
+                <input type="checkbox" class="toggle-checkbox" checked>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label>إشعارات النتائج 💯</label>
+                    <p>تنبيهكِ عند نشر علامات جديدة</p>
+                </div>
+                <input type="checkbox" class="toggle-checkbox" checked>
+            </div>
+        </div>
+
+        <!-- قسم الأمان -->
+        <div class="card settings-card">
+            <h3>الأمان وكلمة المرور 🔒</h3>
+            <form id="password-form">
+                <div class="form-group">
+                    <label for="current-password">كلمة المرور الحالية 🔑</label>
+                    <input type="password" id="current-password" class="form-control" placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">كلمة المرور الجديدة 🔒</label>
+                    <input type="password" id="new-password" class="form-control" placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary">تحديث كلمة المرور 🔄</button>
+            </form>
+        </div>
+    </main>
+
+    <footer id="main-footer">
+        <p>All rights reserved World of Nona 2026</p>
+    </footer>
+
+    <script src="../../assets/js/global.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>
