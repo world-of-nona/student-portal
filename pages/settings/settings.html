@@ -3,92 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الإعدادات - World of Nona ⚙️</title>
+    <title>الإعدادات - World of Nona 🎓</title>
 
-    <!-- ربط الملفات العامة والخاصة بالصفحة -->
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/components.css">
-    <link rel="stylesheet" href="settings.css">
+
+    <style>
+        .settings-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+        }
+        .btn-action {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-theme {
+            background-color: var(--primary-color, #4A90E2);
+            color: white;
+        }
+        .btn-logout {
+            background-color: #E74C3C;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
     <header id="main-navbar">
-        <!-- سيتم تحميل القائمة من navbar.html -->
+        <!-- القائمة العلوية -->
     </header>
 
-    <main id="app-content">
-        <section class="settings-header">
-            <h1>إعدادات التطبيق ⚙️</h1>
-            <p>تخصيص التفضيلات، الإشعارات، والأمان 🛡️</p>
-        </section>
+    <main id="app-content" class="settings-container">
+        <h2>إعدادات التطبيق ⚙️</h2>
 
-        <!-- قسم التفضيلات العامة -->
-        <div class="card settings-card">
-            <h3>التفضيلات العامة 🎨</h3>
-            
-            <div class="setting-item">
-                <div class="setting-info">
-                    <label for="theme-select">المظهر / النمط 🌙</label>
-                    <p>اختر بين المظهر الفاتح أو الداكن</p>
-                </div>
-                <select id="theme-select" class="form-control select-input">
-                    <option value="light">فاتح (Light)</option>
-                    <option value="dark">داكن (Dark)</option>
-                </select>
+        <div class="card setting-item">
+            <div>
+                <h3 style="margin:0;">المظهر والنمط 🌙</h3>
+                <p style="margin:5px 0 0 0; color:#888; font-size:14px;">التبديل بين النمط الداكن والفاتح</p>
             </div>
-
-            <div class="setting-item">
-                <div class="setting-info">
-                    <label for="lang-select">اللغة 🌐</label>
-                    <p>لغة عرض واجهة التطبيق</p>
-                </div>
-                <select id="lang-select" class="form-control select-input">
-                    <option value="ar" selected>العربية</option>
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                </select>
-            </div>
+            <button id="toggle-theme-btn" class="btn-action btn-theme">تغيير النمط 🌙</button>
         </div>
 
-        <!-- قسم الإشعارات -->
-        <div class="card settings-card">
-            <h3>التنبيهات والإشعارات 🔔</h3>
-            
-            <div class="setting-item">
-                <div class="setting-info">
-                    <label>إشعارات المحاضرات ⏰</label>
-                    <p>تنبيهكِ قبل موعد المحاضرة بـ 15 دقيقة</p>
-                </div>
-                <input type="checkbox" class="toggle-checkbox" checked>
+        <div class="card setting-item">
+            <div>
+                <h3 style="margin:0;">الحساب والجلسة 👤</h3>
+                <p style="margin:5px 0 0 0; color:#888; font-size:14px;">تسجيل الخروج من الحساب الحالي</p>
             </div>
-
-            <div class="setting-item">
-                <div class="setting-info">
-                    <label>إشعارات النتائج 💯</label>
-                    <p>تنبيهكِ عند نشر علامات جديدة</p>
-                </div>
-                <input type="checkbox" class="toggle-checkbox" checked>
-            </div>
-        </div>
-
-        <!-- قسم الأمان -->
-        <div class="card settings-card">
-            <h3>الأمان وكلمة المرور 🔒</h3>
-            <form id="password-form">
-                <div class="form-group">
-                    <label for="current-password">كلمة المرور الحالية 🔑</label>
-                    <input type="password" id="current-password" class="form-control" placeholder="••••••••">
-                </div>
-                <div class="form-group">
-                    <label for="new-password">كلمة المرور الجديدة 🔒</label>
-                    <input type="password" id="new-password" class="form-control" placeholder="••••••••">
-                </div>
-                <button type="submit" class="btn btn-primary">تحديث كلمة المرور 🔄</button>
-            </form>
+            <button id="logout-btn" class="btn-action btn-logout">تسجيل الخروج 🚪</button>
         </div>
     </main>
 
-    <footer id="main-footer">
+    <footer id="main-footer" style="text-align: center; padding: 20px; color: #888; margin-top: 40px;">
         <p>All rights reserved World of Nona 2026</p>
     </footer>
 
