@@ -3,71 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تقديم مبررات الغياب - World of Nona 📝</title>
+    <title>إدارة المبررات - World of Nona 🎓</title>
 
-    <!-- ربط الملفات العامة والخاصة بالصفحة -->
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/components.css">
-    <link rel="stylesheet" href="excuses.css">
+
+    <style>
+        .excuses-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .form-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color, #ccc);
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+        .btn-submit {
+            padding: 10px 20px;
+            background-color: var(--primary-color, #4A90E2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
     <header id="main-navbar">
-        <!-- سيتم تحميل القائمة من navbar.html -->
+        <!-- القائمة العلوية -->
     </header>
 
-    <main id="app-content">
-        <section class="excuses-header">
-            <h1>تقديم ومتابعة مبررات الغياب 📝</h1>
-            <p>يمكنكِ إرسال المبررات الطبية أو الإدارية ومتابعة حالة قبولها 📂</p>
-        </section>
-
-        <!-- نموذج تقديم مبرر جديد -->
-        <div class="card excuse-form-card">
-            <h3>إرسال مبرر جديد 📤</h3>
+    <main id="app-content" class="excuses-container">
+        <h2>تقديم مبرر غياب 📝</h2>
+        
+        <section class="card form-card">
             <form id="excuse-form">
                 <div class="form-group">
+                    <label for="subject">اسم المادة 📚</label>
+                    <input type="text" id="subject" placeholder="مثال: البرمجة الخوارزمية" required>
+                </div>
+                <div class="form-group">
                     <label for="excuse-date">تاريخ الغياب 📅</label>
-                    <input type="date" id="excuse-date" class="form-control" required>
+                    <input type="date" id="excuse-date" required>
                 </div>
-
                 <div class="form-group">
-                    <label for="excuse-reason">سبب الغياب 💬</label>
-                    <textarea id="excuse-reason" class="form-control" rows="3" placeholder="اذكري سبب الغياب اختصاراً..." required></textarea>
+                    <label for="reason">سبب الغياب / التفاصيل ✍️</label>
+                    <textarea id="reason" rows="3" placeholder="أدخلي المبرر هنا..." required></textarea>
                 </div>
-
-                <div class="form-group">
-                    <label for="excuse-file">المرفق (شهادة طبية / وثيقة) 📎</label>
-                    <input type="file" id="excuse-file" class="form-control" accept=".pdf,.png,.jpg,.jpeg">
-                </div>
-
-                <button type="submit" class="btn btn-primary">إرسال المبرر 🚀</button>
+                <button type="submit" class="btn-submit">إرسال المبرر 📤</button>
             </form>
-        </div>
+        </section>
 
-        <!-- جدول المبررات السابقة -->
-        <div class="card excuses-list-card">
-            <h3>سجل المبررات المقدمة 📋</h3>
-            <table class="excuses-table">
-                <thead>
-                    <tr>
-                        <th>تاريخ الغياب 📅</th>
-                        <th>السبب 💬</th>
-                        <th>حالة الطلب 📌</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2026-07-22</td>
-                        <td>عذر طبي (شهادة طبية)</td>
-                        <td><span class="badge badge-pending">قيد المراجعة ⏳</span></td>
-                    </tr>
-                </tbody>
-            </table>
+        <h3>المبررات المقدمة سابقا 📋</h3>
+        <div id="excuse-list">
+            <!-- سيتم تحميل المبررات هنا dynamic -->
         </div>
     </main>
 
-    <footer id="main-footer">
+    <footer id="main-footer" style="text-align: center; padding: 20px; color: #888; margin-top: 40px;">
         <p>All rights reserved World of Nona 2026</p>
     </footer>
 
