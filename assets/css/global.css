@@ -1,0 +1,64 @@
+/* المتغيرات الأساسية والألوان 🎨 */
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #357ABD;
+    --background-color: #F8F9FA;
+    --card-background: #FFFFFF;
+    --text-color: #2C3E50;
+    --text-muted: #7F8C8D;
+    --border-radius: 12px;
+    --transition-speed: 0.3s ease;
+}
+
+/* إعادة ضبط الأساسيات للاتجاه العربي 📐 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    direction: rtl;
+    text-align: right;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* منطقة المحتوى الرئيسية */
+main#app-content {
+    flex: 1;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* تصميم بطاقة الترحيب 🌟 */
+.welcome-card {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.welcome-card h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* التذييل السفلي 📜 */
+footer#main-footer {
+    background-color: var(--card-background);
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    color: var(--text-muted);
+    border-top: 1px solid #E2E8F0;
+    margin-top: auto;
+}
