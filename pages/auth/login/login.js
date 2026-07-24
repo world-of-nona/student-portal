@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = passwordInput ? passwordInput.value.trim() : "";
 
             if (username && password) {
-                // حفظ بيانات المستخدِم بداخل LocalStorage 💾
+                // حفظ بيانات المستخدم بداخل LocalStorage 💾
                 const userData = {
                     username: username,
                     isLoggedIn: true,
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("currentUser", JSON.stringify(userData));
 
                 // التوجيه المباشر إلى لوحة التحكم 📊
-                window.location.href = "../dashboard/dashboard.html";
+                window.location.href = "../../dashboard/dashboard.html";
             } else {
                 alert("يرجى إدخال اسم المستخدم وكلمة المرور ⚠️");
             }

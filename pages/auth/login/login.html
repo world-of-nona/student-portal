@@ -4,151 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World of Nona - تسجيل الدخول</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            background-color: #F4F8F5 !important;
-            background-image: radial-gradient(#d1e7dd 1px, transparent 1px) !important;
-            background-size: 20px 20px !important;
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            min-height: 100vh !important;
-            margin: 0 !important;
-            padding: 15px !important;
-            font-family: 'Tajawal', sans-serif !important;
-        }
-        .auth-container {
-            width: 100% !important;
-            max-width: 400px !important;
-            background: #ffffff !important;
-            border-radius: 25px !important;
-            padding: 25px 20px !important;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
-            border: 1px solid #e2ece6 !important;
-            text-align: center !important;
-        }
-        .logo-area { 
-            font-size: 55px !important; 
-            margin-bottom: 5px !important; 
-        }
-        .brand-title { 
-            font-family: 'Comic Sans MS', cursive, sans-serif !important; 
-            font-size: 28px !important; 
-            font-weight: bold !important; 
-            color: #2b5d44 !important; 
-            margin: 0 !important; 
-        }
-        .brand-subtitle { 
-            font-size: 12px !important; 
-            color: #557163 !important; 
-            margin-top: 4px !important; 
-            margin-bottom: 20px !important; 
-            font-weight: 600 !important; 
-        }
-        .tabs-container { 
-            display: flex !important; 
-            background: #eef4f0 !important; 
-            border-radius: 16px !important; 
-            padding: 4px !important; 
-            margin-bottom: 20px !important; 
-        }
-        .auth-tab { 
-            flex: 1 !important; 
-            padding: 10px !important; 
-            text-align: center !important; 
-            border-radius: 12px !important; 
-            text-decoration: none !important; 
-            font-size: 13px !important; 
-            font-weight: bold !important; 
-            color: #718096 !important; 
-            transition: 0.2s !important; 
-        }
-        .auth-tab.active { 
-            background: #ffffff !important; 
-            color: #2b5d44 !important; 
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04) !important; 
-        }
-        .input-group { 
-            text-align: right !important; 
-            margin-bottom: 15px !important; 
-        }
-        .input-label { 
-            display: block !important; 
-            font-size: 12px !important; 
-            font-weight: bold !important; 
-            color: #2d3748 !important; 
-            margin-bottom: 6px !important; 
-        }
-        .auth-input { 
-            width: 100% !important; 
-            padding: 12px 15px !important; 
-            background: #f8faf9 !important; 
-            border: 1px solid #e2e8f0 !important; 
-            border-radius: 14px !important; 
-            font-size: 13px !important; 
-            outline: none !important; 
-        }
-        .auth-input:focus { 
-            border-color: #2d9373 !important; 
-            background: #fff !important; 
-        }
-        .form-options { 
-            display: flex !important; 
-            justify-content: space-between !important; 
-            align-items: center !important; 
-            font-size: 11px !important; 
-            color: #4a5568 !important; 
-            margin-bottom: 20px !important; 
-        }
-        .btn-submit { 
-            width: 100% !important; 
-            padding: 13px !important; 
-            background: linear-gradient(135deg, #38ad8a 0%, #2d9373 100%) !important; 
-            border: none !important; 
-            border-radius: 16px !important; 
-            color: white !important; 
-            font-size: 15px !important; 
-            font-weight: bold !important; 
-            cursor: pointer !important; 
-            box-shadow: 0 4px 12px rgba(45, 147, 115, 0.2) !important; 
-            display: flex !important; 
-            justify-content: center !important; 
-            align-items: center !important; 
-            gap: 6px !important; 
-        }
-        .divider-text { 
-            font-size: 11px !important; 
-            color: #a0aec0 !important; 
-            margin: 15px 0 10px 0 !important; 
-        }
-        .btn-guest { 
-            width: 100% !important; 
-            padding: 11px !important; 
-            background: transparent !important; 
-            border: 2px dashed #bce2ce !important; 
-            border-radius: 16px !important; 
-            color: #2d9373 !important; 
-            font-size: 13px !important; 
-            font-weight: bold !important; 
-            text-decoration: none !important; 
-            display: flex !important; 
-            justify-content: center !important; 
-            align-items: center !important; 
-            gap: 6px !important; 
-        }
-        .footer-emojis { 
-            margin-top: 20px !important; 
-            font-size: 16px !important; 
-        }
-        .footer-rights { 
-            font-size: 10px !important; 
-            color: #a0aec0 !important; 
-            margin-top: 8px !important; 
-        }
-    </style>
+    <!-- ربط ملف الـ CSS الخارجي -->
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
@@ -162,15 +19,16 @@
             <a href="../register/register.html" class="auth-tab">إنشاء حساب</a>
         </div>
 
-        <form onsubmit="handleLogin(event)">
+        <!-- تم إضافة id="login-form" لربطه بملف الجافاسكريبت -->
+        <form id="login-form">
             <div class="input-group">
-                <label class="input-label">البريد الإلكتروني أو رقم البطاقة 🪪</label>
-                <input type="text" class="auth-input" placeholder="أدخل البريد الجامعي أو الرقم" required>
+                <label class="input-label" for="username">البريد الإلكتروني أو رقم البطاقة 🪪</label>
+                <input type="text" id="username" class="auth-input" placeholder="أدخل البريد الجامعي أو الرقم" required>
             </div>
 
             <div class="input-group">
-                <label class="input-label">كلمة المرور 🔒</label>
-                <input type="password" class="auth-input" placeholder="••••••••" required>
+                <label class="input-label" for="password">كلمة المرور 🔒</label>
+                <input type="password" id="password" class="auth-input" placeholder="••••••••" required>
             </div>
 
             <div class="form-options">
@@ -198,11 +56,7 @@
         <div class="footer-rights">All rights reserved World of Nona 2026</div>
     </div>
 
-    <script>
-        function handleLogin(e) {
-            e.preventDefault();
-            window.location.href = "../../dashboard/dashboard.html";
-        }
-    </script>
+    <!-- ربط ملف الـ JavaScript الخارجي -->
+    <script src="login.js"></script>
 </body>
 </html>
