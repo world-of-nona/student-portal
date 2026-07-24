@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اللوحة الرئيسية - World of Nona 📊</title>
+
+    <!-- ربط الملفات العامة والخاصة باللوحة -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <header id="main-navbar">
+        <!-- سيتم تحميل القائمة من navbar.html -->
+    </header>
+
+    <main id="app-content">
+        <section class="dashboard-header">
+            <h1>لوحة التحكم 📊</h1>
+            <p>مرحباً بكِ مجدداً! إليكِ ملخص لآخر النشاطات الأكاديمية 🎓</p>
+        </section>
+
+        <!-- شبكة الإحصائيات السريعة -->
+        <section class="stats-grid">
+            <div class="card stat-card">
+                <h3>المواد المسجلة 📚</h3>
+                <p class="stat-number">6</p>
+            </div>
+            <div class="card stat-card">
+                <h3>نسبة الحضور 📈</h3>
+                <p class="stat-number">95%</p>
+            </div>
+            <div class="card stat-card">
+                <h3>المعدل الحالي ⭐️</h3>
+                <p class="stat-number">16.5 / 20</p>
+            </div>
+        </section>
+
+        <!-- قسم المحاضرات القادمة -->
+        <section class="dashboard-sections">
+            <div class="card">
+                <h3>محاضرات اليوم 🕒</h3>
+                <ul class="today-list">
+                    <li><strong>البرمجة بلغة JS:</strong> 09:00 - 10:30 صباحاً</li>
+                    <li><strong>تطوير الويب PWA:</strong> 11:00 - 12:30 ظهراً</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <p>All rights reserved World of Nona 2026</p>
+    </footer>
+
+    <script src="../../assets/js/global.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
