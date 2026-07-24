@@ -1,8 +1,24 @@
-// تحميل القائمة العلوية Navbar بشكل ذكي يتكيف مع مكان الصفحة 🧭
+// 1. إعداد وحفظ النمط الداكن (Dark Mode) في ذاكرة المتصفح 🌙
+function applySavedTheme() {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+}
+
+// دالة التبديل بين النمطين
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+}
+
+// تطبيق النمط فوراً قبل تفعيل الصفحة
+applySavedTheme();
+
+// 2. تحميل القائمة العلوية Navbar بشكل ذكي 🧭
 document.addEventListener("DOMContentLoaded", () => {
     const navbarHeader = document.getElementById("main-navbar");
     if (navbarHeader) {
-        // فحص ما إذا كانت الصفحة داخل مجلد فرعي أم في المجلد الرئيسي
         const isSubPage = window.location.pathname.includes("/pages/");
         const fetchPath = isSubPage ? "../../components/navbar.html" : "./components/navbar.html";
 
@@ -13,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(data => {
                 let htmlContent = data;
-                // ضبط الروابط تلقائياً إذا كنا في الصفحة الرئيسية
                 if (!isSubPage) {
                     htmlContent = htmlContent
                         .replaceAll('href="../', 'href="./pages/')
