@@ -1,0 +1,53 @@
+.grades-header {
+    margin-bottom: 25px;
+}
+
+.grades-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.grades-card {
+    overflow-x: auto;
+}
+
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.grades-table th, 
+.grades-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.grades-table th {
+    background-color: #F1F5F9;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.grades-table tr:hover {
+    background-color: #F8FAFC;
+}
+
+/* تصميم شارات المعدلات */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.badge-success {
+    background-color: #E6F4EA;
+    color: #1E8E3E;
+}
+
+.badge-warning {
+    background-color: #FEF7E0;
+    color: #B06000;
+}
