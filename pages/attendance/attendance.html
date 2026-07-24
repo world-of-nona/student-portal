@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحضور والغياب - World of Nona 📋</title>
+
+    <!-- ربط الملفات العامة والخاصة بالصفحة -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="attendance.css">
+</head>
+<body>
+
+    <header id="main-navbar">
+        <!-- سيتم تحميل القائمة من navbar.html -->
+    </header>
+
+    <main id="app-content">
+        <section class="attendance-header">
+            <h1>سجل الحضور والغياب 📋</h1>
+            <p>متابعة حالة الحضور والغياب للمحاضرات والأعمال التطبيقية 🕒</p>
+        </section>
+
+        <!-- ملخص نسبة الحضور -->
+        <div class="card attendance-summary">
+            <h3>نسبة الحضور الإجمالية: <span class="highlight">95%</span> 📈</h3>
+        </div>
+
+        <div class="card attendance-card">
+            <table class="attendance-table">
+                <thead>
+                    <tr>
+                        <th>التاريخ 📅</th>
+                        <th>المادة 📚</th>
+                        <th>نوع الحصة 🏛️</th>
+                        <th>الحالة 📌</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2026-07-20</td>
+                        <td>البرمجة بلغة JS</td>
+                        <td>محاضرة</td>
+                        <td><span class="badge badge-present">حاضر ✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-21</td>
+                        <td>تطوير الويب PWA</td>
+                        <td>عمل تطبيقي (TP)</td>
+                        <td><span class="badge badge-present">حاضر ✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-22</td>
+                        <td>قواعد البيانات</td>
+                        <td>محاضرة</td>
+                        <td><span class="badge badge-absent">غائب ❌</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer id="main-footer">
+        <p>All rights reserved World of Nona 2026</p>
+    </footer>
+
+    <script src="../../assets/js/global.js"></script>
+    <script src="attendance.js"></script>
+</body>
+</html>

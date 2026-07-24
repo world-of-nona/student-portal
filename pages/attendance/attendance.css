@@ -1,0 +1,60 @@
+.attendance-header {
+    margin-bottom: 25px;
+}
+
+.attendance-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.attendance-summary {
+    margin-bottom: 20px;
+    padding: 15px 20px;
+}
+
+.attendance-summary h3 {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.attendance-summary .highlight {
+    color: #1E8E3E;
+    font-size: 22px;
+}
+
+.attendance-card {
+    overflow-x: auto;
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.attendance-table th, 
+.attendance-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.attendance-table th {
+    background-color: #F1F5F9;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.attendance-table tr:hover {
+    background-color: #F8FAFC;
+}
+
+/* شارات الحالة */
+.badge-present {
+    background-color: #E6F4EA;
+    color: #1E8E3E;
+}
+
+.badge-absent {
+    background-color: #FCE8E6;
+    color: #C5221F;
+}
