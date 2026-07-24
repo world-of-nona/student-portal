@@ -39,3 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => console.error("خطأ في تحميل القائمة:", error));
     }
 });
+
+// 3. تسجيل الـ Service Worker لتطبيق PWA 📱
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        const isSubPage = window.location.pathname.includes("/pages/");
+        const swPath = isSubPage ? "../../sw.js" : "./sw.js";
+        
+        navigator.serviceWorker.register(swPath)
+            .then(reg => console.log("PWA Service Worker Registered 🚀", reg))
+            .catch(err => console.error("PWA Service Worker Failed ❌", err));
+    });
+}
