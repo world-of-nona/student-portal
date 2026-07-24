@@ -3,74 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World of Nona 🌿 - تسجيل الدخول</title>
-    <link rel="stylesheet" href="../../assets/css/global.css">
+    <title>World of Nona - تسجيل الدخول</title>
+    <link rel="stylesheet" href="login.css">
+    <style>
+        body {
+            background-color: #F4F8F5;
+            background-image: radial-gradient(#d1e7dd 1px, transparent 1px);
+            background-size: 20px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 15px;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 25px 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #e2ece6;
+            text-align: center;
+        }
+        .logo-area { font-size: 55px; margin-bottom: 5px; }
+        .brand-title { font-family: 'Comic Sans MS', cursive, sans-serif; font-size: 28px; font-weight: bold; color: #2b5d44; margin: 0; }
+        .brand-subtitle { font-size: 12px; color: #557163; margin-top: 4px; margin-bottom: 20px; font-weight: 600; }
+        .tabs-container { display: flex; background: #eef4f0; border-radius: 16px; padding: 4px; margin-bottom: 20px; }
+        .auth-tab { flex: 1; padding: 10px; text-align: center; border-radius: 12px; text-decoration: none; font-size: 13px; font-weight: bold; color: #718096; transition: 0.2s; }
+        .auth-tab.active { background: #ffffff; color: #2b5d44; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .input-group { text-align: right; margin-bottom: 15px; }
+        .input-label { display: block; font-size: 12px; font-weight: bold; color: #2d3748; margin-bottom: 6px; }
+        .auth-input { width: 100%; padding: 12px 15px; background: #f8faf9; border: 1px solid #e2e8f0; border-radius: 14px; font-size: 13px; outline: none; box-sizing: border-box; }
+        .auth-input:focus { border-color: #2d9373; background: #fff; }
+        .form-options { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #4a5568; margin-bottom: 20px; }
+        .btn-submit { width: 100%; padding: 13px; background: linear-gradient(135deg, #38ad8a 0%, #2d9373 100%); border: none; border-radius: 16px; color: white; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(45, 147, 115, 0.2); display: flex; justify-content: center; align-items: center; gap: 6px; }
+        .divider-text { font-size: 11px; color: #a0aec0; margin: 15px 0 10px 0; }
+        .btn-guest { width: 100%; padding: 11px; background: transparent; border: 2px dashed #bce2ce; border-radius: 16px; color: #2d9373; font-size: 13px; font-weight: bold; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 6px; box-sizing: border-box; }
+        .footer-emojis { margin-top: 20px; font-size: 16px; }
+        .footer-rights { font-size: 10px; color: #a0aec0; margin-top: 8px; }
+    </style>
 </head>
-<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+<body>
 
-    <div class="auth-wrapper">
-        
-        <!-- الشعار الأيقوني 🎓🌍 -->
-        <div style="font-size: 65px; margin-bottom: 10px;">🌍🎓</div>
-        
-        <h1 class="auth-title">World of Nona</h1>
-        <p class="auth-subtitle">منصة علوم الطبيعة والحياة - L1 SNV 🎓🌱</p>
+    <div class="auth-container">
+        <div class="logo-area">🎓🌍</div>
+        <h1 class="brand-title">World of Nona</h1>
+        <p class="brand-subtitle">منصة علوم الطبيعة والحياة - L1 SNV 🍃🌱</p>
 
-        <!-- تبويب الاختيار (تسجيل الدخول / إنشاء حساب) 🔄 -->
-        <div class="auth-tabs">
-            <a href="login.html" class="auth-tab active">تسجيل الدخول</a>
-            <a href="register.html" class="auth-tab">إنشاء حساب</a>
+        <div class="tabs-container">
+            <a href="../login/login.html" class="auth-tab active">تسجيل الدخول</a>
+            <a href="../register/register.html" class="auth-tab">إنشاء حساب</a>
         </div>
 
-        <form id="login-form" onsubmit="handleLogin(event)">
-            
-            <div class="form-group">
-                <label class="form-label">البريد الإلكتروني أو رقم البطاقة 🪪</label>
-                <input type="text" class="form-input" placeholder="أدخل البريد الجامعي أو الرقم" required>
+        <form onsubmit="handleLogin(event)">
+            <div class="input-group">
+                <label class="input-label">البريد الإلكتروني أو رقم البطاقة 🪪</label>
+                <input type="text" class="auth-input" placeholder="أدخل البريد الجامعي أو الرقم" required>
             </div>
 
-            <div class="form-group">
-                <label class="form-label">كلمة المرور 🔒</label>
-                <input type="password" class="form-input" placeholder="••••••••" required>
+            <div class="input-group">
+                <label class="input-label">كلمة المرور 🔒</label>
+                <input type="password" class="auth-input" placeholder="••••••••" required>
             </div>
 
             <div class="form-options">
-                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
-                    <input type="checkbox" checked>
-                    تذكرني في هذا الجهاز
+                <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
+                    <input type="checkbox" checked> تذكرني في هذا الجهاز
                 </label>
-                <select style="padding: 4px 8px; border-radius: 8px; border: 1px solid #E2E8F0; font-size: 11px;">
+                <select style="padding: 2px 6px; border-radius: 6px; border: 1px solid #cbd5e0; font-size: 10px;">
                     <option>لمدة اسبوع</option>
                     <option>لمدة شهر</option>
                 </select>
             </div>
 
-            <!-- زر الدخول الرئيسي 🚀 -->
-            <button type="submit" class="btn-primary-action">
+            <button type="submit" class="btn-submit">
                 دخول للحساب 🚀
             </button>
-
         </form>
 
-        <p style="font-size: 12px; color: #A0AEC0; margin: 15px 0 5px 0;">أو للتصفح السريع</p>
+        <div class="divider-text">أو للتصفح السريع</div>
 
-        <!-- زر الدخول كضيف 👤 -->
-        <a href="guest.html" class="btn-guest-action">
+        <a href="../guest/guest.html" class="btn-guest">
             <span>👤</span> الدخول كضيف
         </a>
 
-        <!-- الرموز والفوتر 🍃 -->
-        <div style="margin-top: 25px; font-size: 20px;">🍃 🌿 🌱</div>
-        <p style="font-size: 11px; color: #A0AEC0; margin-top: 15px;">All rights reserved World of Nona 2026</p>
-
+        <div class="footer-emojis">🍃 🌿 🌱</div>
+        <div class="footer-rights">All rights reserved World of Nona 2026</div>
     </div>
 
     <script>
         function handleLogin(e) {
             e.preventDefault();
-            window.location.href = "../dashboard/dashboard.html";
+            window.location.href = "../../dashboard/dashboard.html";
         }
     </script>
-    <script src="../../assets/js/global.js"></script>
 </body>
 </html>
