@@ -1,0 +1,55 @@
+/* ==========================================
+   تنسيق شريط التنقل العلوي (Navbar CSS) 🧭
+   ========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+    border-radius: 0 0 12px 12px;
+}
+
+.navbar-brand a {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4A90E2;
+    text-decoration: none;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-menu a:hover {
+    background-color: #F1F5F9;
+    color: #4A90E2;
+}
+
+/* الاستجابة للشاشات الصغيرة والصغيرة جداً 📱 */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .navbar-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
