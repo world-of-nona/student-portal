@@ -3,80 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - World of Nona 🎓</title>
-
+    <title>World of Nona 🌿 - تسجيل الدخول</title>
     <link rel="stylesheet" href="../../assets/css/global.css">
-    <link rel="stylesheet" href="../../assets/css/components.css">
-    
-    <style>
-        .auth-card {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 30px;
-            border-radius: 12px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            text-align: right;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border-color, #ccc);
-            border-radius: 8px;
-            box-sizing: border-box;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary-color, #4A90E2);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .btn-submit:hover {
-            opacity: 0.9;
-        }
-    </style>
 </head>
-<body>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
 
-    <header id="main-navbar">
-        <!-- القائمة العلوية -->
-    </header>
+    <div class="auth-wrapper">
+        
+        <!-- الشعار الأيقوني 🎓🌍 -->
+        <div style="font-size: 65px; margin-bottom: 10px;">🌍🎓</div>
+        
+        <h1 class="auth-title">World of Nona</h1>
+        <p class="auth-subtitle">منصة علوم الطبيعة والحياة - L1 SNV 🎓🌱</p>
 
-    <main id="app-content">
-        <section class="card auth-card">
-            <h2 style="text-align: center; margin-bottom: 25px;">تسجيل الدخول 🔑</h2>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="username">اسم المستخدم 👤</label>
-                    <input type="text" id="username" placeholder="أدخلي اسم المستخدم" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">كلمة المرور 🔒</label>
-                    <input type="password" id="password" placeholder="أدخلي كلمة المرور" required>
-                </div>
-                <button type="submit" class="btn-submit">دخول 🚀</button>
-            </form>
-        </section>
-    </main>
+        <!-- تبويب الاختيار (تسجيل الدخول / إنشاء حساب) 🔄 -->
+        <div class="auth-tabs">
+            <a href="login.html" class="auth-tab active">تسجيل الدخول</a>
+            <a href="register.html" class="auth-tab">إنشاء حساب</a>
+        </div>
 
-    <footer id="main-footer" style="text-align: center; padding: 20px; color: #888; margin-top: 40px;">
-        <p>All rights reserved World of Nona 2026</p>
-    </footer>
+        <form id="login-form" onsubmit="handleLogin(event)">
+            
+            <div class="form-group">
+                <label class="form-label">البريد الإلكتروني أو رقم البطاقة 🪪</label>
+                <input type="text" class="form-input" placeholder="أدخل البريد الجامعي أو الرقم" required>
+            </div>
 
+            <div class="form-group">
+                <label class="form-label">كلمة المرور 🔒</label>
+                <input type="password" class="form-input" placeholder="••••••••" required>
+            </div>
+
+            <div class="form-options">
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                    <input type="checkbox" checked>
+                    تذكرني في هذا الجهاز
+                </label>
+                <select style="padding: 4px 8px; border-radius: 8px; border: 1px solid #E2E8F0; font-size: 11px;">
+                    <option>لمدة اسبوع</option>
+                    <option>لمدة شهر</option>
+                </select>
+            </div>
+
+            <!-- زر الدخول الرئيسي 🚀 -->
+            <button type="submit" class="btn-primary-action">
+                دخول للحساب 🚀
+            </button>
+
+        </form>
+
+        <p style="font-size: 12px; color: #A0AEC0; margin: 15px 0 5px 0;">أو للتصفح السريع</p>
+
+        <!-- زر الدخول كضيف 👤 -->
+        <a href="guest.html" class="btn-guest-action">
+            <span>👤</span> الدخول كضيف
+        </a>
+
+        <!-- الرموز والفوتر 🍃 -->
+        <div style="margin-top: 25px; font-size: 20px;">🍃 🌿 🌱</div>
+        <p style="font-size: 11px; color: #A0AEC0; margin-top: 15px;">All rights reserved World of Nona 2026</p>
+
+    </div>
+
+    <script>
+        function handleLogin(e) {
+            e.preventDefault();
+            window.location.href = "../dashboard/dashboard.html";
+        }
+    </script>
     <script src="../../assets/js/global.js"></script>
-    <script src="login.js"></script>
 </body>
 </html>
