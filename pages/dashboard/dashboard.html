@@ -3,76 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم - World of Nona 🎓</title>
-
+    <title>World of Nona 🌿 - الرئيسية</title>
     <link rel="stylesheet" href="../../assets/css/global.css">
-    <link rel="stylesheet" href="../../assets/css/components.css">
-
-    <style>
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .stat-card {
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .stat-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 16px;
-            color: var(--secondary-color, #666);
-        }
-
-        .stat-card .value {
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--primary-color, #4A90E2);
-        }
-    </style>
 </head>
 <body>
 
-    <header id="main-navbar">
-        <!-- القائمة العلوية -->
-    </header>
+    <div class="app-container">
 
-    <main id="app-content" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
-        <h1 id="welcome-user">أهلاً بكِ في لوحة التحكم 👋</h1>
-        <p style="color: #666;">ملخص سريع لأدائكِ الأكاديمي والجدول الدراسي 📚</p>
-
-        <div class="dashboard-grid">
-            <div class="card stat-card">
-                <h3>المعدل العام 💯</h3>
-                <div class="value">-- / 20</div>
+        <!-- الهيدر العلوي ✨ -->
+        <header class="app-header">
+            <div class="header-actions">
+                <button class="icon-btn" onclick="toggleDrawer()">🚪</button>
+                <button class="icon-btn">🔔</button>
             </div>
-
-            <div class="card stat-card">
-                <h3>نسبة الحضور 📋</h3>
-                <div class="value">100%</div>
+            <div class="user-profile-badge">
+                <div class="user-info" style="text-align: left;">
+                    <h2 id="user-display-name">مرحباً بكِ، طالبة SNV 🌿</h2>
+                    <p>السنة الأولى L1 - السداسي 1</p>
+                </div>
+                <div class="avatar-ring">👩‍🎓</div>
             </div>
+        </header>
 
-            <div class="card stat-card">
-                <h3>المبررات المقبولة 📝</h3>
-                <div class="value">0</div>
-            </div>
-
-            <div class="card stat-card">
-                <h3>محاضرات اليوم 📅</h3>
-                <div class="value">3</div>
+        <!-- كارت الترحيب 🔬 -->
+        <div class="hero-banner">
+            <div class="hero-icon">🔬</div>
+            <div>
+                <h3>مرحباً بكِ في World of Nona 🧬</h3>
+                <p>منصتكِ الشاملة لملخصات وتمارين علوم الطبيعة والحياة</p>
             </div>
         </div>
-    </main>
 
-    <footer id="main-footer" style="text-align: center; padding: 20px; color: #888; margin-top: 40px;">
-        <p>All rights reserved World of Nona 2026</p>
-    </footer>
+        <!-- قسم الإحصائيات 📊 -->
+        <div class="section-title">إحصائياتكِ الدراسية 📊</div>
+        <div class="stats-grid">
+            
+            <div class="stat-card yellow">
+                <div class="stat-header">
+                    <span>السلاسل (TD)</span>
+                    <div class="stat-icon-bg">📝</div>
+                </div>
+                <div class="stat-value">12</div>
+            </div>
 
+            <div class="stat-card green">
+                <div class="stat-header">
+                    <span>الملخصات</span>
+                    <div class="stat-icon-bg">📚</div>
+                </div>
+                <div class="stat-value">24</div>
+            </div>
+
+            <div class="stat-card pink">
+                <div class="stat-header">
+                    <span>الأعمال التطبيقية (TP)</span>
+                    <div class="stat-icon-bg">🧪</div>
+                </div>
+                <div class="stat-value">08</div>
+            </div>
+
+            <div class="stat-card blue">
+                <div class="stat-header">
+                    <span>الامتحانات</span>
+                    <div class="stat-icon-bg">🎓</div>
+                </div>
+                <div class="stat-value">05</div>
+            </div>
+
+        </div>
+
+        <!-- الجدول الزمني اليومي 🗓️ -->
+        <div class="section-title">الجدول الزمني اليومي 🗓️</div>
+        
+        <div class="days-tabs">
+            <div class="day-tab">الأحد</div>
+            <div class="day-tab">الإثنين</div>
+            <div class="day-tab">الثلاثاء</div>
+            <div class="day-tab">الأربعاء</div>
+            <div class="day-tab active">الخميس</div>
+        </div>
+
+        <!-- بطاقة المحاضرة 1 -->
+        <div class="course-card">
+            <div class="course-top">
+                <span class="status-badge">منتهية ✅</span>
+                <span class="time-badge">🕒 08:00 - 09:30</span>
+            </div>
+            <div class="course-body">
+                <span class="type-tag">TD</span>
+                <h4 class="course-title">الرياضيات والإحصاء</h4>
+            </div>
+            <div class="course-footer">
+                Salle 3.08 📍 .TABABOUCHET I 👨‍🏫
+            </div>
+        </div>
+
+        <!-- بطاقة المحاضرة 2 -->
+        <div class="course-card">
+            <div class="course-top">
+                <span class="status-badge">منتهية ✅</span>
+                <span class="time-badge">🕒 09:30 - 11:00</span>
+            </div>
+            <div class="course-body">
+                <span class="type-tag">TD</span>
+                <h4 class="course-title">الجيولوجيا</h4>
+            </div>
+            <div class="course-footer">
+                Salle 3.08 📍 .MOSTEFAI S 👨‍🏫
+            </div>
+        </div>
+
+        <!-- الفوتر 📜 -->
+        <footer style="text-align: center; padding: 25px 0; color: #A0AEC0; font-size: 13px;">
+            <p>All rights reserved World of Nona 2026</p>
+        </footer>
+
+    </div>
+
+    <!-- القائمة الجانبية (Drawer Menu) 🧭 -->
+    <div class="drawer-overlay" id="drawer">
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <div class="avatar-ring">👩‍🎓</div>
+                <div>
+                    <h3 style="font-size: 15px;">طالبة SNV ✨</h3>
+                    <p style="font-size: 11px; color: #718096;">السنة الأولى L1 - السداسي 1</p>
+                </div>
+                <button class="close-btn" onclick="toggleDrawer()">✕</button>
+            </div>
+
+            <div class="drawer-menu">
+                <a href="#" class="menu-item active">
+                    <span>الرئيسية</span>
+                    <span>🏠</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <span>الملف الشخصي</span>
+                    <span>👤</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <span>المفضلة والدروس</span>
+                    <span>⭐️</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <span>جدول التوقيت والامتحانات</span>
+                    <span>📅</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <span>الإعدادات</span>
+                    <span>⚙️</span>
+                </a>
+                
+                <hr style="border: none; border-top: 1px dashed #E2E8F0; margin: 10px 0;">
+
+                <a href="#" class="menu-item logout">
+                    <span>تسجيل الخروج</span>
+                    <span>🚪</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('drawer');
+            drawer.style.display = drawer.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
     <script src="../../assets/js/global.js"></script>
-    <script src="dashboard.js"></script>
 </body>
 </html>
