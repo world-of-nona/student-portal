@@ -3,39 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World of Nona - البوابة الطلابية 🎓</title>
+    <title>World of Nona 🎓</title>
 
-    <!-- ربط ملف الـ PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4A90E2">
-
-    <!-- ربط ملفات التنسيق CSS -->
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+        .hero-card {
+            text-align: center;
+            padding: 50px 20px;
+            max-width: 550px;
+            margin: 40px auto;
+        }
+
+        .hero-card h1 {
+            font-size: 28px;
+            color: var(--primary-color, #4A90E2);
+            margin-bottom: 15px;
+        }
+
+        .hero-card p {
+            color: #666666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-actions .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- القائمة العلوية (Navbar) -->
     <header id="main-navbar">
-        <!-- سيتم تحميل القائمة من components/navbar/navbar.html -->
+        <!-- سيتم تحميل القائمة العلوية هنا تلقائياً -->
     </header>
 
-    <!-- المحتوى الرئيسي للموقع -->
     <main id="app-content">
-        <section class="welcome-card">
+        <section class="card hero-card">
             <h1>مرحباً بكِ في World of Nona 🌟</h1>
-            <p>منصتكِ الدراسية الذكية لإدارة الجدول، الحضور، والنتائج الأكاديمية 📚.</p>
+            <p>منصتكِ الدراسية الذكية لإدارة الجدول، الحضور، والنتائج الأكاديمية بكل سهولة ورتابة 📚✨</p>
+            
+            <div class="hero-actions">
+                <a href="pages/login/login.html" class="btn btn-primary">تسجيل الدخول 🔑</a>
+                <a href="pages/dashboard/dashboard.html" class="btn btn-secondary">لوحة التحكم 📊</a>
+            </div>
         </section>
     </main>
 
-    <!-- التذييل السفلي (Footer) -->
-    <footer id="main-footer">
+    <footer id="main-footer" style="text-align: center; padding: 20px; color: #888; margin-top: 40px;">
         <p>All rights reserved World of Nona 2026</p>
     </footer>
 
-    <!-- ربط ملفات الجافاسكريبت JS -->
     <script src="assets/js/global.js"></script>
-    <script src="assets/js/pwa-register.js"></script>
 </body>
 </html>
