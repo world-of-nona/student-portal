@@ -3,42 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - World of Nona 🔐</title>
+    <title>تسجيل الدخول - World of Nona 🎓</title>
+
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
     
-    <!-- ربط الملفات العامة والخاصة بالصفحة -->
-    <link rel="stylesheet" href="../../../assets/css/global.css">
-    <link rel="stylesheet" href="../../../assets/css/components.css">
-    <link rel="stylesheet" href="login.css">
+    <style>
+        .auth-card {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color, #ccc);
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color, #4A90E2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
 
-    <main class="login-container">
-        <div class="card login-card">
-            <h2>تسجيل الدخول 🔑</h2>
-            
+    <header id="main-navbar">
+        <!-- القائمة العلوية -->
+    </header>
+
+    <main id="app-content">
+        <section class="card auth-card">
+            <h2 style="text-align: center; margin-bottom: 25px;">تسجيل الدخول 🔑</h2>
             <form id="login-form">
                 <div class="form-group">
-                    <label for="email">البريد الإلكتروني ✉️</label>
-                    <input type="email" id="email" class="form-control" placeholder="example@domain.com" required>
+                    <label for="username">اسم المستخدم 👤</label>
+                    <input type="text" id="username" placeholder="أدخلي اسم المستخدم" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="password">كلمة المرور 🔒</label>
-                    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                    <input type="password" id="password" placeholder="أدخلي كلمة المرور" required>
                 </div>
-                
-                <button type="submit" class="btn btn-primary btn-full">دخول 🚀</button>
+                <button type="submit" class="btn-submit">دخول 🚀</button>
             </form>
-            
-            <p class="register-link">ليس لديكِ حساب؟ <a href="../register/register.html">إنشاء حساب جديد</a></p>
-        </div>
+        </section>
     </main>
 
-    <footer id="main-footer">
+    <footer id="main-footer" style="text-align: center; padding: 20px; color: #888; margin-top: 40px;">
         <p>All rights reserved World of Nona 2026</p>
     </footer>
 
-    <script src="../../../assets/js/global.js"></script>
+    <script src="../../assets/js/global.js"></script>
     <script src="login.js"></script>
 </body>
 </html>
