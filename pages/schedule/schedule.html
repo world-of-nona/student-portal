@@ -3,60 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الجدول الدراسي - World of Nona 📅</title>
+    <title>الجدول الدراسي - World of Nona 🎓</title>
 
-    <!-- ربط الملفات العامة والخاصة بالجدول -->
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/components.css">
-    <link rel="stylesheet" href="schedule.css">
+
+    <style>
+        .schedule-page {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .form-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .form-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 160px;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color, #ccc);
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+        .btn-submit {
+            padding: 10px 20px;
+            background-color: var(--primary-color, #4A90E2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
     <header id="main-navbar">
-        <!-- سيتم تحميل القائمة من navbar.html -->
+        <!-- القائمة العلوية -->
     </header>
 
-    <main id="app-content">
-        <section class="schedule-header">
-            <h1>الجدول الدراسي 📅</h1>
-            <p>استعرضي مواعيد المحاضرات والأوقات للأسبوع الحالي 🕒</p>
+    <main id="app-content" class="schedule-page">
+        <h2>الجدول الدراسي الأسبوعي 🗓️</h2>
+
+        <section class="card form-card">
+            <h3>إضافة حصة / محاضرة جديدة ➕</h3>
+            <form id="schedule-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="day-select">اليوم 📅</label>
+                        <select id="day-select" required>
+                            <option value="الأحد">الأحد</option>
+                            <option value="الإثنين">الإثنين</option>
+                            <option value="الثلاثاء">الثلاثاء</option>
+                            <option value="الأربعاء">الأربعاء</option>
+                            <option value="الخميس">الخميس</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">اسم المادة 📚</label>
+                        <input type="text" id="subject" placeholder="مثال: القواعد" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">التوقيت ⏰</label>
+                        <input type="text" id="time" placeholder="08:00 - 10:00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="room">القاعة / المدرج 🏫</label>
+                        <input type="text" id="room" placeholder="قاعة 12">
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">حفظ الحصة 💾</button>
+            </form>
         </section>
 
-        <div class="card schedule-card">
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th>اليوم 🗓️</th>
-                        <th>المادة 📚</th>
-                        <th>التوقيت ⏰</th>
-                        <th>القاعة 🏛️</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>الأحد</td>
-                        <td>البرمجة بلغة JS</td>
-                        <td>09:00 - 10:30</td>
-                        <td>قاعة 01</td>
-                    </tr>
-                    <tr>
-                        <td>الإثنين</td>
-                        <td>تطوير الويب PWA</td>
-                        <td>11:00 - 12:30</td>
-                        <td>مخبر 03</td>
-                    </tr>
-                    <tr>
-                        <td>الثلاثاء</td>
-                        <td>قواعد البيانات</td>
-                        <td>08:30 - 10:00</td>
-                        <td>قاعة 05</td>
-                    </tr>
-                </tbody>
-            </table>
+        <h3>محاضرات الأسبوع 📋</h3>
+        <div id="schedule-container">
+            <!-- سيتم تحميل أيام الجدول هنا تلقائياً -->
         </div>
     </main>
 
-    <footer id="main-footer">
+    <footer id="main-footer" style="text-align: center; padding: 20px; color: #888; margin-top: 40px;">
         <p>All rights reserved World of Nona 2026</p>
     </footer>
 
