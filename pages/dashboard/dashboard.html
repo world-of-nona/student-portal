@@ -3,54 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اللوحة الرئيسية - World of Nona 📊</title>
+    <title>لوحة التحكم - World of Nona 🎓</title>
 
-    <!-- ربط الملفات العامة والخاصة باللوحة -->
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/components.css">
-    <link rel="stylesheet" href="dashboard.css">
+
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .stat-card {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: var(--secondary-color, #666);
+        }
+
+        .stat-card .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color, #4A90E2);
+        }
+    </style>
 </head>
 <body>
 
     <header id="main-navbar">
-        <!-- سيتم تحميل القائمة من navbar.html -->
+        <!-- القائمة العلوية -->
     </header>
 
-    <main id="app-content">
-        <section class="dashboard-header">
-            <h1>لوحة التحكم 📊</h1>
-            <p>مرحباً بكِ مجدداً! إليكِ ملخص لآخر النشاطات الأكاديمية 🎓</p>
-        </section>
+    <main id="app-content" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+        <h1 id="welcome-user">أهلاً بكِ في لوحة التحكم 👋</h1>
+        <p style="color: #666;">ملخص سريع لأدائكِ الأكاديمي والجدول الدراسي 📚</p>
 
-        <!-- شبكة الإحصائيات السريعة -->
-        <section class="stats-grid">
+        <div class="dashboard-grid">
             <div class="card stat-card">
-                <h3>المواد المسجلة 📚</h3>
-                <p class="stat-number">6</p>
+                <h3>المعدل العام 💯</h3>
+                <div class="value">-- / 20</div>
             </div>
-            <div class="card stat-card">
-                <h3>نسبة الحضور 📈</h3>
-                <p class="stat-number">95%</p>
-            </div>
-            <div class="card stat-card">
-                <h3>المعدل الحالي ⭐️</h3>
-                <p class="stat-number">16.5 / 20</p>
-            </div>
-        </section>
 
-        <!-- قسم المحاضرات القادمة -->
-        <section class="dashboard-sections">
-            <div class="card">
-                <h3>محاضرات اليوم 🕒</h3>
-                <ul class="today-list">
-                    <li><strong>البرمجة بلغة JS:</strong> 09:00 - 10:30 صباحاً</li>
-                    <li><strong>تطوير الويب PWA:</strong> 11:00 - 12:30 ظهراً</li>
-                </ul>
+            <div class="card stat-card">
+                <h3>نسبة الحضور 📋</h3>
+                <div class="value">100%</div>
             </div>
-        </section>
+
+            <div class="card stat-card">
+                <h3>المبررات المقبولة 📝</h3>
+                <div class="value">0</div>
+            </div>
+
+            <div class="card stat-card">
+                <h3>محاضرات اليوم 📅</h3>
+                <div class="value">3</div>
+            </div>
+        </div>
     </main>
 
-    <footer id="main-footer">
+    <footer id="main-footer" style="text-align: center; padding: 20px; color: #888; margin-top: 40px;">
         <p>All rights reserved World of Nona 2026</p>
     </footer>
 
