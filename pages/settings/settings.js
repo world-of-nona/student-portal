@@ -1,29 +1,31 @@
 // برمجة صفحة الإعدادات ⚙️
 document.addEventListener("DOMContentLoaded", () => {
-    const themeBtn = document.getElementById("toggle-theme-btn");
-    const logoutBtn = document.getElementById("logout-btn");
+    const themeToggleBtn = document.getElementById("theme-toggle-btn");
+    const resetDataBtn = document.getElementById("reset-data-btn");
 
-    // تحديث نص زر النمط حسب النمط الحالي
-    function updateThemeBtnText() {
-        if (!themeBtn) return;
+    // تحديث نص الزر حسب الحالة الحالية
+    function updateThemeButtonText() {
+        if (!themeToggleBtn) return;
         const currentTheme = document.documentElement.getAttribute("data-theme");
-        themeBtn.textContent = currentTheme === "dark" ? "التحويل للنمط الفاتح ☀️" : "التحويل للنمط الداكن 🌙";
+        themeToggleBtn.textContent = currentTheme === "dark" ? "التحويل للوضع الفاتح ☀️" : "التحويل للوضع الداكن 🌙";
     }
 
-    // زر تغيير النمط
-    if (themeBtn) {
-        themeBtn.addEventListener("click", () => {
-            toggleTheme(); // الدالة المعرفة بملف global.js
-            updateThemeBtnText();
+    if (themeToggleBtn) {
+        updateThemeButtonText();
+        themeToggleBtn.addEventListener("click", () => {
+            toggleTheme(); // دالة معرفة بـ global.js
+            updateThemeButtonText();
         });
-        updateThemeBtnText();
     }
 
-    // زر تسجيل الخروج
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-            localStorage.removeItem("currentUser");
-            window.location.href = "../auth/login.html";
+    // مسح وإعادة ضبط البيانات
+    if (resetDataBtn) {
+        resetDataBtn.addEventListener("click", () => {
+            if (confirm("هل أنتِ متأكدة من رغبتكِ في مسح جميع البيانات المخزنة؟ ⚠️")) {
+                localStorage.clear();
+                alert("تم مسح جميع البيانات بنجاح! 🧹");
+                window.location.reload();
+            }
         });
     }
 });

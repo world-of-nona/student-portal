@@ -14,26 +14,33 @@
             margin: 30px auto;
             padding: 20px;
         }
+        .settings-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
         .setting-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 12px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .setting-item:last-child {
+            border-bottom: none;
         }
         .btn-action {
-            padding: 10px 18px;
-            border: none;
+            padding: 8px 16px;
             border-radius: 8px;
+            border: none;
             font-weight: bold;
             cursor: pointer;
         }
         .btn-theme {
-            background-color: var(--primary-color, #4A90E2);
+            background-color: var(--primary-color);
             color: white;
         }
-        .btn-logout {
+        .btn-danger {
             background-color: #E74C3C;
             color: white;
         }
@@ -48,21 +55,23 @@
     <main id="app-content" class="settings-container">
         <h2>إعدادات التطبيق ⚙️</h2>
 
-        <div class="card setting-item">
-            <div>
-                <h3 style="margin:0;">المظهر والنمط 🌙</h3>
-                <p style="margin:5px 0 0 0; color:#888; font-size:14px;">التبديل بين النمط الداكن والفاتح</p>
+        <section class="card settings-card">
+            <div class="setting-item">
+                <div>
+                    <strong>المظهر (Dark Mode) 🌙</strong>
+                    <p style="margin: 5px 0 0 0; font-size: 13px; color: var(--secondary-color);">التبديل بين النمط الفاتح والداكن</p>
+                </div>
+                <button id="theme-toggle-btn" class="btn-action btn-theme">تغيير المظهر</button>
             </div>
-            <button id="toggle-theme-btn" class="btn-action btn-theme">تغيير النمط 🌙</button>
-        </div>
 
-        <div class="card setting-item">
-            <div>
-                <h3 style="margin:0;">الحساب والجلسة 👤</h3>
-                <p style="margin:5px 0 0 0; color:#888; font-size:14px;">تسجيل الخروج من الحساب الحالي</p>
+            <div class="setting-item">
+                <div>
+                    <strong>مسح البيانات 🧹</strong>
+                    <p style="margin: 5px 0 0 0; font-size: 13px; color: var(--secondary-color);">إعادة تعيين المحفوظات والبيانات المحلية</p>
+                </div>
+                <button id="reset-data-btn" class="btn-action btn-danger">إعادة ضبط ⚠️</button>
             </div>
-            <button id="logout-btn" class="btn-action btn-logout">تسجيل الخروج 🚪</button>
-        </div>
+        </section>
     </main>
 
     <footer id="main-footer" style="text-align: center; padding: 20px; color: #888; margin-top: 40px;">
